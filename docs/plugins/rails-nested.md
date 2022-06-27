@@ -11,7 +11,7 @@ import AntForm, { AntFormRailsNested } from '@9troisquarts/ant-form';
 
 AntForm.addField('nested', {
   component: AntFormRailsNested
-})
+});
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ AntForm.addField('nested', {
 export default () => (
   <AntForm
     layout="vertical"
-    object={{ people: [{ firstname: 'Bruce' }] }}
+    object={{ people: [{firstName: 'Bruce' }] }}
     onSubmit={(values) => console.log(values)}
     schema={[
       {
@@ -56,9 +56,9 @@ export default () => (
           ) => {
             return [
               {
-                name: 'firstname',
+                name: 'firstName',
+                label: 'First name',
                 readOnly: true,
-                label: 'firstname',
                 required: true,
                 input: {
                   type: 'string',
@@ -75,5 +75,3 @@ export default () => (
   />
 );
 ```
-
-<API src="../../src/ant-form-rails-nested/ant-form-rails-nested.tsx"></API>
