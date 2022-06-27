@@ -15,7 +15,7 @@ AntForm.addField('color', {
 });
 ```
 
-## Basic usage
+## Chrome (default)
 
 ```tsx
 import React from 'react';
@@ -29,13 +29,74 @@ export default () => (
   <AntForm
     layout="vertical"
     object={{ color: '#FF0000' }}
-    onSubmit={(values) => console.log(values)}
     schema={[
       {
         name: 'color',
         label: 'Color',
         input: {
           type: 'color'
+        }
+      }
+    ]}
+  />
+);
+```
+
+## Github
+
+```tsx
+import React from 'react';
+import AntForm, { AntFormColorPicker } from '@9troisquarts/ant-form';
+
+AntForm.addField('color', {
+  component: AntFormColorPicker
+});
+
+export default () => (
+  <AntForm
+    layout="vertical"
+    object={{ color: '#FF0000' }}
+    schema={[
+      {
+        name: 'color',
+        label: 'Color',
+        input: {
+          type: 'color',
+          inputProps: {
+            type: 'github',
+            colors: ['#FF0000', '#00FF00']
+          }
+        }
+      }
+    ]}
+  />
+);
+```
+
+## Block
+
+```tsx
+import React from 'react';
+import AntForm, { AntFormColorPicker } from '@9troisquarts/ant-form';
+
+AntForm.addField('color', {
+  component: AntFormColorPicker
+});
+
+export default () => (
+  <AntForm
+    layout="vertical"
+    object={{ color: '#FF0000' }}
+    schema={[
+      {
+        name: 'color',
+        label: 'Color',
+        input: {
+          type: 'color',
+          inputProps: {
+            type: 'block',
+            colors: ['#FF0000', '#00FF00']
+          }
         }
       }
     ]}

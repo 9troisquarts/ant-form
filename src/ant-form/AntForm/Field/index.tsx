@@ -72,7 +72,7 @@ export const Field: React.FC<FieldProps> = props => {
             help: isArray(error) ? error[0] : error,
           })}
       >
-        <Component {...componentSharedProps} {...inputProps} />
+        <Component {...componentSharedProps} {...inputProps} inputProps={inputProps} />
       </Form.Item>
     );
 

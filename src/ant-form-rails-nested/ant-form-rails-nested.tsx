@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useReducer } from 'react';
 import { Form, Row, Col, Button } from 'antd';
 import isEqual from 'lodash/isEqual';

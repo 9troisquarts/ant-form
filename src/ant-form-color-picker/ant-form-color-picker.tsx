@@ -3,13 +3,13 @@ import { GithubPicker, ChromePicker, BlockPicker } from "react-color";
 import { Popover, Tooltip } from "antd";
 import "./ant-form-color-picker.css";
 
-type AntFormColorPickerOptions = {
+export interface AntFormColorPickerOptions {
   size?: 'small' | 'default';
   type?: 'chrome' | 'github' | 'block';
   colors?: string[];
 }
 
-export type AntFormColorPickerProps = {
+export interface AntFormColorPickerProps {
   value: string;
   onChange: (value: string | any) => void;
   inputProps: AntFormColorPickerOptions;
@@ -35,7 +35,7 @@ export const AntFormColorPicker: React.FC<AntFormColorPickerProps> = props => {
     setColor(value);
   }, [value]);
 
-  const handleGithubChange = (value) => {
+  const handleGithubChange = (value: { hex: string }) => {
     if(value?.hex) {
       const { hex } = value;
       setColor(hex);
@@ -44,7 +44,7 @@ export const AntFormColorPicker: React.FC<AntFormColorPickerProps> = props => {
     }
   }
 
-  const handleChange = (value) => {
+  const handleChange = (value: { hex: string }) => {
     const { hex } = value;
     setColor(hex);
     onChange(hex);
@@ -56,7 +56,7 @@ export const AntFormColorPicker: React.FC<AntFormColorPickerProps> = props => {
     <div className="ant-form-colorpicker-swatch">
       <div
         className={size === "small" ? "ant-form-colorpicker-small-size" : "ant-form-colorpicker-default-size"}
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: color || '#FFF' }}
       />
     </div>
   );
@@ -77,7 +77,6 @@ export const AntFormColorPicker: React.FC<AntFormColorPickerProps> = props => {
                 <div className="ant-form-colorpicker-chrome-container">
                   <ChromePicker
                     color={color || ""}
-                    triangle={null}
                     onChangeComplete={handleChange}
                   />
                 </div>
@@ -86,7 +85,7 @@ export const AntFormColorPicker: React.FC<AntFormColorPickerProps> = props => {
                   <GithubPicker
                     color={color || ""}
                     colors={colors}
-                    triangle={null}
+                    triangle='hide'
                     onChangeComplete={handleGithubChange}
                   />
                 ))}

@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  InputNumber,
+  InputNumber as AInputNumber,
   Select,
-  Slider,
-  Rate,
-  Switch,
+  Slider as ASlider,
+  Rate as ARate,
+  Switch as ASwitch,
   Checkbox,
   Row,
   Col,
@@ -30,17 +30,27 @@ import { memoOnlyForKeys } from '../_utils/helpers';
 import InputString from './InputString';
 import TextArea from './Textarea';
 import Boolean from './Boolean';
+import { RateProps } from 'antd/es/rate';
+import { SwitchProps } from 'antd/es/switch';
+import { InputNumberProps } from 'antd/es/input-number';
+import { SliderBaseProps } from 'antd/es/slider';
+import { PasswordProps } from 'antd/es/input';
 
-const { Password } = Input;
+const { Password: APassword } = Input;
+
+type SharedProps = {
+  inputProps: any;
+};
 
 const filterOption = (input: string, option: any) => ( option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0 );
 
 const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
-  const { options, onChange, value: v, ...rest } = props;
+  const { options, onChange, value: v, inputProps = {}, ...rest } = props;
 
   return (
     <Select
       filterOption={filterOption}
+      {...(inputProps || {})}
       {...rest}
       onChange={onChange}
       value={v}
@@ -101,10 +111,11 @@ const RadioInput: React.FC<RadioInputProps> = props => {
 };
 
 const CheckboxesInput: React.FC<CheckboxesInputProps> = props => {
-  const { options, onChange, value, ...other } = props;
+  const { options, onChange, value, inputProps, ...other } = props;
   return (
     <Checkbox.Group
       {...other}
+      {...inputProps}
       value={value}
       style={{ width: '100%' }}
       onChange={onChange}
@@ -133,6 +144,27 @@ const AutoCompleteInput: React.FC<AutoCompleteInputProps> = props => {
 const DateInput: React.FC<DatePickerInputProps> = props => (
   <DatePicker style={{ width: '100%' }} {...props} />
 );
+
+const Rate: React.FC<RateProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+  <ARate {...props} {...(inputProps || {})} />
+);
+
+const Switch: React.FC<SwitchProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+  <ASwitch {...props} {...(inputProps || {})} />
+);
+
+const InputNumber: React.FC<InputNumberProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+  <AInputNumber {...props} {...(inputProps || {})} />
+);
+
+const Slider: React.FC<SliderBaseProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+  <ASlider {...props} {...(inputProps || {})} />
+);
+
+const Password: React.FC<PasswordProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+  <APassword {...props} {...(inputProps || {})} />
+);
+
 
 const TimeInput: React.FC<TimePickerInputProps> = props => {
   let v = undefined;

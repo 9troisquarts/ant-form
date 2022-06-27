@@ -40,7 +40,7 @@ export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => 
   }, [value]);
 
   if(!config || !apiKey) return (<div>API KEY must be provided to config</div>);
-  const handleChange = ({ label, value }) => {
+  const handleChange = ({ label, value }: { value: any, label: string }) => {
     if (value) {
       geocodeByPlaceId(value.place_id).then(results => {
         if(results.length > 0) {
