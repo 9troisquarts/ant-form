@@ -1,0 +1,44 @@
+.ant-form-colorpicker-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.ant-form-colorpicker-default-size {
+  width: 75px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ant-form-colorpicker-small-size {
+  width: 28px;
+  height: 28px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ant-form-colorpicker-swatch {
+  padding: 5px;
+  background: #FFF;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  cursor: pointer;
+}
+
+.ant-form-colorpicker-popover .ant-popover-inner-content {
+  padding: 0;
+}
+
+.ant-form-colorpicker-chrome-container .chrome-picker {
+  box-shadow: none !important;
+}
+
+.ant-form-colorpicker-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
