@@ -48,6 +48,7 @@ export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => 
           const nextValue = {
             formattedAddress: renderFormattedAddress ? renderFormattedAddress(result) : result.formatted_address,
             city: result.address_components.find(a => a.types.includes('locality'))?.long_name,
+            zipCode: result.address_components.find(a => a.types.includes('postal_code'))?.long_name,
             lat: result.geometry?.location.lat(),
             lng: result.geometry?.location.lng(),
             administrativeAreaLevels: result.address_components.filter(a => a.types.some(e => e.includes('administrative_area_level')))

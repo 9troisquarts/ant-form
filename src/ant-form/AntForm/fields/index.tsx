@@ -42,7 +42,7 @@ type SharedProps = {
   inputProps: any;
 };
 
-const filterOption = (input: string, option: any) => ( option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0 );
+const filterOption = (input: string, option: any) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 
 const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
   const { options, onChange, value: v, inputProps = {}, ...rest } = props;
@@ -55,11 +55,24 @@ const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
       onChange={onChange}
       value={v}
     >
-      {options.map(({ value, label }) => (
-        <Select.Option value={value} key={value}>
-          {label}
-        </Select.Option>
-      ))}
+      {options.map(({ value, label, children, options }) => {
+        if (options && options.length > 0) {
+            return (
+              <Select.OptGroup key={label} label={label}>
+                {options.map(option => (
+                  <Select.Option value={option.value} label={option.label} key={option.value}>
+                    {option.children || option.label}
+                  </Select.Option>
+                ))}
+              </Select.OptGroup>
+            )
+        }
+        return (
+          <Select.Option value={value} label={label} key={value}>
+            {children || label}
+          </Select.Option>
+        )
+      })}
     </Select>
   );
 }, memoOnlyForKeys(['options', 'readOnly', 'value']));

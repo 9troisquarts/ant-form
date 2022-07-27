@@ -67,6 +67,30 @@ export default () => <AntForm
           }
         },
         {
+          name: 'select',
+          label: 'Select',
+          input: {
+            type: 'select',
+            options: [{
+              label: 'Option 1',
+              value: 'one'
+            }, {
+              label: 'Option 2',
+              value: 'two'
+            }, {
+              label: 'Option 3',
+              value: 'three'
+            }],
+            inputProps: {
+              showSearch: true,
+            }
+          },
+          colProps: {
+            xs: 24,
+            md: 12,
+          }
+        },
+        {
           name: 'disabledselect',
           label: 'Disabled Select',
           input: {
@@ -78,6 +102,38 @@ export default () => <AntForm
             inputProps: {
               disabled: true
             }
+          },
+          colProps: {
+            xs: 24,
+            md: 12,
+          }
+        },
+        {
+          name: 'optionGrp',
+          label: 'Select with group',
+          input: {
+            type: 'select',
+            options: [{
+              label: 'Jedi', 
+              options: [
+                {
+                  label: 'Luke Skywalker',
+                  value: 'luke'
+                },
+                {
+                  label: 'Obi-wan Kenobi',
+                  value: 'luke'
+                }
+              ]
+            },{
+              label: 'Droïde', 
+              options: [
+                {
+                  label: 'R2D2',
+                  value: 'r2d2'
+                }
+              ]
+            }]
           },
           colProps: {
             xs: 24,
@@ -183,6 +239,103 @@ export default () => <AntForm
       }
     ]}
   />
+```
+## With useAntForm
+
+```tsx
+import React from 'react';
+import AntForm, { useAntForm } from '@9troisquarts/ant-form';
+import 'antd/dist/antd.css';
+
+const {
+  object,
+  onReset,
+  onChange,
+} = useAntForm({ firstname: 'Toto' });
+
+export default () => (
+  <div>
+    <AntForm
+      object={object}
+      onChange={onChange}
+      schema={[
+        <h2 key="paragraph">
+          Basic AntForm
+        </h2>,
+        [
+          {
+            name: 'firstname',
+            label: 'Firstname',
+            input: {
+              type: 'string',
+            },
+            colProps: {
+              xs: 24,
+              md: 12,
+              lg: 12
+            }
+          }, {
+            name: 'lastname',
+            label: 'Lastname',
+            input: {
+              type: 'string'
+            },
+            colProps: {
+              xs: 24,
+              md: 12,
+              lg: 12
+            }
+          }
+        ],
+        [
+          {
+            name: 'select',
+            label: 'Select',
+            input: {
+              type: 'select',
+              options: [{
+                label: 'Option 1',
+                value: 'one'
+              }, {
+                label: 'Option 2',
+                value: 'two'
+              }, {
+                label: 'Option 3',
+                value: 'three'
+              }]
+            },
+            colProps: {
+              xs: 24,
+              md: 12,
+            }
+          }
+        ],
+        [{
+          name: 'date',
+          label: 'Datepicker',
+          input: {
+            type: 'date',
+            inputProps: {
+              format: 'L'
+            }
+          },
+          colProps: {
+            xs: 12,
+          }
+        },
+        ],
+        {
+          name: 'textarea',
+          label: 'Textarea',
+          input: {
+            type: 'text'
+          }
+        },
+      ]}
+    />
+    <a onClick={onReset}>Reset</a>
+  </div>
+)
 ```
 
 <API src="../../src/ant-form/AntForm/index.tsx"></API>

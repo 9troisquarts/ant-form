@@ -91,6 +91,8 @@ export type UploadInput = {
 type Option = {
   value: any;
   label: string;
+  children?: React.ReactNode[] | React.ReactNode;
+  options?: Option[];
 };
 
 export type DatePickerInputProps = {

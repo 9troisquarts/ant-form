@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@9troisquarts/ant-form",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -32,17 +32,20 @@
   },
   "dependencies": {
     "ahooks": "^3.5.0",
-    "antd": "^4.20.7",
+    "antd": "^4.21.4",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
     "react": "^18.1.0",
     "react-color": "^2.19.3",
+    "react-contenteditable": "^3.3.6",
     "react-dom": "^18.2.0",
     "react-fast-compare": "^3.2.0",
     "react-google-places-autocomplete": "^3.3.4",
     "react-select": "5.3.2",
+    "react-trix": "^0.10.0",
     "rich-markdown-editor": "^11.21.3",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "trix": "^2.0.0-beta.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.1",
