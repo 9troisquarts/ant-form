@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.5](https://github.com/9troisquarts/ant-form/compare/v2.5.4...v2.5.5) (2022-08-24)
+
+
+### Bug Fixes
+
+* Fix an alert on fielditem key ([f7e5415](https://github.com/9troisquarts/ant-form/commit/f7e5415d22e8d3d8073ac9b4de1e73ce5a9f7db8))
+
 ### [2.5.4](https://github.com/9troisquarts/ant-form/compare/v2.5.3...v2.5.4) (2022-08-24)
 
 
