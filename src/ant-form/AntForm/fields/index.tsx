@@ -35,6 +35,7 @@ import { SwitchProps } from 'antd/es/switch';
 import { InputNumberProps } from 'antd/es/input-number';
 import { SliderBaseProps } from 'antd/es/slider';
 import { PasswordProps } from 'antd/es/input';
+import DateRange from './DateRange';
 
 const { Password: APassword } = Input;
 
@@ -249,6 +250,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   },
   password: {
     component: Password
+  },
+  daterange: {
+    component: DateRange
   }
 };
 

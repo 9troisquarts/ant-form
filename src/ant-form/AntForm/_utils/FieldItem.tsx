@@ -7,20 +7,29 @@ import FieldsGroup from '../FieldsGroup';
 import Field from '../Field';
 import { FieldType, isFormItem, isReactNode, FieldSchema, AntSchema } from '../types';
 
-export type RenderFieldItemOptions = {
+interface FieldItemProps {
+  item: FieldSchema | AntSchema;
+  errors: any;
+  rowProps?: RowProps;
+  readOnly?: boolean;
   key: string | number;
   fieldName?: string | number;
   fieldKey?: string | number;
-  rowProps?: RowProps;
-  readOnly?: boolean;
   locale?: string;
-};
+}
 
-const renderFieldItem = (
-  item: FieldSchema | AntSchema,
-  errors: any,
-  { key, rowProps, fieldName, fieldKey, readOnly, locale }: RenderFieldItemOptions,
-) => {
+// @ts-ignore
+const FieldItem: React.FC<FieldItemProps> = props => {
+  const {
+    item,
+    errors,
+    rowProps = {},
+    readOnly = false,
+    locale,
+    fieldKey,
+    key,
+    fieldName
+  } = props;
   if (isArray(item)) {
     return (
       <FieldsGroup
@@ -58,4 +67,4 @@ const renderFieldItem = (
   return <div />;
 };
 
-export default renderFieldItem;
+export default FieldItem;

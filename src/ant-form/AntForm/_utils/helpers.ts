@@ -17,3 +17,5 @@ export const memoOnlyForKeys = (keys: string[]): any => (
   });
   return equal;
 };
+
+export const nameSeparator = '/==';

@@ -3,7 +3,7 @@ import { AntSchema, FieldType } from '../types';
 import some from 'lodash/some';
 import { Input, Row } from 'antd';
 import { RowProps } from 'antd/es/grid';
-import renderFieldItem from '../_utils/renderFieldItem';
+import FieldItem from '../_utils/FieldItem';
 
 type FieldsGroupProps = {
   fields: AntSchema;
@@ -22,13 +22,15 @@ const FieldsGroup: React.FC<FieldsGroupProps> = props => {
   if (!fields) return null;
   const withRow = some(fields, field => (field as FieldType)?.colProps);
 
-  const formItems = fields.map((item: any, i: number) =>
-    renderFieldItem(item, errors, {
-      rowProps,
-      key: i,
-      ...(options || {}),
-    }),
-  );
+  const formItems = fields.map((item: any, i: number) => (
+    <FieldItem
+      item={item}
+      errors={errors}
+      rowProps={rowProps}
+      key={i}
+      {...(options || {})}
+    />
+  ));
 
   return (
     <Input.Group compact={!withRow}>

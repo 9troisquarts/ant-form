@@ -19,24 +19,29 @@ AntForm.addField('trix', {
 
 ```tsx
 import React from 'react';
-import AntForm, { AntFormTrixEditor } from '@9troisquarts/ant-form';
+import AntForm, { AntFormTrixEditor, useAntForm } from '@9troisquarts/ant-form';
 
 AntForm.addField('trix', {
   component: AntFormTrixEditor
 });
 
+const { object, onChange } = useAntForm({ trix: '<h1>TRest</h1>'})
+
 export default () => (
   <AntForm
       layout="vertical"
-      object={{ trix: '<div>2 videos on Adobe Media Encoder.</div>' }}
-      onSubmit={(values) => console.log(values)}
+      object={object}
+      onChange={onChange}
       schema={[
         {
           name: 'trix',
           label: 'Description',
           input: {
             type: 'trix',
-          }
+            inputProps: {
+              className: "test"
+            }
+          },
         }
       ]}
     />

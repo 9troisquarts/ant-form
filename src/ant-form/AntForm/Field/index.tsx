@@ -23,7 +23,7 @@ export const Field: React.FC<FieldProps> = props => {
     options,
     field: {
       colProps,
-      name,
+      name: n,
       input: { type, inputProps, ...inputConfig } = { type: 'string' },
       ...formItemProps
     },
@@ -31,11 +31,13 @@ export const Field: React.FC<FieldProps> = props => {
 
   const { fieldKey, readOnly = false, locale } = options || {};
 
+  let name = n;
+  if (Array.isArray(name)) name = name.join('/==');
+
   if (!fieldsType[type]?.component)
     return (
       <div>Component of type {type} is not handle by your configuration</div>
     );
-
   const {
     component: Component,
     valuePropName,
@@ -47,7 +49,7 @@ export const Field: React.FC<FieldProps> = props => {
     readOnly,
     ...inputConfig,
     locale,
-    name: name,
+    name: n,
     config: otherConfig,
     error,
   };

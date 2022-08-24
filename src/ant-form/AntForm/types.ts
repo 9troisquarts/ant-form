@@ -16,6 +16,7 @@ import { SwitchProps } from 'antd/es/switch';
 import { ButtonProps } from 'antd/es/button';
 import { TimePickerProps } from 'antd/es/time-picker';
 import moment from 'moment';
+import { RangePickerProps } from 'antd/lib/date-picker';
 
 type InputShareConfig = {
   required?: boolean;
@@ -159,6 +160,15 @@ export type CheckboxInputProps = {
   checked?: boolean;
 };
 
+export type DateRangeInputProps = {
+  type: 'daterange';
+  name: string[];
+  /**
+    https://ant.design/components/date-picker/#RangePicker
+  */
+  inputProps: RangePickerProps;
+}
+
 export type InputType =
   | DatePickerInputProps
   | AutoCompleteInputProps
@@ -171,6 +181,7 @@ export type InputType =
   | SwitchInput
   | CheckboxInputProps
   | CheckboxesInputProps
+  | DateRangeInputProps
   | ListInput
   | RadioInputProps
   | UploadInput
@@ -181,6 +192,7 @@ export type FieldItemType = {
   key?: string;
   input: InputType;
   colProps?: ColProps;
+  help?: string;
   proxy?: {
     name: string;
     path: string[] | string;

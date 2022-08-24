@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import "trix/dist/trix";
 import "trix/dist/trix.css";
 import { TrixEditor, TrixEditorProps } from "react-trix";
@@ -9,34 +9,24 @@ export type AntFormTrixEditorProps = {
   onChange: (value: string | any) => void
 }
 
-export const AntFormTrixEditor: React.FC<AntFormTrixEditorProps> = props => {
+const AntFormTrixEditor: React.FC<AntFormTrixEditorProps> = props => {
   const {
     value,
     inputProps,
     onChange,
   } = props;
 
-  const [internalValue, setInternalValue] = useState<string | undefined>(undefined);
-
-  useEffect(() => {
-    if (value !== undefined) setInternalValue(value || '')
-  }, [value])
-
-  if(!internalValue && typeof internalValue !== "string") return null;
-
-  const handleChange = (value) => {
+  const handleChange = (value: string) => {
     onChange(value);
-    setInternalValue(value);
   }
 
-  console.log(internalValue)
   return (
     <TrixEditor
       {...inputProps}
+      className={`ant-form-trix-editor ${inputProps?.className || ''}`}
       mergeTags={[]}
-      autoFocus
       onChange={handleChange}
-      value={internalValue}
+      value={value || ''}
     />
   )
 }

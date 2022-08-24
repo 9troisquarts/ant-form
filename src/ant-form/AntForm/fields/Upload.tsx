@@ -9,6 +9,7 @@ import { RcFile, UploadFile } from 'antd/es/upload/interface';
 type IProps = {
   onChange: (files: Array<any> | any) => void;
   addComponent?: () => React.ReactNode;
+  onRemove?: (index?: number) => void;
   value: Array<any>;
   readOnly?: boolean;
   buttonProps?: ButtonProps;
@@ -46,6 +47,7 @@ class UploadInput extends React.Component<any> {
       buttonProps = {},
       onChange,
       addComponent,
+      placeholder,
       multiple = false,
       ...rest
     } = this.props;
@@ -70,6 +72,7 @@ class UploadInput extends React.Component<any> {
         if (multiple) {
           const index = fileList.findIndex(f => f.uid === file.uid);
           const nextFileList = fileList.slice();
+          if(this.props.onRemove) this.props.onRemove(index);
           nextFileList.splice(index, 1);
           onChange(nextFileList);
           return {
@@ -77,6 +80,7 @@ class UploadInput extends React.Component<any> {
           };
         } else {
           onChange(undefined);
+          if(this.props.onRemove) this.props.onRemove();
           return {
             value: undefined,
           }
@@ -106,7 +110,7 @@ class UploadInput extends React.Component<any> {
               addComponent
             ) : (
               <Button icon={<UploadOutlined />} {...buttonProps}>
-                Select file
+                {placeholder || 'Select file'}
               </Button>
             )}
           </>

@@ -16,8 +16,8 @@ export default () => <AntForm
     errors={{ firstname: ['is required'] }}
     onSubmit={(values) => console.log(values)}
     schema={[
-      <h2 key="paragraph">
-        Basic AntForm
+      <h2 key="paragraph" style={{ marginBottom: 24 }}>
+        React Component
       </h2>,
       [
         {
@@ -67,7 +67,7 @@ export default () => <AntForm
           }
         },
         {
-          name: 'select',
+          name: 'select2',
           label: 'Select',
           input: {
             type: 'select',
@@ -155,6 +155,15 @@ export default () => <AntForm
           type: 'switch',
         }
       },
+      {
+        name: 'Boolean', 
+        input: {
+          type: 'boolean',
+          inputProps: {
+            text: 'Publié'
+          }
+        }
+      },
       [{
         name: 'date',
         label: 'Datepicker',
@@ -185,7 +194,7 @@ export default () => <AntForm
       }],
       {
         name: 'textarea',
-        label: 'Textarea',
+        label: 'Textarea with Help',
         input: {
           type: 'text'
         }
@@ -233,109 +242,12 @@ export default () => <AntForm
         input: {
           type: 'upload',
           inputProps: {
-            addComponent: "Choisir un fichier",
+            placeholder: "Choisir un fichier",
           },
         },
       }
     ]}
   />
-```
-## With useAntForm
-
-```tsx
-import React from 'react';
-import AntForm, { useAntForm } from '@9troisquarts/ant-form';
-import 'antd/dist/antd.css';
-
-const {
-  object,
-  onReset,
-  onChange,
-} = useAntForm({ firstname: 'Toto' });
-
-export default () => (
-  <div>
-    <AntForm
-      object={object}
-      onChange={onChange}
-      schema={[
-        <h2 key="paragraph">
-          Basic AntForm
-        </h2>,
-        [
-          {
-            name: 'firstname',
-            label: 'Firstname',
-            input: {
-              type: 'string',
-            },
-            colProps: {
-              xs: 24,
-              md: 12,
-              lg: 12
-            }
-          }, {
-            name: 'lastname',
-            label: 'Lastname',
-            input: {
-              type: 'string'
-            },
-            colProps: {
-              xs: 24,
-              md: 12,
-              lg: 12
-            }
-          }
-        ],
-        [
-          {
-            name: 'select',
-            label: 'Select',
-            input: {
-              type: 'select',
-              options: [{
-                label: 'Option 1',
-                value: 'one'
-              }, {
-                label: 'Option 2',
-                value: 'two'
-              }, {
-                label: 'Option 3',
-                value: 'three'
-              }]
-            },
-            colProps: {
-              xs: 24,
-              md: 12,
-            }
-          }
-        ],
-        [{
-          name: 'date',
-          label: 'Datepicker',
-          input: {
-            type: 'date',
-            inputProps: {
-              format: 'L'
-            }
-          },
-          colProps: {
-            xs: 12,
-          }
-        },
-        ],
-        {
-          name: 'textarea',
-          label: 'Textarea',
-          input: {
-            type: 'text'
-          }
-        },
-      ]}
-    />
-    <a onClick={onReset}>Reset</a>
-  </div>
-)
 ```
 
 <API src="../../src/ant-form/AntForm/index.tsx"></API>

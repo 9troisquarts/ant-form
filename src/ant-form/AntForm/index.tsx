@@ -5,16 +5,16 @@ import moment from 'moment';
 import flattenDeep from 'lodash/flattenDeep';
 import { flatten, get, isArray } from 'lodash';
 import { Form, Button, Space } from 'antd';
-import { FormProps } from 'antd/lib/form/Form';
 import { RowProps } from 'antd/es/grid';
 import { AntSchema, Configuration, FieldType, isFormItem } from './types';
 import { ButtonProps } from 'antd/es/button';
-import renderFieldItem from './_utils/renderFieldItem';
+import FieldItem from './_utils/FieldItem';
 import { extendInput } from './fields';
 
 let config: Configuration = {
   submitText: 'Save',
-  layout: 'horizontal'
+  layout: 'horizontal',
+  locale: 'fr'
 };
 
 export type AntFormProps = {
@@ -72,6 +72,19 @@ const assignProxyValue = (fields: AntSchema, values: any) => {
   return nextValues;
 };
 
+const castValue = (type: string, value) => {
+  switch (type) {
+    case 'daterange':
+    case 'date':
+      if (value)
+        return value instanceof moment ? value : moment(value);
+      break;
+    case 'upload':
+      return value || [];
+  }
+  return value;
+}
+
 const castObjectFromSchema = (object: any, schema: AntSchema) => {
   const castedObject = {
     ...object,
@@ -81,16 +94,14 @@ const castObjectFromSchema = (object: any, schema: AntSchema) => {
     .filter(isFormItem)
     .filter((f: FieldType) => f.input)
     .forEach((field: FieldType) => {
-      const value = castedObject[field.name];
-      switch (field.input?.type) {
-        case 'date':
-          if (value)
-            castedObject[field.name] =
-              value instanceof moment ? value : moment(value);
-          break;
-        case 'upload':
-          castedObject[field.name] = value || [];
-          break;
+      if (Array.isArray(field.name)) {
+        const proxyName = field.name.join('/==');
+        castedObject[proxyName] = field.name.reduce((acc, value) => {
+          acc[value] = castValue(field.input.type, castedObject[value])
+          return acc;
+        }, {});
+      } else {
+        castedObject[field.name] = castValue(field.input.type, castedObject[field.name]);
       }
     });
   return castedObject;
@@ -116,7 +127,7 @@ export const AntForm: React.FC<AntFormProps> = props => {
   const {
     onSubmit,
     schema,
-    locale="en",
+    locale=(config.locale || "en"),
     onChange,
     object,
     loading,
@@ -131,6 +142,7 @@ export const AntForm: React.FC<AntFormProps> = props => {
     ...rest
   } = props;
   const [form] = Form.useForm();
+  moment.locale(locale);
 
   useEffect(() => {
     form.setFieldsValue(castObjectFromSchema(object, schema) || {});
@@ -168,7 +180,14 @@ export const AntForm: React.FC<AntFormProps> = props => {
     >
       <>
         {schema.map((item, i) =>
-          renderFieldItem(item, errors, { rowProps, key: i, readOnly, locale }),
+          <FieldItem
+            item={item}
+            errors={errors}
+            readOnly={readOnly}
+            locale={locale}
+            key={i}
+            rowProps={rowProps}
+          />
         )}
       </>
       {(extraActions || onSubmit) && (!readOnly || (readOnly && extraActions)) && (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button, Row, Col } from 'antd';
 import { AntSchema, ListInputProps } from '../types';
-import renderFieldItem from '../_utils/renderFieldItem';
+import FieldItem from '../_utils/FieldItem';
 
 type ListFieldProps = {
   name: string;
@@ -27,13 +27,15 @@ const ListField: React.FC<ListFieldProps> = props => {
               {itemHeader && (
                 <Col span={24}>{itemHeader({ add, remove, field })}</Col>
               )}
-              {schema.map((item, i) =>
-                renderFieldItem(item, errors, {
-                  key: i,
-                  fieldName: field.name,
-                  fieldKey: field.fieldKey,
-                }),
-              )}
+              {schema.map((item, i) => (
+                <FieldItem
+                  item={item}
+                  errors={errors}
+                  fieldName={field.name}
+                  fieldKey={field.fieldKey}
+                  key={i}
+                />
+              ))}
               {removeComponent ? (
                 <Form.Item>
                   {typeof removeComponent === 'function' ? (
