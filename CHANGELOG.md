@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.4](https://github.com/9troisquarts/ant-form/compare/v2.5.3...v2.5.4) (2022-08-24)
+
+
+### Bug Fixes
+
+* Fix error on daterange change ([6671f43](https://github.com/9troisquarts/ant-form/commit/6671f4353863722fcbc843d92ee518a2af4b4039))
+
 ### [2.5.3](https://github.com/9troisquarts/ant-form/compare/v2.5.2...v2.5.3) (2022-08-24)
 
 
