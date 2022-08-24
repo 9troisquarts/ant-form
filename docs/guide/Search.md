@@ -17,7 +17,7 @@ import 'antd/dist/antd.css';
 export default () => (
   <AntForm
     object={{
-      search: 'Recherche'
+      search: 'Texte'
     }}
     onSubmit={(values) => console.log(values)}
     layout="horizontal"

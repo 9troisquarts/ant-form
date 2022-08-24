@@ -43,7 +43,6 @@ const DateRange: React.FC<DateRangeProps> = props => {
   }
 
   let from = internalValue[startName];
-  console.log(from)
   if(from && !moment.isMoment(from)) from = moment(from).startOf('day');
 
   let to = internalValue[endName];

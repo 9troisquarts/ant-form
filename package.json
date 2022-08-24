@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@9troisquarts/ant-form",
-  "version": "2.2.0",
+  "version": "2.4.0",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -58,11 +58,18 @@
     "dumi": "^1.1.0",
     "father-build": "^1.17.2",
     "gh-pages": "^4.0.0",
+    "husky": "^8.0.1",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
+    "standard-version": "^9.5.0",
     "yorkie": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
