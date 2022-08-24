@@ -17,6 +17,7 @@ import { ButtonProps } from 'antd/es/button';
 import { TimePickerProps } from 'antd/es/time-picker';
 import moment from 'moment';
 import { RangePickerProps } from 'antd/lib/date-picker';
+import { SearchProps } from 'antd/lib/input';
 
 type InputShareConfig = {
   required?: boolean;
@@ -167,6 +168,15 @@ export type DateRangeInputProps = {
     https://ant.design/components/date-picker/#RangePicker
   */
   inputProps: RangePickerProps;
+}
+
+export type SearchInputProps = {
+  type: 'search';
+  /**
+    https://ant.design/components/input/#Input.Search
+  */
+  name: string;
+  inputProps: SearchProps;
 }
 
 export type InputType =

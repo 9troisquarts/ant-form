@@ -36,6 +36,7 @@ import { InputNumberProps } from 'antd/es/input-number';
 import { SliderBaseProps } from 'antd/es/slider';
 import { PasswordProps } from 'antd/es/input';
 import DateRange from './DateRange';
+import SearchInput from './Search';
 
 const { Password: APassword } = Input;
 
@@ -253,6 +254,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   },
   daterange: {
     component: DateRange
+  },
+  search: {
+    component: SearchInput,
   }
 };
 
