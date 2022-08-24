@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.3](https://github.com/9troisquarts/ant-form/compare/v2.5.2...v2.5.3) (2022-08-24)
+
+
+### Bug Fixes
+
+* Array name should be returned in their key instead proxy key ([858e4bb](https://github.com/9troisquarts/ant-form/commit/858e4bbeff0612109a5bd8e8f330267ab9a4a656))
+
 ### [2.5.2](https://github.com/9troisquarts/ant-form/compare/v2.5.1...v2.5.2) (2022-08-24)
 
 ### [2.5.1](https://github.com/9troisquarts/ant-form/compare/v2.5.0...v2.5.1) (2022-08-24)
