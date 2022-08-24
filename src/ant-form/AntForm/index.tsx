@@ -120,7 +120,7 @@ const reverseCastFromSchema = (object: any, schema: AntSchema) => {
       if (Array.isArray(field.name)) {
         const proxyName = field.name.join('/==');
         field.name.forEach(n => {
-          castedObject[n] = object[proxyName][n];
+          castedObject[n] = get(object, [proxyName, n], undefined);
         });
         delete castedObject[proxyName];
       }

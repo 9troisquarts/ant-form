@@ -16,10 +16,7 @@ import 'antd/dist/antd.css';
 
 export default () => (
   <AntForm
-    object={{
-      start: '2022-01-01',
-      end: '2022-12-31'
-    }}
+    object={{}}
     onSubmit={(values) => console.log(values)}
     layout="horizontal"
     schema={[
