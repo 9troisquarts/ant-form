@@ -1,17 +1,19 @@
 import React from 'react';
 import { Input } from 'antd';
-import { TextInput } from '../types';
+import { TextAreaProps } from 'antd/es/input';
 
-interface TextAreaProps {
+type TextAreaInputProps = {
+  type: 'text';
   name: string;
+  /** https://ant.design/components/input/#Input.TextArea */
+  inputProps: TextAreaProps;
   value?: string | any;
+  onChange: (value: string) => void;
   localize?: boolean;
   locale?: string;
-  onChange: (value: string) => void;
-  inputProps?: TextInput;
 };
 
-const TextArea: React.FC<TextAreaProps> = props => {
+const TextArea: React.FC<TextAreaInputProps> = props => {
   const {
     inputProps,
     onChange,
