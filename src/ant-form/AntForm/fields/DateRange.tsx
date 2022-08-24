@@ -53,8 +53,6 @@ const DateRange: React.FC<DateRangeProps> = props => {
     to
   ];
 
-  console.log(v)
-
   return (
     // @ts-ignore
     <RangePicker

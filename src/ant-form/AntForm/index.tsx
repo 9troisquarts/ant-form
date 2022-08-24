@@ -107,6 +107,27 @@ const castObjectFromSchema = (object: any, schema: AntSchema) => {
   return castedObject;
 };
 
+
+const reverseCastFromSchema = (object: any, schema: AntSchema) => {
+  const castedObject = {
+    ...object,
+  };
+  flattenDeep(schema)
+    .filter(f => f)
+    .filter(isFormItem)
+    .filter((f: FieldType) => f.input)
+    .forEach((field: FieldType) => {
+      if (Array.isArray(field.name)) {
+        const proxyName = field.name.join('/==');
+        field.name.forEach(n => {
+          castedObject[n] = object[proxyName][n];
+        });
+        delete castedObject[proxyName];
+      }
+    })
+  return castedObject;
+}
+
 const transformNestedErrorsToArray = (errors: any): object => {
   let nextErrors = { ...errors };
   const keys = Object.keys(nextErrors);
@@ -155,13 +176,13 @@ export const AntForm: React.FC<AntFormProps> = props => {
   );
 
   const onFinish = (values: any) => {
-    if (onSubmit && !readOnly) onSubmit(assignProxyValue(proxyFields, values));
+    if (onSubmit && !readOnly) onSubmit(reverseCastFromSchema(assignProxyValue(proxyFields, values), schema));
   };
   const onValuesChange = (values: any, allValues: any) => {
     if (onChange && !readOnly)
       onChange(
-        assignProxyValue(proxyFields, values),
-        assignProxyValue(proxyFields, allValues),
+        reverseCastFromSchema(assignProxyValue(proxyFields, values), schema),
+        reverseCastFromSchema(assignProxyValue(proxyFields, allValues), schema),
       );
   };
 
