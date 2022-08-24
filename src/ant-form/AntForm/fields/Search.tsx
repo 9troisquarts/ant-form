@@ -19,6 +19,7 @@ const SearchInput: React.FC<SearchProps> = props => {
   const [internalValue, setInternalValue] = useState<string>(value);
   useEffect(() => setInternalValue(value), [value]);
 
+  // @ts-ignore
   const handleChange = ({ target: { value }}) => {
     onChange(value);
     setInternalValue(value);

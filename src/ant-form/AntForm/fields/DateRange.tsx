@@ -56,6 +56,7 @@ const DateRange: React.FC<DateRangeProps> = props => {
   console.log(v)
 
   return (
+    // @ts-ignore
     <RangePicker
       {...(inputProps || {})}
       value={v}
