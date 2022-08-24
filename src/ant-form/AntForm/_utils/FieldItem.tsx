@@ -27,14 +27,12 @@ const FieldItem: React.FC<FieldItemProps> = props => {
     readOnly = false,
     locale,
     fieldKey,
-    key,
     fieldName
   } = props;
   if (isArray(item)) {
     return (
       <FieldsGroup
         errors={errors}
-        key={key}
         fields={item as AntSchema}
         rowProps={rowProps}
         options={{
