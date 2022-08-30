@@ -1,4 +1,4 @@
-import { FieldType } from '../types';
+import { FieldType } from '../AntForm/types';
 import isEqual from 'lodash/isEqual';
 import get from 'lodash/get';
 

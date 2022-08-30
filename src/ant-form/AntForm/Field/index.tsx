@@ -4,7 +4,7 @@ import isNil from 'lodash/isNil';
 import isArray from 'lodash/isArray';
 import { Form, Col } from 'antd';
 import fieldsType from '../fields';
-import { memoOnlyForKeys } from '../_utils/helpers';
+import { memoOnlyForKeys } from '../../_utils/helpers';
 
 type FieldProps = {
   error?: string;
@@ -67,6 +67,7 @@ export const Field: React.FC<FieldProps> = props => {
         name={!isNil(fieldKey) ? [fieldKey, name] : name}
         {...(!isNil(fieldKey) ? { fieldKey: [fieldKey, name] } : {})}
         {...formItemProps}
+        className={`${formItemProps.className} ant-form-item-${type}`}
         {...(valuePropName ? { valuePropName } : {})}
         {...((showFormItemError === undefined || showFormItemError) &&
           error && {

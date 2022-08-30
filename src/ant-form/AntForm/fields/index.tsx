@@ -26,10 +26,11 @@ import {
 import moment from 'moment'
 import ListField from './ListField';
 import UploadInput from './Upload';
-import { memoOnlyForKeys } from '../_utils/helpers';
+import { memoOnlyForKeys } from '../../_utils/helpers';
 import InputString from './InputString';
 import TextArea from './Textarea';
 import Boolean from './Boolean';
+import ContentEditableInput from './ContentEditableInput';
 import { RateProps } from 'antd/es/rate';
 import { SwitchProps } from 'antd/es/switch';
 import { InputNumberProps } from 'antd/es/input-number';
@@ -257,6 +258,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   },
   search: {
     component: SearchInput,
+  },
+  contenteditable: {
+    component: ContentEditableInput
   }
 };
 

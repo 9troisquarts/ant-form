@@ -2,7 +2,7 @@ import React from 'react';
 import isArray from 'lodash/isArray';
 import get from 'lodash/get';
 import { RowProps } from 'antd/es/grid';
-import { isShown } from './helpers';
+import { isShown } from '../../_utils/helpers';
 import FieldsGroup from '../FieldsGroup';
 import Field from '../Field';
 import { FieldType, isFormItem, isReactNode, FieldSchema, AntSchema } from '../types';

@@ -170,6 +170,23 @@ export type DateRangeInputProps = {
   inputProps: RangePickerProps;
 }
 
+type ContentEditableOptions = {
+  tagName?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export type ContentEditableInputProps = {
+  type: 'contenteditable';
+  /**
+   *  Name of attribute
+  */
+  name: string;
+  value: string;
+  onChange: (value: string) => void;
+  inputProps?: ContentEditableOptions;
+};
+
 export type SearchInputProps = {
   type: 'search';
   /**
@@ -195,7 +212,8 @@ export type InputType =
   | ListInput
   | RadioInputProps
   | UploadInput
-  | PasswordInput;
+  | PasswordInput
+  | ContentEditableInputProps;
 
 export type FieldItemType = {
   name: string;

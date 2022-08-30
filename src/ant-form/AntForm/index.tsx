@@ -10,6 +10,7 @@ import { AntSchema, Configuration, FieldType, isFormItem } from './types';
 import { ButtonProps } from 'antd/es/button';
 import FieldItem from './_utils/FieldItem';
 import { extendInput } from './fields';
+import './index.css'
 
 let config: Configuration = {
   submitText: 'Save',
