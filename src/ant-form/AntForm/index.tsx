@@ -37,6 +37,7 @@ export type AntFormProps = {
   style?: React.CSSProperties;
   submitButtonProps?: ButtonProps;
   submitText?: string;
+  layout?: 'vertical' | 'horizontal';
 };
 
 const initialValuesFromSchema = (schema: AntSchema, object: any) =>
