@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.3](https://github.com/9troisquarts/ant-form/compare/v2.6.2...v2.6.3) (2022-08-30)
+
+
+### Bug Fixes
+
+* Remove in place form ([ccc25f7](https://github.com/9troisquarts/ant-form/commit/ccc25f7dabe88e419322c3026b8b346a5bd3741f))
+
 ### [2.6.2](https://github.com/9troisquarts/ant-form/compare/v2.6.0...v2.6.2) (2022-08-30)
 
 
