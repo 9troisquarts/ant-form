@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.2](https://github.com/9troisquarts/ant-form/compare/v2.6.0...v2.6.2) (2022-08-30)
+
+
+### Bug Fixes
+
+* Add layout props to antform ([fda3241](https://github.com/9troisquarts/ant-form/commit/fda3241413431ce556376739fa3587a806d5e0da))
+
 ## 2.6.0 (2022-08-30)
 
 

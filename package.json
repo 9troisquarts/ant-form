@@ -1,12 +1,12 @@
 {
   "private": false,
   "name": "@9troisquarts/ant-form",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
-    "build": "father-build",
+    "build": "standard-version && father-build",
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "umi-test",
