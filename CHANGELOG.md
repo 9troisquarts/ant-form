@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.5](https://github.com/9troisquarts/ant-form/compare/v2.6.4...v2.6.5) (2022-08-31)
+
+
+### Bug Fixes
+
+* Allow to have br and div in contenteditable ([ff8721b](https://github.com/9troisquarts/ant-form/commit/ff8721b5237ac056a26c6f5e9acfd2952d326f1a))
+
 ### [2.6.4](https://github.com/9troisquarts/ant-form/compare/v2.6.3...v2.6.4) (2022-08-30)
 
 ### [2.6.3](https://github.com/9troisquarts/ant-form/compare/v2.6.2...v2.6.3) (2022-08-30)
