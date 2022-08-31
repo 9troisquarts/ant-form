@@ -19,7 +19,7 @@ type ContentEditableInputProps = {
 };
 
 const sanitizeConf = {
-    allowedTags: [],
+    allowedTags: ["br", "div"],
   };
 
 
@@ -38,11 +38,11 @@ const ContentEditableInput: React.FC<ContentEditableInputProps> = props => {
   const [internalValue, setInternalValue] = useState<string>(sanitizeHtml(value || '', sanitizeConf));
 
   useEffect(() => {
-    setInternalValue(sanitizeHtml(value || '', sanitizeConf))
+    setInternalValue(value || '')
   }, [value])
 
   const handleChange = (evt: any) => {
-    const nextValue = sanitizeHtml(evt.target.value, sanitizeConf);
+    const nextValue = sanitizeHtml(evt.target.value || '', sanitizeConf);
     setInternalValue(nextValue);
     onChange(nextValue);
   }

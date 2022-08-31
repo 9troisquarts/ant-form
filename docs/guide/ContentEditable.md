@@ -21,7 +21,7 @@ export default () => (
       paragraph: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus purus ligula, tincidunt quis arcu nec, cursus aliquet urna. Aenean lorem nisi, suscipit eu gravida id, vulputate a ex. Praesent euismod est eget diam cursus pellentesque. Cras feugiat euismod quam, eget sodales dui venenatis in. Proin finibus pulvinar consequat. Duis eget tempus urna, eu efficitur purus. Sed porttitor dui et varius interdum."
     }}
     onChange={(value, values) => console.log(values)}
-    layout="horizontal"
+    layout="vertical"
     schema={[
       {
         name: 'title',
@@ -34,6 +34,7 @@ export default () => (
       }, 
       {
         name: 'paragraph',
+        label: 'Description',
         input: {
           type: 'contenteditable'
         }
