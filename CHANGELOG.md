@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.7](https://github.com/9troisquarts/ant-form/compare/v2.6.6...v2.6.7) (2022-09-05)
+
+
+### Bug Fixes
+
+* Add country to google places ([9eb465e](https://github.com/9troisquarts/ant-form/commit/9eb465eac8c78e24b3bd214b59f4fc0249d9a504))
+
 ### [2.6.6](https://github.com/9troisquarts/ant-form/compare/v2.6.5...v2.6.6) (2022-08-31)
 
 ### [2.6.5](https://github.com/9troisquarts/ant-form/compare/v2.6.4...v2.6.5) (2022-08-31)
