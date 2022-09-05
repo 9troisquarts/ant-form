@@ -11,6 +11,9 @@ type ValueType = {
   lat?: number;
   lng?: number;
   formattedAddress?: string;
+  zipCode?: number;
+  country?: string;
+  countryIso?: string;
 };
 
 export type AntFormGooglePlacesProps = {
@@ -51,7 +54,9 @@ export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => 
             zipCode: result.address_components.find(a => a.types.includes('postal_code'))?.long_name,
             lat: result.geometry?.location.lat(),
             lng: result.geometry?.location.lng(),
-            administrativeAreaLevels: result.address_components.filter(a => a.types.some(e => e.includes('administrative_area_level')))
+            administrativeAreaLevels: result.address_components.filter(a => a.types.some(e => e.includes('administrative_area_level'))),
+            country_iso: result.address_components.find(a => a.types.includes('country'))?.short_name,
+            country: result.address_components.find(a => a.types.includes('country'))?.long_name
           };
           onChange(nextValue);
           setPlacesValue(nextValue);

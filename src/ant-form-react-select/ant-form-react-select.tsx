@@ -46,7 +46,6 @@ export const AntFormReactSelect: React.FC<AntFormReactSelectProps> = props => {
       v = (v || []).map((i: any) => ({ [optionValue]: i }));
     else
       v = value ? { [optionValue]: value } : null;
-
   }
 
   const ReactSelectComponent = creatable ? AsyncCreatable : AsyncSelect;
