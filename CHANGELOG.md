@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/9troisquarts/ant-form/compare/v2.6.9...v2.7.0) (2022-09-08)
+
+
+### Features
+
+* Dropdown input ([cec03e5](https://github.com/9troisquarts/ant-form/commit/cec03e5c4b3348b0478d9c634a074e86fd14717b))
+
+
+### Bug Fixes
+
+* Readonly contenteditable ([e3efae9](https://github.com/9troisquarts/ant-form/commit/e3efae96f1e76c0ed366dd0d5dc90b310cfc9ded))
+
 ### [2.6.9](https://github.com/9troisquarts/ant-form/compare/v2.6.8...v2.6.9) (2022-09-08)
 
 ### [2.6.8](https://github.com/9troisquarts/ant-form/compare/v2.6.7...v2.6.8) (2022-09-05)
