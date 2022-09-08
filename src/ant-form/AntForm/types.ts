@@ -90,6 +90,17 @@ export type UploadInput = {
   };
 };
 
+export type DropdownInput = {
+  type: 'dropdown';
+  options: Option[];
+  inputProps: {
+    multiple?: boolean;
+    separator?: string;
+    className?: string;
+    placeholder?: string;
+  }
+}
+
 type Option = {
   value: any;
   label: string;
@@ -212,6 +223,7 @@ export type InputType =
   | ListInput
   | RadioInputProps
   | UploadInput
+  | DropdownInput
   | PasswordInput
   | ContentEditableInputProps;
 

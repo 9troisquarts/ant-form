@@ -38,6 +38,7 @@ import { SliderBaseProps } from 'antd/es/slider';
 import { PasswordProps } from 'antd/es/input';
 import DateRange from './DateRange';
 import SearchInput from './Search';
+import Dropdown from './Dropdown';
 
 const { Password: APassword } = Input;
 
@@ -252,6 +253,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   },
   password: {
     component: Password
+  },
+  dropdown: {
+    component: Dropdown,
   },
   daterange: {
     component: DateRange
