@@ -2,7 +2,7 @@
   margin-bottom: 0;
 }
 
-.ant-form-contenteditable:hover:not(:focus) {
+.ant-form-contenteditable:not(.ant-form-contenteditable-disabled):hover:not(:focus) {
   background-color: #F8F8F8;
   cursor: pointer;
   transition: .3s linear background-color;

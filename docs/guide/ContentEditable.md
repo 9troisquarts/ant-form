@@ -22,6 +22,7 @@ export default () => (
     }}
     onChange={(value, values) => console.log(values)}
     layout="vertical"
+    readOnly
     schema={[
       {
         name: 'title',
