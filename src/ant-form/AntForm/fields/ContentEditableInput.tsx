@@ -36,7 +36,6 @@ const ContentEditableInput: React.FC<ContentEditableInputProps> = props => {
     className = '',
     style,
   } = inputProps;
-  console.log(props)
 
   const [internalValue, setInternalValue] = useState<string>(sanitizeHtml(value || '', sanitizeConf));
 
