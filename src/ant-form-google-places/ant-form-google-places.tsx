@@ -73,8 +73,7 @@ export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => 
   if (placesValue && typeof placesValue === "string") {
     v = { value: placesValue, label: placesValue };
   } else if (!!placesValue?.formattedAddress) {
-    const formatAddress =  renderFormattedAddress ? renderFormattedAddress(placesValue.formattedAddress) : placesValue.formattedAddress;
-    v = { value: formatAddress, label: formatAddress }
+    v = { value: placesValue.formattedAddress, label: placesValue.formattedAddress }
   }
 
   const autocompletionRequest = {
