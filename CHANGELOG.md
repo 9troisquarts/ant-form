@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.1](https://github.com/9troisquarts/ant-form/compare/v2.8.0...v2.8.1) (2022-10-04)
+
+
+### Bug Fixes
+
+* remove render on label ([152259e](https://github.com/9troisquarts/ant-form/commit/152259e067b7b12cf22a65a097067b2572de4b13))
+
 ## [2.8.0](https://github.com/9troisquarts/ant-form/compare/v2.7.3...v2.8.0) (2022-10-04)
 
 
