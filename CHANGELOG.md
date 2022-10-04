@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.2](https://github.com/9troisquarts/ant-form/compare/v2.8.1...v2.8.2) (2022-10-04)
+
+
+### Bug Fixes
+
+* add select props to available options ([13595b9](https://github.com/9troisquarts/ant-form/commit/13595b92ce3c15cdcf29249a872b624a05dd7501))
+
 ### [2.8.1](https://github.com/9troisquarts/ant-form/compare/v2.8.0...v2.8.1) (2022-10-04)
 
 
