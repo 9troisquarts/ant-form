@@ -24,6 +24,7 @@ export type AntFormGooglePlacesProps = {
   renderFormattedAddress?: (result: any) => string;
   autocompletionRequest?: any;
   editingMode?: boolean;
+  selectProps?: any;
 }
 
 export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => {
@@ -90,6 +91,7 @@ export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => 
         onChange: handleChange,
         value: v,
         ...(selectProps || {}),
+        ...(props.selectProps || {})
       }}
       apiKey={apiKey}
     />

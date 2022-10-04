@@ -23,7 +23,7 @@ import AntForm, { AntFormGooglePlaces } from '@9troisquarts/ant-form';
 
 AntForm.addField('places', {
   component: AntFormGooglePlaces,
-  apiKey: "AIzaSyBSBiyQ2XtcOa2ja7ue_eQkTRVt2aWUmso",
+  apiKey: "api",
   geocoding: true,
   autocompletionRequest: {
     componentRestrictions: { country: ['fr'] }
