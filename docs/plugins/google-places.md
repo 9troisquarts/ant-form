@@ -23,7 +23,7 @@ import AntForm, { AntFormGooglePlaces } from '@9troisquarts/ant-form';
 
 AntForm.addField('places', {
   component: AntFormGooglePlaces,
-  apiKey: "test",
+  apiKey: "AIzaSyBSBiyQ2XtcOa2ja7ue_eQkTRVt2aWUmso",
   geocoding: true,
   autocompletionRequest: {
     componentRestrictions: { country: ['fr'] }
@@ -44,6 +44,9 @@ export default () => (
         input: {
           type: 'places',
           inputProps: {
+            autocompletionRequest: {
+              types: ['street_address']
+            },
             editingMode: false,
             renderFormattedAddress: (result) => {
               console.log(result);

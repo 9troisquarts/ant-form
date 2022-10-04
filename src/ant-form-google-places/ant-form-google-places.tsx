@@ -4,6 +4,7 @@ import GooglePlacesAutocomplete, { geocodeByPlaceId } from 'react-google-places-
 export type GooglePlacesFieldConfig = {
   apiKey: string;
   selectProps?: any;
+  autocompletionRequest?: any;
 };
 
 type ValueType = {
@@ -21,6 +22,7 @@ export type AntFormGooglePlacesProps = {
   onChange: (value: string | any) => void;
   config?: GooglePlacesFieldConfig;
   renderFormattedAddress?: (result: any) => string;
+  autocompletionRequest?: any;
   editingMode?: boolean;
 }
 
@@ -31,7 +33,7 @@ export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => 
       selectProps = {},
       apiKey,
       ...config
-    } = {},
+    } = {} as GooglePlacesFieldConfig,
     renderFormattedAddress,
     onChange,
   } = props;
@@ -43,13 +45,15 @@ export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => 
   }, [value]);
 
   if(!config || !apiKey) return (<div>API KEY must be provided to config</div>);
-  const handleChange = ({ label, value }: { value: any, label: string }) => {
+  const handleChange = ({ value }: { value: any, label: string }) => {
     if (value) {
       geocodeByPlaceId(value.place_id).then(results => {
         if(results.length > 0) {
           const result = results[0];
           const nextValue = {
             formattedAddress: renderFormattedAddress ? renderFormattedAddress(result) : result.formatted_address,
+            route: result.address_components.find(a => a.types.includes('route'))?.long_name,
+            street_number: result.address_components.find(a => a.types.includes('street_number'))?.long_name,
             city: result.address_components.find(a => a.types.includes('locality'))?.long_name,
             zipCode: result.address_components.find(a => a.types.includes('postal_code'))?.long_name,
             lat: result.geometry?.location.lat(),
@@ -69,12 +73,19 @@ export const AntFormGooglePlaces: React.FC<AntFormGooglePlacesProps> = props => 
   if (placesValue && typeof placesValue === "string") {
     v = { value: placesValue, label: placesValue };
   } else if (!!placesValue?.formattedAddress) {
-    v = { value: placesValue.formattedAddress, label: placesValue.formattedAddress }
+    const formatAddress =  renderFormattedAddress ? renderFormattedAddress(placesValue.formattedAddress) : placesValue.formattedAddress;
+    v = { value: formatAddress, label: formatAddress }
+  }
+
+  const autocompletionRequest = {
+    ...(config?.autocompletionRequest || {}),
+    ...(props.autocompletionRequest || {})
   }
 
   return (
     <GooglePlacesAutocomplete
       {...config || {}}
+      autocompletionRequest={autocompletionRequest}
       key={v?.value}
       selectProps={{
         onChange: handleChange,
