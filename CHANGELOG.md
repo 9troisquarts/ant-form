@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/9troisquarts/ant-form/compare/v2.7.3...v2.8.0) (2022-10-04)
+
+
+### Features
+
+* Allow autocompletion request in inputProps ([ca250a9](https://github.com/9troisquarts/ant-form/commit/ca250a99c6a552c9f2a104a6093a4417c7b3893f))
+
 ### [2.7.3](https://github.com/9troisquarts/ant-form/compare/v2.7.2...v2.7.3) (2022-10-04)
 
 ### [2.7.2](https://github.com/9troisquarts/ant-form/compare/v2.7.1...v2.7.2) (2022-09-23)
