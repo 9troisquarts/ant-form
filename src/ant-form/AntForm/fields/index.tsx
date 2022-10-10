@@ -57,7 +57,7 @@ const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
       {...(inputProps || {})}
       {...rest}
       onChange={onChange}
-      value={v}
+      value={inputProps.mode && inputProps.mode === "multiple" && !v ? [] : v}
     >
       {options.map(({ value, label, children, options }) => {
         if (options && options.length > 0) {
