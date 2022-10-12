@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@9troisquarts/ant-form",
-  "version": "2.8.3",
+  "version": "2.8.4",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -34,7 +34,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "ahooks": "^3.7.1",
-    "antd": "^4.23.2",
+    "antd": "^4.23.5",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react": "^18.1.0",
@@ -47,7 +47,7 @@
     "react-trix": "^0.10.0",
     "rich-markdown-editor": "^11.21.3",
     "sanitize-html": "^2.7.2",
-    "styled-components": "^5.3.5",
+    "styled-components": "^5.3.6",
     "trix": "^2.0.0-beta.0"
   },
   "devDependencies": {
