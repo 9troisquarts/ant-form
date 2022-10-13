@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/9troisquarts/ant-form/compare/v2.8.4...v2.9.0) (2022-10-13)
+
+
+### Features
+
+* Inverted checkbox ([5f8700a](https://github.com/9troisquarts/ant-form/commit/5f8700ab9003578907538146cb17cd30a4378721))
+
 ### [2.8.4](https://github.com/9troisquarts/ant-form/compare/v2.8.3...v2.8.4) (2022-10-12)
 
 ### [2.8.3](https://github.com/9troisquarts/ant-form/compare/v2.8.2...v2.8.3) (2022-10-10)
