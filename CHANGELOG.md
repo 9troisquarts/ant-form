@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.2](https://github.com/9troisquarts/ant-form/compare/v2.10.1...v2.10.2) (2022-11-25)
+
+
+### Bug Fixes
+
+* Sync nested layout with parent form and allow customer rendering of label ([ac99fd6](https://github.com/9troisquarts/ant-form/commit/ac99fd6a86936d108271ed9340a528649236c5be))
+
 ### [2.10.1](https://github.com/9troisquarts/ant-form/compare/v2.10.0...v2.10.1) (2022-11-25)
 
 ## [2.10.0](https://github.com/9troisquarts/ant-form/compare/v2.9.0...v2.10.0) (2022-11-25)
