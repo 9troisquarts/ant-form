@@ -159,7 +159,7 @@ const AutoCompleteInput: React.FC<AutoCompleteInputProps> = props => {
 };
 
 const DateInput: React.FC<DatePickerInputProps> = props => (
-  <DatePicker style={{ width: '100%' }} {...props} />
+  <DatePicker style={{ width: '100%' }} format="L" {...props} />
 );
 
 const Rate: React.FC<RateProps & SharedProps> = ({ inputProps = {}, ...props}) => (
