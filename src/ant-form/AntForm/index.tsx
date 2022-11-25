@@ -4,13 +4,23 @@ import React, { useEffect } from 'react';
 import moment from 'moment';
 import flattenDeep from 'lodash/flattenDeep';
 import { flatten, get, isArray } from 'lodash';
-import { Form, Button, Space } from 'antd';
+import { Form, Button, Space, ConfigProvider } from 'antd';
 import { RowProps } from 'antd/es/grid';
 import { AntSchema, Configuration, FieldType, isFormItem } from './types';
 import { ButtonProps } from 'antd/es/button';
 import FieldItem from './_utils/FieldItem';
 import { extendInput } from './fields';
 import './index.css'
+
+import fr from 'antd/lib/locale/fr_FR';
+import en from 'antd/lib/locale/en_GB';
+import es from 'antd/lib/locale/es_ES';
+
+const antLocale = {
+  fr,
+  en,
+  es
+}
 
 let config: Configuration = {
   submitText: 'Save',
@@ -148,12 +158,10 @@ const transformNestedErrorsToArray = (errors: any): object => {
 };
 
 export const AntForm: React.FC<AntFormProps> = props => {
+
   const {
-    onSubmit,
-    renderLabel,
     schema,
     locale=(config.locale || "en"),
-    onChange,
     object,
     loading,
     readOnly = false,
@@ -164,8 +172,14 @@ export const AntForm: React.FC<AntFormProps> = props => {
       gutter: 16,
     },
     submitText,
+    onSubmit,
+    renderLabel,
+    onChange,
     ...rest
   } = props;
+
+  const language = config.language ? antLocale[config.language] : undefined;
+
   const [form] = Form.useForm();
   moment.locale(locale);
 
@@ -193,48 +207,49 @@ export const AntForm: React.FC<AntFormProps> = props => {
   if (!schema || schema.length === 0) return null;
 
   const errors = transformNestedErrorsToArray(props.errors);
-
   return (
-    <Form
-      form={form}
-      onFinish={onFinish}
-      initialValues={initialValues}
-      {...(onChange ? { onValuesChange } : {})}
-      {...(config.formProps || {})}
-      {...rest}
-    >
-      <>
-        {schema.map((item, i) =>
-          <FieldItem
-            renderLabel={renderLabel}
-            layout={rest.layout}
-            item={item}
-            errors={errors}
-            readOnly={readOnly}
-            locale={locale}
-            key={i}
-            rowProps={rowProps}
-          />
+    <ConfigProvider locale={language}>
+      <Form
+        form={form}
+        onFinish={onFinish}
+        initialValues={initialValues}
+        {...(onChange ? { onValuesChange } : {})}
+        {...(config.formProps || {})}
+        {...rest}
+      >
+        <>
+          {schema.map((item, i) =>
+            <FieldItem
+              renderLabel={renderLabel}
+              layout={rest.layout}
+              item={item}
+              errors={errors}
+              readOnly={readOnly}
+              locale={locale}
+              key={i}
+              rowProps={rowProps}
+            />
+          )}
+        </>
+        {(extraActions || onSubmit) && (!readOnly || (readOnly && extraActions)) && (
+          <div {...(config.actionsWrapperProps || {})} {...(actionsWrapperProps || {})}>
+            <Space>
+              {extraActions ? extraActions : null}
+              {onSubmit && !readOnly && (
+                <Button
+                  {...(submitButtonProps || {})}
+                  htmlType="submit"
+                  type="primary"
+                  loading={loading}
+                >
+                  {submitText || config.submitText || 'Save'}
+                </Button>
+              )}
+            </Space>
+          </div>
         )}
-      </>
-      {(extraActions || onSubmit) && (!readOnly || (readOnly && extraActions)) && (
-        <div {...(config.actionsWrapperProps || {})} {...(actionsWrapperProps || {})}>
-          <Space>
-            {extraActions ? extraActions : null}
-            {onSubmit && !readOnly && (
-              <Button
-                {...(submitButtonProps || {})}
-                htmlType="submit"
-                type="primary"
-                loading={loading}
-              >
-                {submitText || config.submitText || 'Save'}
-              </Button>
-            )}
-          </Space>
-        </div>
-      )}
-    </Form>
+      </Form>
+    </ConfigProvider>
   );
 };
 

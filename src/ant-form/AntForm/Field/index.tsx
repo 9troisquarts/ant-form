@@ -82,9 +82,9 @@ export const Field: React.FC<FieldProps> = props => {
               help: isArray(error) ? error[0] : error,
             })}
         {...(renderLabel ? ({ colon: false }) : {})}
-        label={renderLabel ? renderLabel(label) : label}
+        label={renderLabel && label ? renderLabel(label) : label}
       >
-        <Component {...componentSharedProps} {...inputProps} inputProps={inputProps} />
+        <Component renderLabel={renderLabel} {...componentSharedProps} {...inputProps} inputProps={inputProps} />
       </Form.Item>
     );
 

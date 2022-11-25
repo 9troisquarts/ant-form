@@ -11,10 +11,20 @@ import React from 'react';
 import AntForm from '@9troisquarts/ant-form';
 import 'antd/dist/antd.css';
 
+AntForm.configure({
+  language: 'fr'
+})
 export default () => <AntForm
     object={{ date: '2022-01-01' }}
     errors={{ firstname: ['is required'] }}
     onSubmit={(values) => console.log(values)}
+    renderLabel={label => (
+      <>
+        {label}
+        &nbsp;
+        >
+      </>
+    )}
     schema={[
       <h2 key="paragraph" style={{ marginBottom: 24 }}>
         React Component

@@ -247,6 +247,7 @@ export type FieldType = {
 } & FieldItemType;
 
 export type Configuration = {
+  language?: 'fr' | 'en' | 'es';
   submitText?: string;
   cancelText?: string;
   layout: 'horizontal' | 'inline' | 'vertical'

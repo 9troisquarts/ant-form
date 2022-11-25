@@ -29,6 +29,13 @@ export default () => (
     layout="vertical"
     object={{ people: [{firstName: 'Bruce' }] }}
     onSubmit={(values) => console.log(values)}
+    renderLabel={label => (
+      <>
+        {label}
+        &nbsp;
+        >
+      </>
+    )}
     schema={[
       {
         name: 'people',

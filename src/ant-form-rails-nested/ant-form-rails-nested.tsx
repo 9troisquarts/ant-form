@@ -27,22 +27,28 @@ const memoOnlyForKeys = (keys: string[]): any => (
   return equal;
 };
 
-export interface AntFormRailsNestedProps {
-  schema: AntSchema | ((item: any, index: number, ) => AntSchema);
-  name: string;
-  error?: any;
-  separator?: React.ReactNode;
-  value: Array<any>;
-  maxLength?: number;
-  remove: string | React.ReactNode;
-  add: string | React.ReactNode;
-  className?: string;
+type NestedOptions = {
   formProps?: FormProps;
   readOnly?: boolean;
   itemHeader: (args: ItemHeaderParams) => React.ReactNode;
   onChange: (value: Array<any>) => void;
   beforeChange: (item: any, values: any) => any[];
-};
+  schema: AntSchema | ((item: any, index: number, ) => AntSchema);
+  maxLength?: number;
+  separator?: React.ReactNode;
+  error?: any;
+  remove: string | React.ReactNode;
+  add: string | React.ReactNode;
+  className?: string;
+}
+export type AntFormRailsNestedProps = {
+  type: string;
+  name: string;
+  value: Array<any>;
+  className?: string;
+  inputProps?: NestedOptions;
+  renderLabel?: (label: string | React.ReactNode) => string | React.ReactNode | React.ReactNode[];
+} & NestedOptions;
 
 const AntFormRailsNestedItemForm: React.FC<AntFormRailsNestedProps> = props => {
   const {
@@ -54,6 +60,7 @@ const AntFormRailsNestedItemForm: React.FC<AntFormRailsNestedProps> = props => {
     number,
     readOnly,
     layout = 'horizontal',
+    renderLabel,
     onChange,
     schema,
     removeComponent,
@@ -77,6 +84,7 @@ const AntFormRailsNestedItemForm: React.FC<AntFormRailsNestedProps> = props => {
       )}
       <Col span={24} className="nested-form">
         <AntForm
+          renderLabel={renderLabel}
           layout={layout}
           {...formProps}
           readOnly={readOnly}
@@ -155,6 +163,7 @@ const AntFormRailsNestedComponent: React.FC<AntFormRailsNestedProps> = props => 
     schema,
     maxLength,
     itemHeader,
+    renderLabel,
     layout = 'horizontal',
     className = '',
     formProps = {},
@@ -188,6 +197,7 @@ const AntFormRailsNestedComponent: React.FC<AntFormRailsNestedProps> = props => 
         return (
           <MemoizedItemForm
             layout={layout}
+            renderLabel={renderLabel}
             item={item}
             index={index}
             number={i}
