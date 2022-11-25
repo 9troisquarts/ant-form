@@ -56,6 +56,7 @@ const AntFormRailsNestedItemForm: React.FC<AntFormRailsNestedProps> = props => {
     schema,
     removeComponent,
     errors,
+    formProps= {},
     separator = null,
   } = props;
   if (item._destroy) return null;
@@ -75,6 +76,7 @@ const AntFormRailsNestedItemForm: React.FC<AntFormRailsNestedProps> = props => {
       )}
       <Col span={24} className="nested-form">
         <AntForm
+          {...formProps}
           readOnly={readOnly}
           // @ts-ignore
           onChange={(_values, allValues) => onChange(index, allValues)}
