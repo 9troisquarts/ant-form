@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/9troisquarts/ant-form/compare/v2.10.4...v2.11.0) (2022-11-25)
+
+
+### Features
+
+* Allow to change language ([78284c3](https://github.com/9troisquarts/ant-form/commit/78284c3ce797a02e82a14e81cc7b8bc6ba618994))
+
 ### [2.10.4](https://github.com/9troisquarts/ant-form/compare/v2.10.3...v2.10.4) (2022-11-25)
 
 ### [2.10.3](https://github.com/9troisquarts/ant-form/compare/v2.10.2...v2.10.3) (2022-11-25)
