@@ -1,5 +1,4 @@
 import React from 'react';
-import "trix/dist/trix";
 import "trix/dist/trix.css";
 import { TrixEditor, TrixEditorProps } from "react-trix";
 
@@ -31,4 +30,4 @@ const AntFormTrixEditor: React.FC<AntFormTrixEditorProps> = props => {
   )
 }
 
-export default AntFormTrixEditor
+export default AntFormTrixEditor;

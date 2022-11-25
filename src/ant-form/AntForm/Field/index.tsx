@@ -9,22 +9,27 @@ import { memoOnlyForKeys } from '../../_utils/helpers';
 type FieldProps = {
   error?: string;
   field: FieldItemType;
+  layout?: 'horizontal' | 'vertical';
   options?: {
     fieldKey?: string | number;
     fieldName?: string | number;
     readOnly?: boolean;
     locale?: string;
   };
+  renderLabel?: (label: string | React.ReactNode) => string | React.ReactNode | React.ReactNode[];
 };
 
 export const Field: React.FC<FieldProps> = props => {
   const {
     error,
     options,
+    layout = "vertical",
+    renderLabel,
     field: {
       colProps,
       name: n,
       input: { type, inputProps, ...inputConfig } = { type: 'string' },
+      label,
       ...formItemProps
     },
   } = props;
@@ -48,6 +53,7 @@ export const Field: React.FC<FieldProps> = props => {
   const componentSharedProps = {
     readOnly,
     ...inputConfig,
+    layout,
     locale,
     name: n,
     config: otherConfig,
@@ -59,6 +65,7 @@ export const Field: React.FC<FieldProps> = props => {
       <Component
         {...componentSharedProps}
         {...formItemProps}
+        label={label}
         errors={error}
         inputProps={inputProps}
       />
@@ -68,12 +75,14 @@ export const Field: React.FC<FieldProps> = props => {
         {...(!isNil(fieldKey) ? { fieldKey: [fieldKey, name] } : {})}
         {...formItemProps}
         className={`${formItemProps.className} ant-form-item-${type}`}
-        {...(valuePropName ? { valuePropName } : {})}
-        {...((showFormItemError === undefined || showFormItemError) &&
-          error && {
-            validateStatus: 'error',
-            help: isArray(error) ? error[0] : error,
-          })}
+          {...(valuePropName ? { valuePropName } : {})}
+          {...((showFormItemError === undefined || showFormItemError) &&
+            error && {
+              validateStatus: 'error',
+              help: isArray(error) ? error[0] : error,
+            })}
+        {...(renderLabel ? ({ colon: false }) : {})}
+        label={renderLabel ? renderLabel(label) : label}
       >
         <Component {...componentSharedProps} {...inputProps} inputProps={inputProps} />
       </Form.Item>

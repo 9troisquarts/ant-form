@@ -15,7 +15,9 @@ interface FieldItemProps {
   key: string | number;
   fieldName?: string | number;
   fieldKey?: string | number;
+  layout?: 'vertical' | 'horizontal';
   locale?: string;
+  renderLabel?: (label: string | React.ReactNode) => string | React.ReactNode | React.ReactNode[];
 }
 
 // @ts-ignore
@@ -26,13 +28,17 @@ const FieldItem: React.FC<FieldItemProps> = props => {
     rowProps = {},
     readOnly = false,
     locale,
+    layout,
     fieldKey,
-    fieldName
+    fieldName,
+    renderLabel,
   } = props;
   if (isArray(item)) {
     return (
       <FieldsGroup
+        layout={layout}
         errors={errors}
+        renderLabel={renderLabel}
         fields={item as AntSchema}
         rowProps={rowProps}
         options={{
@@ -50,6 +56,7 @@ const FieldItem: React.FC<FieldItemProps> = props => {
     if (!isShown(item)) return null;
     return (
       <Field
+        layout={layout}
         key={field.key || field.name}
         options={{
           fieldKey,
@@ -58,6 +65,7 @@ const FieldItem: React.FC<FieldItemProps> = props => {
           locale,
         }}
         field={field}
+        renderLabel={renderLabel}
         error={get(errors, errorKey || field.name, null)}
       />
     );

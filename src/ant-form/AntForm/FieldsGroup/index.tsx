@@ -8,6 +8,7 @@ import FieldItem from '../_utils/FieldItem';
 type FieldsGroupProps = {
   fields: AntSchema;
   errors: any;
+  layout?: 'horizontal' | 'vertical';
   options?: {
     fieldKey?: string | number;
     fieldName?: string | number;
@@ -15,16 +16,19 @@ type FieldsGroupProps = {
     locale?: string;
   };
   rowProps?: RowProps;
+  renderLabel?: (label: string | React.ReactNode) => string | React.ReactNode | React.ReactNode[];
 };
 
 const FieldsGroup: React.FC<FieldsGroupProps> = props => {
-  const { fields, errors, rowProps, options = {} } = props;
+  const { fields, errors, rowProps, layout = "horizontal", options = {}, renderLabel } = props;
   if (!fields) return null;
   const withRow = some(fields, field => (field as FieldType)?.colProps);
 
   const formItems = fields.map((item: any, i: number) => (
     <FieldItem
+      layout={layout}
       item={item}
+      renderLabel={renderLabel}
       errors={errors}
       rowProps={rowProps}
       key={i}

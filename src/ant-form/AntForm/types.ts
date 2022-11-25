@@ -18,6 +18,7 @@ import { TimePickerProps } from 'antd/es/time-picker';
 import moment from 'moment';
 import { RangePickerProps } from 'antd/lib/date-picker';
 import { SearchProps } from 'antd/lib/input';
+import { AntFormRailsNestedProps } from '../../ant-form-rails-nested';
 
 type InputShareConfig = {
   required?: boolean;
@@ -225,7 +226,8 @@ export type InputType =
   | UploadInput
   | DropdownInput
   | PasswordInput
-  | ContentEditableInputProps;
+  | ContentEditableInputProps
+  | AntFormRailsNestedProps;
 
 export type FieldItemType = {
   name: string;

@@ -23,6 +23,7 @@ export type AntFormProps = {
     style?: React.CSSProperties;
     className?: string;
   };
+  renderLabel?: (label: string | React.ReactNode) => string | React.ReactNode | React.ReactNode[];
   className?: string;
   errors?: any;
   extraActions?: React.ReactNode;
@@ -149,6 +150,7 @@ const transformNestedErrorsToArray = (errors: any): object => {
 export const AntForm: React.FC<AntFormProps> = props => {
   const {
     onSubmit,
+    renderLabel,
     schema,
     locale=(config.locale || "en"),
     onChange,
@@ -204,6 +206,8 @@ export const AntForm: React.FC<AntFormProps> = props => {
       <>
         {schema.map((item, i) =>
           <FieldItem
+            renderLabel={renderLabel}
+            layout={rest.layout}
             item={item}
             errors={errors}
             readOnly={readOnly}

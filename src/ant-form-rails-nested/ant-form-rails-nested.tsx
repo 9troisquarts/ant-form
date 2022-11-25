@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useReducer } from 'react';
-import { Form, Row, Col, Button } from 'antd';
+import { Form, Row, Col, Button, FormProps } from 'antd';
 import isEqual from 'lodash/isEqual';
 import { useDebounceFn } from 'ahooks';
 import get from 'lodash/get';
@@ -37,6 +37,7 @@ export interface AntFormRailsNestedProps {
   remove: string | React.ReactNode;
   add: string | React.ReactNode;
   className?: string;
+  formProps?: FormProps;
   readOnly?: boolean;
   itemHeader: (args: ItemHeaderParams) => React.ReactNode;
   onChange: (value: Array<any>) => void;
@@ -52,6 +53,7 @@ const AntFormRailsNestedItemForm: React.FC<AntFormRailsNestedProps> = props => {
     index,
     number,
     readOnly,
+    layout = 'horizontal',
     onChange,
     schema,
     removeComponent,
@@ -60,7 +62,6 @@ const AntFormRailsNestedItemForm: React.FC<AntFormRailsNestedProps> = props => {
     separator = null,
   } = props;
   if (item._destroy) return null;
-
   return (
     <Row>
       {itemHeader && (
@@ -76,6 +77,7 @@ const AntFormRailsNestedItemForm: React.FC<AntFormRailsNestedProps> = props => {
       )}
       <Col span={24} className="nested-form">
         <AntForm
+          layout={layout}
           {...formProps}
           readOnly={readOnly}
           // @ts-ignore
@@ -153,7 +155,9 @@ const AntFormRailsNestedComponent: React.FC<AntFormRailsNestedProps> = props => 
     schema,
     maxLength,
     itemHeader,
+    layout = 'horizontal',
     className = '',
+    formProps = {},
     remove: removeComponent,
     add: addComponent,
     beforeChange,
@@ -183,9 +187,11 @@ const AntFormRailsNestedComponent: React.FC<AntFormRailsNestedProps> = props => 
         if (!item._destroy) i = i+1;
         return (
           <MemoizedItemForm
+            layout={layout}
             item={item}
             index={index}
             number={i}
+            formProps={formProps}
             itemHeader={itemHeader}
             onRemove={onRemove}
             removeComponent={removeComponent}

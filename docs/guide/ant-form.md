@@ -250,6 +250,43 @@ export default () => <AntForm
   />
 ```
 
+## Custom label rendering
+
+```tsx
+import React from 'react';
+import AntForm from '@9troisquarts/ant-form';
+import 'antd/dist/antd.css';
+
+export default () => (
+  <AntForm
+    object={{ date: '2022-01-01' }}
+    onSubmit={(values) => console.log(values)}
+    renderLabel={label => (
+      <>
+        {label}
+        &nbsp;
+        >
+      </>
+    )}
+    schema={[
+      {
+        name: 'firstname',
+        label: 'Firstname',
+        required: true,
+        input: {
+          type: 'string',
+        },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 12
+        }
+      }
+    ]}
+  />
+)
+```
+
 <API src="../../src/ant-form/AntForm/index.tsx"></API>
 
 More skills for writing demo: https://d.umijs.org/guide/basic#write-component-demo
