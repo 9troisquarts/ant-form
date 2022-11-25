@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/9troisquarts/ant-form/compare/v2.9.0...v2.10.0) (2022-11-25)
+
+
+### Features
+
+* Allow formProps to be passed to nested form ([04e90a7](https://github.com/9troisquarts/ant-form/commit/04e90a74aaa1d93c4e3f35f88c11eadd58f1938b))
+* Set date default format to L ([76f0410](https://github.com/9troisquarts/ant-form/commit/76f04101cb5e56dfa793f99259e87768731c3897))
+
 ## [2.9.0](https://github.com/9troisquarts/ant-form/compare/v2.8.4...v2.9.0) (2022-10-13)
 
 
