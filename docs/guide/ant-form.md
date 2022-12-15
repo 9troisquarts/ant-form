@@ -19,7 +19,6 @@ export default () => {
   return (
     <div>
       <AntForm
-        readOnly
         object={{ date: '2022-01-01', select: 'one' }}
         errors={{ firstname: ['is required'] }}
         onSubmit={(values) => console.log(values)}
