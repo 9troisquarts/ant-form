@@ -27,9 +27,9 @@ export const AntFormReactSelect: React.FC<AntFormReactSelectProps> = props => {
   const {
     value,
     config,
-    loadOptions,
     options: { optionLabel, valueType = 'object', optionValue },
     creatable = false,
+    loadOptions,
     onChange,
     isMulti,
     ...rest

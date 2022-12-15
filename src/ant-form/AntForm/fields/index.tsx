@@ -23,7 +23,7 @@ import {
   RadioInputProps,
   TimePickerInputProps
 } from '../types';
-import moment from 'moment'
+import moment, { isMoment } from 'moment'
 import ListField from './ListField';
 import UploadInput from './Upload';
 import { memoOnlyForKeys } from '../../_utils/helpers';
@@ -49,7 +49,16 @@ type SharedProps = {
 const filterOption = (input: string, option: any) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 
 const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
-  const { options, onChange, value: v, inputProps = {}, ...rest } = props;
+  const { options, onChange, value: v, readOnly = false, inputProps = {}, ...rest } = props;
+
+  if (readOnly && inputProps.mode !== "multiple") {
+    return (
+      <Input
+        readOnly
+        defaultValue={v ? options.find(o => o.value === v)?.label : undefined}
+      />
+    )
+  }
 
   return (
     <Select
@@ -58,6 +67,7 @@ const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
       {...rest}
       onChange={onChange}
       value={inputProps.mode && inputProps.mode === "multiple" && !v ? [] : v}
+      disabled={readOnly || inputProps.disabled}
     >
       {options.map(({ value, label, children, options }) => {
         if (options && options.length > 0) {
@@ -82,17 +92,17 @@ const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
 }, memoOnlyForKeys(['options', 'readOnly', 'value']));
 
 const CheckboxInput: React.FC<CheckboxInputProps> = props => {
-  const { text, checked, onChange, ...other } = props;
+  const { text, checked, readOnly = false, onChange, ...other } = props;
 
   return (
-    <Checkbox {...other} checked={checked} onChange={onChange}>
+    <Checkbox {...other} disabled={readOnly || props.inputProps?.disabled} checked={checked} onChange={onChange}>
       {text}
     </Checkbox>
   );
 };
 
 const RadioInput: React.FC<RadioInputProps> = props => {
-  const { options, style = "bullet", layout = 'inline', onChange, value, ...other } = props;
+  const { options, style = "bullet", readOnly = false, layout = 'inline', onChange, value, ...other } = props;
 
   const radioStyles =
     layout === 'vertical' && style === "bullet"
@@ -116,7 +126,7 @@ const RadioInput: React.FC<RadioInputProps> = props => {
         <RadioComponent
           style={radioStyles}
           key={option.value}
-          disabled={option.disabled}
+          disabled={option.disabled || readOnly}
           value={option.value}
         >
           {option.label}
@@ -128,7 +138,7 @@ const RadioInput: React.FC<RadioInputProps> = props => {
 };
 
 const CheckboxesInput: React.FC<CheckboxesInputProps> = props => {
-  const { options, onChange, value, inputProps, ...other } = props;
+  const { options, onChange, value, readOnly = false, inputProps, ...other } = props;
   return (
     <Checkbox.Group
       {...other}
@@ -143,7 +153,7 @@ const CheckboxesInput: React.FC<CheckboxesInputProps> = props => {
             key={option.value}
             {...(option.colProps ? option.colProps : { span: 24 })}
           >
-            <Checkbox disabled={option.disabled} value={option.value}>
+            <Checkbox disabled={option.disabled || readOnly} value={option.value}>
               {option.label}
             </Checkbox>
           </Col>
@@ -158,9 +168,28 @@ const AutoCompleteInput: React.FC<AutoCompleteInputProps> = props => {
   return <AutoComplete {...other} onSearch={onSearch} options={options} />;
 };
 
-const DateInput: React.FC<DatePickerInputProps> = props => (
-  <DatePicker style={{ width: '100%' }} format="L" {...props} />
-);
+const DateInput: React.FC<DatePickerInputProps> = props => {
+  const { readOnly, value } = props;
+
+  if (readOnly) {
+    let v = value;
+    if (v && !isMoment(v) && moment(v).isValid()) v = moment(v);
+    return (
+      <Input
+        readOnly
+        defaultValue={v ? v.format(props.inputProps?.format || 'L') : undefined}
+      />
+    )
+  }
+
+  return (
+    <DatePicker
+      style={{ width: '100%' }}
+      format="L"
+      {...props}
+    />
+  );
+};
 
 const Rate: React.FC<RateProps & SharedProps> = ({ inputProps = {}, ...props}) => (
   <ARate {...props} {...(inputProps || {})} />

@@ -111,6 +111,7 @@ type Option = {
 
 export type DatePickerInputProps = {
   type: 'date';
+  readOnly?: boolean;
   inputProps?: Omit<DatePickerProps, 'onChange'>;
 };
 
@@ -136,6 +137,7 @@ export type SelectInputProps = {
   type: 'select';
   options: Option[];
   inputProps?: Omit<SelectProps<any>, 'onChange'>;
+  readOnly?: boolean;
 } & CustomInputProps;
 
 type CheckboxOption = {
@@ -151,6 +153,7 @@ export type CheckboxesInputProps = {
   options: CheckboxOption[];
   onChange?: (checked: any) => void;
   value?: any;
+  readOnly?: boolean;
   layout?: 'horizontal' | 'vertical' | 'inline';
   inputProps?: Omit<CheckboxGroupProps, 'onChange'>;
 };
@@ -160,6 +163,7 @@ export type RadioInputProps = {
   style?: 'bullet' | 'button';
   layout?: 'vertical' | 'inline';
   options: CheckboxOption[];
+  readOnly?: boolean;
   onChange?: (checked: any) => void;
   value?: any;
   inputProps?: Omit<RadioGroupProps, 'onChange'>;
@@ -170,6 +174,7 @@ export type CheckboxInputProps = {
   text: string;
   inputProps?: Omit<CheckboxProps, 'onChange'>;
   onChange?: (checked: any) => void;
+  readOnly?: boolean;
   checked?: boolean;
 };
 
