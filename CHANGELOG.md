@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.12.4](https://github.com/9troisquarts/ant-form/compare/v2.12.3...v2.12.4) (2022-12-15)
+
+
+### Bug Fixes
+
+* Change readonly of select ([07ffa74](https://github.com/9troisquarts/ant-form/commit/07ffa741f031f78461f847afa2889516d0810468))
+
 ### [2.12.3](https://github.com/9troisquarts/ant-form/compare/v2.12.2...v2.12.3) (2022-12-15)
 
 ### [2.12.2](https://github.com/9troisquarts/ant-form/compare/v2.12.1...v2.12.2) (2022-12-15)
