@@ -19,7 +19,8 @@ export default () => {
   return (
     <div>
       <AntForm
-        object={{ date: '2022-01-01' }}
+        readOnly
+        object={{ date: '2022-01-01', select: 'one' }}
         errors={{ firstname: ['is required'] }}
         onSubmit={(values) => console.log(values)}
         schema={[
@@ -38,7 +39,8 @@ export default () => {
                 md: 12,
                 lg: 12
               }
-            }, {
+            }, 
+            {
               name: 'lastname',
               label: 'Lastname',
               input: {

@@ -112,6 +112,7 @@ type Option = {
 export type DatePickerInputProps = {
   type: 'date';
   readOnly?: boolean;
+  value?: string | moment.Moment;
   inputProps?: Omit<DatePickerProps, 'onChange'>;
 };
 

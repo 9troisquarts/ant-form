@@ -55,7 +55,7 @@ const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
     return (
       <Input
         readOnly
-        defaultValue={v ? options.find(o => o.value === v)?.label : undefined}
+        value={v ? options.find(o => o.value === v)?.label : undefined}
       />
     )
   }
@@ -177,12 +177,14 @@ const DateInput: React.FC<DatePickerInputProps> = props => {
     return (
       <Input
         readOnly
-        defaultValue={v ? v.format(props.inputProps?.format || 'L') : undefined}
+        // @ts-ignore
+        value={v ? v.format(props.inputProps?.format || 'L') : undefined}
       />
     )
   }
 
   return (
+    // @ts-ignore
     <DatePicker
       style={{ width: '100%' }}
       format="L"
