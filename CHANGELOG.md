@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/9troisquarts/ant-form/compare/v2.11.1...v2.12.0) (2022-12-15)
+
+
+### Features
+
+* Improve readonly of many components ([bd03119](https://github.com/9troisquarts/ant-form/commit/bd0311905877c83c59260e94836895c7a34b6fb2))
+
 ### [2.11.1](https://github.com/9troisquarts/ant-form/compare/v2.11.0...v2.11.1) (2022-11-25)
 
 ## [2.11.0](https://github.com/9troisquarts/ant-form/compare/v2.10.4...v2.11.0) (2022-11-25)
