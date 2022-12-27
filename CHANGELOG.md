@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](https://github.com/9troisquarts/ant-form/compare/v2.12.4...v2.13.0) (2022-12-27)
+
+
+### Features
+
+* Add changes to useAntForm ([7188241](https://github.com/9troisquarts/ant-form/commit/7188241a1f6bbac30dad026f20714009d6c1529d))
+
 ### [2.12.4](https://github.com/9troisquarts/ant-form/compare/v2.12.3...v2.12.4) (2022-12-15)
 
 
