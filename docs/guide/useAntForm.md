@@ -16,6 +16,7 @@ import 'antd/dist/antd.css';
 
 const {
   object,
+  changes,
   onReset,
   onChange,
 } = useAntForm({ firstname: 'Toto' });
