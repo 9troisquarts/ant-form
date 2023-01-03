@@ -34,10 +34,10 @@ const DateRange: React.FC<DateRangeProps> = props => {
   }, [value])
 
   const handleChange = (mDates: [moment.Moment, moment.Moment], dateStrings: [string, string]) => {
-    const nextValues = {
+    const nextValues = mDates ? {
       [startName]: mDates[0],
       [endName]: mDates[1],
-    }
+    } : {}
     onChange(nextValues);
     setInternalValue(nextValues);
   }
