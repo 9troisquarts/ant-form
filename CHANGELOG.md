@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.13.1](https://github.com/9troisquarts/ant-form/compare/v2.13.0...v2.13.1) (2023-01-03)
+
+
+### Bug Fixes
+
+* Fix error when cleaning range ([17474b9](https://github.com/9troisquarts/ant-form/commit/17474b928cc1c365f10a862b1b554a417f70217a))
+
 ## [2.13.0](https://github.com/9troisquarts/ant-form/compare/v2.12.4...v2.13.0) (2022-12-27)
 
 
