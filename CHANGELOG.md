@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.1](https://github.com/9troisquarts/ant-form/compare/v2.14.0...v2.14.1) (2023-01-06)
+
+
+### Bug Fixes
+
+* Fix date value and readonly ([a2150e5](https://github.com/9troisquarts/ant-form/commit/a2150e56a3bd12141a42d5f963a63145c86a281c))
+
 ## [2.14.0](https://github.com/9troisquarts/ant-form/compare/v2.13.1...v2.14.0) (2023-01-06)
 
 
