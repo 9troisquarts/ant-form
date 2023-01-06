@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.14.0](https://github.com/9troisquarts/ant-form/compare/v2.13.1...v2.14.0) (2023-01-06)
+
+
+### Features
+
+* Tooltip can now be added to field and icon can be customized in configure ([f893ab6](https://github.com/9troisquarts/ant-form/commit/f893ab6fdc1cd106ee162ff4bffa8daacfb228c1))
+
 ### [2.13.1](https://github.com/9troisquarts/ant-form/compare/v2.13.0...v2.13.1) (2023-01-03)
 
 
