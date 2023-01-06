@@ -23,6 +23,7 @@ import {
   RadioInputProps,
   TimePickerInputProps
 } from '../types';
+import omit from 'lodash/omit';
 import moment, { isMoment } from 'moment'
 import ListField from './ListField';
 import UploadInput from './Upload';
@@ -169,7 +170,7 @@ const AutoCompleteInput: React.FC<AutoCompleteInputProps> = props => {
 };
 
 const DateInput: React.FC<DatePickerInputProps> = props => {
-  const { readOnly, inputProps, value } = props;
+  const { readOnly, value } = props;
 
   if (readOnly) {
     let v = value;
@@ -183,12 +184,16 @@ const DateInput: React.FC<DatePickerInputProps> = props => {
     )
   }
 
+  const otherProps = omit(props, ['renderLabel']);
+
   return (
     // @ts-ignore
     <DatePicker
       style={{ width: '100%' }}
       format="L"
-      {...(inputProps || {})}
+      // @ts-ignore
+      value={value}
+      {...(otherProps || {})}
     />
   );
 };

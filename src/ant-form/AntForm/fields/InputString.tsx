@@ -11,11 +11,16 @@ type InputStringProps = {
   inputProps?: StringInput;
 };
 
-const InputString: React.FC<InputStringProps> = props => {
+type InternalProps = {
+  readOnly?: boolean;
+}
+
+const InputString: React.FC<InputStringProps> = (props: InputStringProps & InternalProps) => {
   const {
     inputProps,
     onChange,
     localize = false,
+    readOnly = false,
     locale,
     value,
   } = props;
@@ -32,6 +37,7 @@ const InputString: React.FC<InputStringProps> = props => {
     <Input
       {...inputProps}
       value={v}
+      readOnly={readOnly}
       onChange={handleChange}
     />
   );

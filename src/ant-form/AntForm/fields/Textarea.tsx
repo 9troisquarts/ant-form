@@ -15,6 +15,7 @@ type InternalProps = {
   value?: string | any;
   locale?: string;
   onChange: (value: string) => void;
+  readOnly?: boolean;
 }
 
 // @ts-ignore
@@ -23,6 +24,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: (TextAreaInputProps & Int
     inputProps,
     onChange,
     localize = false,
+    readOnly = false,
     locale,
     value
   } = (props);
@@ -37,7 +39,8 @@ const TextArea: React.FC<TextAreaInputProps> = (props: (TextAreaInputProps & Int
 
   return (
     <Input.TextArea
-      {...inputProps}
+      {...(inputProps || {})}
+      readOnly={readOnly}
       value={v}
       onChange={handleChange}
     />
