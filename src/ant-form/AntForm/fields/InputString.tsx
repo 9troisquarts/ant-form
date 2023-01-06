@@ -18,7 +18,6 @@ const InputString: React.FC<InputStringProps> = props => {
     localize = false,
     locale,
     value,
-    ...rest
   } = props;
 
   const handleChange = ({ target: { value }}: { target: { value: string }}) => {
@@ -32,7 +31,6 @@ const InputString: React.FC<InputStringProps> = props => {
   return (
     <Input
       {...inputProps}
-      {...rest}
       value={v}
       onChange={handleChange}
     />

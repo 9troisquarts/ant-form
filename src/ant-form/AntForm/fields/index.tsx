@@ -169,7 +169,7 @@ const AutoCompleteInput: React.FC<AutoCompleteInputProps> = props => {
 };
 
 const DateInput: React.FC<DatePickerInputProps> = props => {
-  const { readOnly, value } = props;
+  const { readOnly, inputProps, value } = props;
 
   if (readOnly) {
     let v = value;
@@ -188,7 +188,7 @@ const DateInput: React.FC<DatePickerInputProps> = props => {
     <DatePicker
       style={{ width: '100%' }}
       format="L"
-      {...props}
+      {...(inputProps || {})}
     />
   );
 };

@@ -20,7 +20,7 @@ import { RangePickerProps } from 'antd/lib/date-picker';
 import { SearchProps } from 'antd/lib/input';
 import { AntFormRailsNestedProps } from '../../ant-form-rails-nested';
 
-type InputShareConfig = {
+export type InputShareConfig = {
   required?: boolean;
   autoFocus?: boolean;
   localize?: boolean;
@@ -147,6 +147,7 @@ type CheckboxOption = {
   colProps?: ColProps;
   disabled?: boolean;
   help?: string;
+  tooltip?: string;
 };
 
 export type CheckboxesInputProps = {
@@ -212,7 +213,7 @@ export type SearchInputProps = {
   */
   name: string;
   inputProps: SearchProps;
-}
+} & InputShareConfig;
 
 export type InputType =
   | DatePickerInputProps
@@ -241,6 +242,7 @@ export type FieldItemType = {
   input: InputType;
   colProps?: ColProps;
   help?: string;
+  tooltip?: string;
   proxy?: {
     name: string;
     path: string[] | string;
@@ -253,15 +255,17 @@ export type FieldType = {
 } & FieldItemType;
 
 export type Configuration = {
-  language?: 'fr' | 'en' | 'es';
-  submitText?: string;
-  cancelText?: string;
-  layout: 'horizontal' | 'inline' | 'vertical'
-  formProps?: FormProps;
   actionsWrapperProps?: {
     style?: React.CSSProperties;
     className?: string;
-  }
+  };
+  cancelText?: string;
+  formProps?: FormProps;
+  language?: 'fr' | 'en' | 'es';
+  layout: 'horizontal' | 'inline' | 'vertical'
+  submitText?: string;
+  /** Icon to use for tooltip */
+  tooltipIcon?: React.ReactNode;
 };
 
 // @ts-ignore

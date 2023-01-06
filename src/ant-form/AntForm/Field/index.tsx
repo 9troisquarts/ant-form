@@ -1,5 +1,6 @@
 import React from 'react';
 import { FieldItemType } from '../types';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import isNil from 'lodash/isNil';
 import isArray from 'lodash/isArray';
 import { Form, Col } from 'antd';
@@ -10,13 +11,14 @@ type FieldProps = {
   error?: string;
   field: FieldItemType;
   layout?: 'horizontal' | 'vertical';
+  config?: any;
   options?: {
     fieldKey?: string | number;
     fieldName?: string | number;
     readOnly?: boolean;
     locale?: string;
   };
-  renderLabel?: (label: string | React.ReactNode) => string | React.ReactNode | React.ReactNode[];
+  renderLabel?: (label: string | React.ReactNode, args: { tooltip?: any }) => string | React.ReactNode | React.ReactNode[];
 };
 
 export const Field: React.FC<FieldProps> = props => {
@@ -24,12 +26,14 @@ export const Field: React.FC<FieldProps> = props => {
     error,
     options,
     layout = "vertical",
+    config = {},
     renderLabel,
     field: {
       colProps,
       name: n,
       input: { type, inputProps, ...inputConfig } = { type: 'string' },
       label,
+      tooltip,
       ...formItemProps
     },
   } = props;
@@ -60,6 +64,11 @@ export const Field: React.FC<FieldProps> = props => {
     error,
   };
 
+  const tooltipProps = tooltip ? {
+    title: tooltip,
+    icon: config.tooltipIcon || <InfoCircleOutlined />
+  } : null
+
   let formItem =
     type === 'list' ? (
       <Component
@@ -74,6 +83,7 @@ export const Field: React.FC<FieldProps> = props => {
         name={!isNil(fieldKey) ? [fieldKey, name] : name}
         {...(!isNil(fieldKey) ? { fieldKey: [fieldKey, name] } : {})}
         {...formItemProps}
+        tooltip={renderLabel ? undefined : tooltipProps}
         className={`${formItemProps.className} ant-form-item-${type}`}
           {...(valuePropName ? { valuePropName } : {})}
           {...((showFormItemError === undefined || showFormItemError) &&
@@ -82,7 +92,7 @@ export const Field: React.FC<FieldProps> = props => {
               help: isArray(error) ? error[0] : error,
             })}
         {...(renderLabel ? ({ colon: false }) : {})}
-        label={renderLabel && label ? renderLabel(label) : label}
+        label={renderLabel && label ? renderLabel(label, { tooltip: tooltipProps }) : label}
       >
         <Component renderLabel={renderLabel} {...componentSharedProps} {...inputProps} inputProps={inputProps} />
       </Form.Item>

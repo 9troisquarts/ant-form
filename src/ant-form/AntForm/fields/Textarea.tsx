@@ -5,23 +5,27 @@ import { TextAreaProps } from 'antd/es/input';
 type TextAreaInputProps = {
   type: 'text';
   name: string;
+  localize?: boolean;
   /** https://ant.design/components/input/#Input.TextArea */
   inputProps: TextAreaProps;
-  value?: string | any;
-  onChange: (value: string) => void;
-  localize?: boolean;
-  locale?: string;
 };
 
-const TextArea: React.FC<TextAreaInputProps> = props => {
+
+type InternalProps = {
+  value?: string | any;
+  locale?: string;
+  onChange: (value: string) => void;
+}
+
+// @ts-ignore
+const TextArea: React.FC<TextAreaInputProps> = (props: (TextAreaInputProps & InternalProps)) => {
   const {
     inputProps,
     onChange,
     localize = false,
     locale,
-    value,
-    ...rest
-  } = props;
+    value
+  } = (props);
 
   const handleChange = ({ target: { value }}: { target: { value: string }}) => {
     const nextValue = localize && locale ? { ...props.value, [locale]: value} : value;
@@ -34,7 +38,6 @@ const TextArea: React.FC<TextAreaInputProps> = props => {
   return (
     <Input.TextArea
       {...inputProps}
-      {...rest}
       value={v}
       onChange={handleChange}
     />

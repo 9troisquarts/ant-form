@@ -30,6 +30,7 @@ export default () => {
             {
               name: 'firstname',
               label: 'Firstname',
+              tooltip: 'Firstname',
               input: {
                 type: 'string',
               },
@@ -219,6 +220,7 @@ export default () => {
           {
             name: 'textarea',
             label: 'Textarea with Help',
+            help: 'this is a help for a field',
             input: {
               type: 'text'
             }
@@ -281,36 +283,58 @@ export default () => {
 
 ```tsx
 import React from 'react';
+import { Tooltip, Space, Alert } from 'antd';
 import AntForm from '@9troisquarts/ant-form';
 import 'antd/dist/antd.css';
 
 export default () => (
-  <AntForm
-    object={{ date: '2022-01-01' }}
-    onSubmit={(values) => console.log(values)}
-    renderLabel={label => (
-      <>
-        {label}
-        &nbsp;
-        >
-      </>
-    )}
-    schema={[
-      {
-        name: 'firstname',
-        label: 'Firstname',
-        required: true,
-        input: {
-          type: 'string',
+ <>
+    <AntForm
+      object={{ date: '2022-01-01' }}
+      onSubmit={(values) => console.log(values)}
+      renderLabel={(label, { tooltip }) => (
+        <Space>
+          {label}
+          {tooltip && (
+            <Tooltip title={tooltip.title}>
+              {tooltip.icon}
+            </Tooltip>
+          )}
+          >
+        </Space>
+      )}
+      schema={[
+        {
+          name: 'firstname',
+          label: 'Firstname',
+          required: true, 
+          tooltip: 'Info bulle',
+          help: 'Aide à la saisie',
+          input: {
+            type: 'string',
+          },
+          colProps: {
+            xs: 24,
+            md: 12,
+            lg: 12
+          }
         },
-        colProps: {
-          xs: 24,
-          md: 12,
-          lg: 12
-        }
-      }
-    ]}
-  />
+        {
+          name: 'number',
+          label: 'Number',
+          input: {
+            type: 'number',
+          }
+        },
+      ]}
+    />
+    <Alert
+      style={{ marginTop: 16 }}
+      type="warning"
+      message={"Warning"}
+      description="Tooltip must be added in renderLabel props to be displayed"
+    />
+ </>
 )
 ```
 

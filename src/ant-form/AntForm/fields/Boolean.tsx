@@ -4,11 +4,15 @@ import { Switch } from 'antd';
 export type BooleanProps = {
 	value: boolean;
   inverted?: boolean;
-	onChange: (value: boolean) => void;
 	text?: string;
 }
 
-const Boolean: React.FC<BooleanProps> = props => {
+type InternalProps = {
+	onChange: (value: boolean) => void;
+}
+
+// @ts-ignore
+const Boolean: React.FC<BooleanProps> = (props: (BooleanProps & InternalProps)) => {
 	const {
 		onChange,
 		text,

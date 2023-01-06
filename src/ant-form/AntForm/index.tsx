@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import moment from 'moment';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import flattenDeep from 'lodash/flattenDeep';
 import { flatten, get, isArray } from 'lodash';
 import { Form, Button, Space, ConfigProvider } from 'antd';
@@ -25,7 +26,8 @@ const antLocale = {
 let config: Configuration = {
   submitText: 'Save',
   layout: 'horizontal',
-  locale: 'fr'
+  locale: 'fr',
+  tooltipIcon: <InfoCircleOutlined />
 };
 
 export type AntFormProps = {
@@ -226,6 +228,7 @@ export const AntForm: React.FC<AntFormProps> = props => {
               errors={errors}
               readOnly={readOnly}
               locale={locale}
+              config={config}
               key={i}
               rowProps={rowProps}
             />

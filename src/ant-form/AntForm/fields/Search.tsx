@@ -1,20 +1,20 @@
 import { Input } from 'antd';
 import React, { useEffect, useState } from 'react'
-import { SearchInputProps } from '../types';
+import { InputShareConfig, SearchInputProps } from '../types';
 
 const { Search } = Input;
 
-type SearchProps = SearchInputProps & {
+type InternalProps = {
   value: string;
   onChange: (value: string) => void;
-};
+}
 
-const SearchInput: React.FC<SearchProps> = props => {
+const SearchInput: React.FC<SearchInputProps> = (props) => {
   const {
     value,
     inputProps = {},
     onChange,
-  } = props;
+  } = (props as (SearchInputProps & InternalProps));
 
   const [internalValue, setInternalValue] = useState<string>(value);
   useEffect(() => setInternalValue(value), [value]);

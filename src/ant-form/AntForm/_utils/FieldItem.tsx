@@ -12,6 +12,7 @@ interface FieldItemProps {
   errors: any;
   rowProps?: RowProps;
   readOnly?: boolean;
+  config?: any;
   key: string | number;
   fieldName?: string | number;
   fieldKey?: string | number;
@@ -25,6 +26,7 @@ const FieldItem: React.FC<FieldItemProps> = props => {
   const {
     item,
     errors,
+    config = {},
     rowProps = {},
     readOnly = false,
     locale,
@@ -37,6 +39,7 @@ const FieldItem: React.FC<FieldItemProps> = props => {
     return (
       <FieldsGroup
         layout={layout}
+        config={config}
         errors={errors}
         renderLabel={renderLabel}
         fields={item as AntSchema}
@@ -57,6 +60,7 @@ const FieldItem: React.FC<FieldItemProps> = props => {
     return (
       <Field
         layout={layout}
+        config={config}
         key={field.key || field.name}
         options={{
           fieldKey,
