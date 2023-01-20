@@ -34,6 +34,9 @@ export default () => (
           }, {
             label: 'Harry',
             value: 'potter'
+          }, {
+            label: 'Frédéric',
+            value: 'fred'
           }],
         }
       },

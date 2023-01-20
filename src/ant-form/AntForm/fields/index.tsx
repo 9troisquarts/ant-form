@@ -47,7 +47,8 @@ type SharedProps = {
   inputProps: any;
 };
 
-const filterOption = (input: string, option: any) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+
+const filterOption = (input: string, option: any) => option.label.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) >= 0
 
 const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
   const { options, onChange, value: v, readOnly = false, inputProps = {}, ...rest } = props;
@@ -64,6 +65,7 @@ const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
   return (
     <Select
       filterOption={filterOption}
+      showSearch={true}
       {...(inputProps || {})}
       {...rest}
       onChange={onChange}
