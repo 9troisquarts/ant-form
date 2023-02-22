@@ -1,11 +1,11 @@
-import React from 'react';
-import isArray from 'lodash/isArray';
-import get from 'lodash/get';
 import { RowProps } from 'antd/es/grid';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import React from 'react';
 import { fieldIsInactive, isShown } from '../../_utils/helpers';
-import FieldsGroup from '../FieldsGroup';
 import Field from '../Field';
-import { FieldType, isFormItem, isReactNode, FieldSchema, AntSchema } from '../types';
+import FieldsGroup from '../FieldsGroup';
+import { AntSchema, FieldSchema, FieldType, isFormItem, isReactNode } from '../types';
 
 interface FieldItemProps {
   item: FieldSchema | AntSchema;
@@ -23,7 +23,7 @@ interface FieldItemProps {
 }
 
 // @ts-ignore
-const FieldItem: React.FC<FieldItemProps> = props => {
+const FieldItem: React.FC<FieldItemProps> = (props) => {
   const {
     item,
     errors,
@@ -37,9 +37,15 @@ const FieldItem: React.FC<FieldItemProps> = props => {
     inactiveItems = [],
     renderLabel,
   } = props;
+
   if (isArray(item)) {
     // @ts-ignore
-    if (item.length === 0 || (inactiveItems.length > 0 && (item as AntSchema).filter(fieldIsInactive(inactiveItems)).length === 0)) return null;
+    if (
+      item.length === 0 ||
+      (inactiveItems.length > 0 &&
+        (item as AntSchema).filter(fieldIsInactive(inactiveItems)).length === 0)
+    )
+      return null;
     return (
       <FieldsGroup
         layout={layout}
