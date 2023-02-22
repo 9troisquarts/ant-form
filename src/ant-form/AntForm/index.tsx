@@ -219,21 +219,19 @@ export const AntForm: React.FC<AntFormProps> = props => {
         {...(config.formProps || {})}
         {...rest}
       >
-        <>
-          {schema.map((item, i) =>
-            <FieldItem
-              renderLabel={renderLabel}
-              layout={rest.layout}
-              item={item}
-              errors={errors}
-              readOnly={readOnly}
-              locale={locale}
-              config={config}
-              key={i}
-              rowProps={rowProps}
-            />
-          )}
-        </>
+        {schema.map((item, i) =>
+          <FieldItem
+            renderLabel={renderLabel}
+            layout={rest.layout}
+            item={item}
+            errors={errors}
+            readOnly={readOnly}
+            locale={locale}
+            config={config}
+            key={i}
+            rowProps={rowProps}
+          />
+        )}
         {(extraActions || onSubmit) && (!readOnly || (readOnly && extraActions)) && (
           <div {...(config.actionsWrapperProps || {})} {...(actionsWrapperProps || {})}>
             <Space>

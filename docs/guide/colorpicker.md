@@ -1,29 +1,14 @@
 ---
-title: colorpicker
-order: 2
+title: Color-picker
+order: 8
 toc: menu
 ---
-
-## Configuration
-
-```javascript
-import React from 'react';
-import AntForm, { AntFormColorPicker } from '@9troisquarts/ant-form';
-
-AntForm.addField('color', {
-  component: AntFormColorPicker
-});
-```
 
 ## Chrome (default)
 
 ```tsx
 import React from 'react';
-import AntForm, { AntFormColorPicker } from '@9troisquarts/ant-form';
-
-AntForm.addField('color', {
-  component: AntFormColorPicker
-});
+import AntForm from '@9troisquarts/ant-form';
 
 export default () => (
   <AntForm
@@ -46,11 +31,7 @@ export default () => (
 
 ```tsx
 import React from 'react';
-import AntForm, { AntFormColorPicker } from '@9troisquarts/ant-form';
-
-AntForm.addField('color', {
-  component: AntFormColorPicker
-});
+import AntForm from '@9troisquarts/ant-form';
 
 export default () => (
   <AntForm
@@ -77,11 +58,7 @@ export default () => (
 
 ```tsx
 import React from 'react';
-import AntForm, { AntFormColorPicker } from '@9troisquarts/ant-form';
-
-AntForm.addField('color', {
-  component: AntFormColorPicker
-});
+import AntForm from '@9troisquarts/ant-form';
 
 export default () => (
   <AntForm
@@ -105,3 +82,11 @@ export default () => (
 ```
 
 <API exports='["default"]' src="../../src/ant-form-color-picker/ant-form-color-picker.tsx"></API>
+
+### AntFormColorPickerOptions
+
+| Name   |     Description      |  Type |  Default |
+|----------|-------------|------|---------|
+| colors | default colors in picker | ```Array<string>``` | ```(required)``` |
+| type | Presentation style of color picker | ```chrome \| github \| block``` | chrome |
+| size | Size of color picker |   string | default |

@@ -40,6 +40,7 @@ import { PasswordProps } from 'antd/es/input';
 import DateRange from './DateRange';
 import SearchInput from './Search';
 import Dropdown from './Dropdown';
+import { AntFormColorPicker } from '../../../ant-form-color-picker';
 
 const { Password: APassword } = Input;
 
@@ -303,6 +304,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   },
   contenteditable: {
     component: ContentEditableInput
+  },
+  color: {
+    component: AntFormColorPicker
   }
 };
 

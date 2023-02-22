@@ -9,13 +9,18 @@ export interface AntFormColorPickerOptions {
   colors?: string[];
 }
 
-export interface AntFormColorPickerProps {
+export interface InternalProps {
   value: string;
   onChange: (value: string | any) => void;
-  inputProps: AntFormColorPickerOptions;
 };
 
-export const AntFormColorPicker: React.FC<AntFormColorPickerProps> = props => {
+export type AntFormColorPickerProps = {
+  type: "color",
+  inputProps: AntFormColorPickerOptions;
+}
+
+// @ts-ignore
+export const AntFormColorPicker: React.FC<AntFormColorPickerProps> = (props: (AntFormColorPickerProps & InternalProps)) => {
   const {
     value,
     inputProps = {},

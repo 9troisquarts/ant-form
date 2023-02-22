@@ -7,3 +7,7 @@
   cursor: pointer;
   transition: .3s linear background-color;
 }
+
+.ant-form-daterange {
+  width: 100%;
+}

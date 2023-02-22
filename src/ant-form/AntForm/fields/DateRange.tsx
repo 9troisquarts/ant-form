@@ -57,6 +57,7 @@ const DateRange: React.FC<DateRangeProps> = props => {
     // @ts-ignore
     <RangePicker
       {...(inputProps || {})}
+      className={`ant-form-daterange ${inputProps?.className || ''}`}
       value={v}
       onChange={handleChange}
     />
