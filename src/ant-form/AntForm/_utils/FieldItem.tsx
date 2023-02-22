@@ -2,7 +2,7 @@ import React from 'react';
 import isArray from 'lodash/isArray';
 import get from 'lodash/get';
 import { RowProps } from 'antd/es/grid';
-import { isShown } from '../../_utils/helpers';
+import { fieldIsInactive, isShown } from '../../_utils/helpers';
 import FieldsGroup from '../FieldsGroup';
 import Field from '../Field';
 import { FieldType, isFormItem, isReactNode, FieldSchema, AntSchema } from '../types';
@@ -14,6 +14,7 @@ interface FieldItemProps {
   readOnly?: boolean;
   config?: any;
   key: string | number;
+  inactiveItems?: string[];
   fieldName?: string | number;
   fieldKey?: string | number;
   layout?: 'vertical' | 'horizontal';
@@ -33,12 +34,16 @@ const FieldItem: React.FC<FieldItemProps> = props => {
     layout,
     fieldKey,
     fieldName,
+    inactiveItems = [],
     renderLabel,
   } = props;
   if (isArray(item)) {
+    // @ts-ignore
+    if (item.length === 0 || (inactiveItems.length > 0 && (item as AntSchema).filter(fieldIsInactive(inactiveItems)).length === 0)) return null;
     return (
       <FieldsGroup
         layout={layout}
+        inactiveItems={inactiveItems}
         config={config}
         errors={errors}
         renderLabel={renderLabel}

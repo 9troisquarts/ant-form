@@ -19,14 +19,19 @@ export default () => {
   return (
     <div>
       <AntForm
-        object={{ date: '2022-01-01', select: 'one' }}
+        object={{ date: '2022-01-01', select: 'one', id: 2 }}
         errors={{ firstname: ['is required'] }}
         onSubmit={(values) => console.log(values)}
+        onChange={(value, values) => console.log(value, values)}
         schema={[
           <h2 key="paragraph" style={{ marginBottom: 24 }}>
             React Component
           </h2>,
           [
+            {
+              name: 'id',
+              hidden: true,
+            },
             {
               name: 'firstname',
               label: 'Firstname',
@@ -131,7 +136,7 @@ export default () => {
                     },
                     {
                       label: 'Obi-wan Kenobi',
-                      value: 'luke'
+                      value: 'obi'
                     }
                   ]
                 },{
@@ -148,7 +153,22 @@ export default () => {
                 xs: 24,
                 md: 12,
               }
-            }
+            },
+            [
+              {
+                name: 'padawan',
+                label: 'Padawan if obi',
+                condition: (obj) => obj.optionGrp === "obi",
+                input: {
+                  type: 'select',
+                  options: [{ value: 'luke', label: 'Luke Skywalker' }, { value: 'anakin', label: 'Anakin Skywalker' }]
+                },
+                colProps: {
+                  xs: 24,
+                  md: 12,
+                }
+              }
+            ]
           ],
           {
             name: 'checkbox',
@@ -336,6 +356,30 @@ export default () => (
     />
  </>
 )
+```
+
+## Champs conditionnés
+
+```hiden``` : Le champ est caché, mais sa valeur est définit dans l'objet de retour
+
+Exemple:
+```ts|pure
+{
+  name: 'padawan',
+  label: 'Padawan',
+  hidden: true
+}
+```
+
+```condition``` : Le champ est caché ET sa valeur n'est pas définit dans l'objet de retour
+
+Exemple:
+```ts|pure
+{
+  name: 'padawan',
+  label: 'Padawan',
+  condition: (obj) => obj.optionGrp === "obi",
+}
 ```
 
 <API src="../../src/ant-form/AntForm/index.tsx"></API>

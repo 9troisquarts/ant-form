@@ -1,10 +1,9 @@
 // @ts-nocheck
 
-import React, { useEffect } from 'react';
-import moment from 'moment';
+import React, { useEffect, useMemo, useState } from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import flattenDeep from 'lodash/flattenDeep';
-import { flatten, get, isArray } from 'lodash';
+import omit from 'lodash/omit';
 import { Form, Button, Space, ConfigProvider } from 'antd';
 import { RowProps } from 'antd/es/grid';
 import { AntSchema, Configuration, FieldType, isFormItem } from './types';
@@ -16,6 +15,8 @@ import './index.css'
 import fr from 'antd/lib/locale/fr_FR';
 import en from 'antd/lib/locale/en_GB';
 import es from 'antd/lib/locale/es_ES';
+import { assignProxyValue, extractDefaultConditionnedFields, extractProxyFields, fieldIsInactive } from '../_utils/helpers';
+import { castObjectFromSchema, reverseCastFromSchema, transformNestedErrorsToArray } from '../_utils/castAttributes';
 
 const antLocale = {
   fr,
@@ -53,6 +54,7 @@ export type AntFormProps = {
   layout?: 'vertical' | 'horizontal';
 };
 
+
 const initialValuesFromSchema = (schema: AntSchema, object: any) =>
   flattenDeep(schema)
     .filter(f => f)
@@ -68,99 +70,9 @@ const initialValuesFromSchema = (schema: AntSchema, object: any) =>
       return acc;
     }, {});
 
-const assignProxyValue = (fields: AntSchema, values: any) => {
-  if (fields.length === 0) return values;
-
-  const nextValues = values;
-  fields.forEach(({ name, proxy }: FieldType) => {
-    const fieldValue = get(values, name);
-    if (fieldValue !== undefined && proxy) {
-      if (isArray(fieldValue)) {
-        nextValues[proxy.name] = fieldValue
-          .map(v => proxy.path ? get(v, proxy.path, null) : v)
-          .filter(e => e);
-      } else {
-        nextValues[proxy.name] = proxy.path ? get(fieldValue, proxy.path, null) : fieldValue;
-      }
-    }
-  });
-  return nextValues;
-};
-
-const castValue = (type: string, value) => {
-  switch (type) {
-    case 'daterange':
-    case 'date':
-      if (value)
-        return value instanceof moment ? value : moment(value);
-      break;
-    case 'upload':
-      return value || [];
-  }
-  return value;
-}
-
-const castObjectFromSchema = (object: any, schema: AntSchema) => {
-  const castedObject = {
-    ...object,
-  };
-  flattenDeep(schema)
-    .filter(f => f)
-    .filter(isFormItem)
-    .filter((f: FieldType) => f.input)
-    .forEach((field: FieldType) => {
-      if (Array.isArray(field.name)) {
-        const proxyName = field.name.join('/==');
-        castedObject[proxyName] = field.name.reduce((acc, value) => {
-          acc[value] = castValue(field.input.type, castedObject[value])
-          return acc;
-        }, {});
-      } else {
-        castedObject[field.name] = castValue(field.input.type, castedObject[field.name]);
-      }
-    });
-  return castedObject;
-};
-
-
-const reverseCastFromSchema = (object: any, schema: AntSchema) => {
-  const castedObject = {
-    ...object,
-  };
-  flattenDeep(schema)
-    .filter(f => f)
-    .filter(isFormItem)
-    .filter((f: FieldType) => f.input)
-    .forEach((field: FieldType) => {
-      if (Array.isArray(field.name)) {
-        const proxyName = field.name.join('/==');
-        field.name.forEach(n => {
-          castedObject[n] = get(object, [proxyName, n], undefined);
-        });
-        delete castedObject[proxyName];
-      }
-    })
-  return castedObject;
-}
-
-const transformNestedErrorsToArray = (errors: any): object => {
-  let nextErrors = { ...errors };
-  const keys = Object.keys(nextErrors);
-  keys.forEach(key => {
-    const found = key.match(/(.+)\[(\d+)\]\.(.+)/);
-    if (found) {
-      const [_k, attributeName, index, name] = found;
-      if (!nextErrors[attributeName]) nextErrors[attributeName] = [];
-      if (!nextErrors[attributeName][index])
-        nextErrors[attributeName][index] = {};
-      nextErrors[attributeName][index][name] = nextErrors[key];
-    }
-  });
-  return nextErrors;
-};
+const calculateInactiveFieldsFromConditions = (conditions, object) => Object.keys(conditions).filter((fieldName) => !conditions[fieldName].condition(object) )
 
 export const AntForm: React.FC<AntFormProps> = props => {
-
   const {
     schema,
     locale=(config.locale || "en"),
@@ -181,29 +93,47 @@ export const AntForm: React.FC<AntFormProps> = props => {
   } = props;
 
   const language = config.language ? antLocale[config.language] : undefined;
+  const conditions = useMemo(() => {
+    const conditionalFields = extractDefaultConditionnedFields(schema, object);
+    if (Object.keys(conditionalFields).length === 0) return undefined;
+    return conditionalFields
+  }, []);
+  const [inactiveItems, setInactiveItems] = useState<Array<string>>(conditions ? calculateInactiveFieldsFromConditions(conditions, object) : []);
 
   const [form] = Form.useForm();
-  moment.locale(locale);
 
   useEffect(() => {
     form.setFieldsValue(castObjectFromSchema(object, schema) || {});
   }, [object, schema]);
 
-
   const initialValues = castObjectFromSchema(initialValuesFromSchema(schema, object), schema);
-  const proxyFields = flatten(schema).filter(
-    (field: FieldType) => field && field.proxy,
-  );
+  const proxyFields = extractProxyFields(schema);
 
-  const onFinish = (values: any) => {
-    if (onSubmit && !readOnly) onSubmit(reverseCastFromSchema(assignProxyValue(proxyFields, values), schema));
+  const onFinish = () => {
+    if (onSubmit && !readOnly) {
+      const values = form.getFieldsValue(true)
+      onSubmit(
+        reverseCastFromSchema(
+          assignProxyValue(
+            proxyFields,
+            omit(values, inactiveItems),
+          ),
+          schema
+        )
+      );
+    }
   };
-  const onValuesChange = (values: any, allValues: any) => {
-    if (onChange && !readOnly)
+
+  const onValuesChange = (values: any) => {
+    const allValues = form.getFieldsValue(true);
+    const nextInactiveItems = conditions ? calculateInactiveFieldsFromConditions(conditions, reverseCastFromSchema(assignProxyValue(proxyFields, allValues), schema)) : [];
+    if (conditions) setInactiveItems(nextInactiveItems);
+    if (onChange && !readOnly) {
       onChange(
         reverseCastFromSchema(assignProxyValue(proxyFields, values), schema),
-        reverseCastFromSchema(assignProxyValue(proxyFields, allValues), schema),
+        reverseCastFromSchema(assignProxyValue(proxyFields, omit(allValues, nextInactiveItems)), schema),
       );
+    }
   };
 
   if (!schema || schema.length === 0) return null;
@@ -219,8 +149,9 @@ export const AntForm: React.FC<AntFormProps> = props => {
         {...(config.formProps || {})}
         {...rest}
       >
-        {schema.map((item, i) =>
+        {schema.filter(fieldIsInactive(inactiveItems)).map((item, i) =>
           <FieldItem
+            inactiveItems={inactiveItems}
             renderLabel={renderLabel}
             layout={rest.layout}
             item={item}

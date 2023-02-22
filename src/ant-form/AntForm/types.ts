@@ -239,6 +239,8 @@ export type InputType =
 export type FieldItemType = {
   name: string;
   key?: string;
+  condition?: ((object: any) => boolean);
+  hidden?: boolean;
   input: InputType;
   colProps?: ColProps;
   help?: string;

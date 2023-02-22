@@ -74,8 +74,8 @@ export const AntFormColorPicker: React.FC<AntFormColorPickerProps> = (props: (An
       <Popover
           trigger="click"
           overlayClassName={"ant-form-colorpicker-popover"}
-          visible={visible}
-          onVisibleChange={handleVisibleChange}
+          open={visible}
+          onOpenChange={handleVisibleChange}
           content={(
             <div className="ant-form-colorpicker-container">
               {(!type || type === "chrome") && (
