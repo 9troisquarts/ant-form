@@ -365,8 +365,7 @@ export default () => (
 Exemple:
 ```ts|pure
 {
-  name: 'padawan',
-  label: 'Padawan',
+  name: 'id',
   hidden: true
 }
 ```
