@@ -24,6 +24,7 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
    */
 
   const {
+    onplace,
     loading,
     editingField,
     setEditingField,
@@ -43,7 +44,11 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
 
   const handleChange = ({ target: { value } }: { target: { value: string } }) => {
     const nextValue = localize && locale ? { ...props.value, [locale]: value } : value;
-    setInputValue(nextValue);
+    if (onplace) {
+      setInputValue(nextValue);
+    } else {
+      onChange(nextValue);
+    }
   };
 
   const onEditing = () => {
@@ -75,22 +80,33 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
 
   return (
     <>
-      {name == editingField ? (
-        <div className="ant-form-onplace-input-container">
-          <Input {...inputProps} value={inputValue} readOnly={readOnly} onChange={handleChange} />
-          <div className="ant-form-onplace-input-actions">
-            <Button type="primary" onClick={onSubmit} disabled={loading} loading={loading}>
-              {submitText}
-            </Button>
-            <Button onClick={onCancel} disabled={loading}>
-              {cancelText}
-            </Button>
-          </div>
-        </div>
+      {onplace ? (
+        <>
+          {name == editingField ? (
+            <div className="ant-form-onplace-input-container">
+              <Input
+                {...inputProps}
+                value={inputValue}
+                readOnly={readOnly}
+                onChange={handleChange}
+              />
+              <div className="ant-form-onplace-input-actions">
+                <Button type="primary" onClick={onSubmit} disabled={loading} loading={loading}>
+                  {submitText}
+                </Button>
+                <Button onClick={onCancel} disabled={loading}>
+                  {cancelText}
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div onClick={onEditing}>
+              {inputValue && inputValue?.toString()?.trim() !== '' ? inputValue : '-'}
+            </div>
+          )}
+        </>
       ) : (
-        <div onClick={onEditing}>
-          {inputValue && inputValue?.toString()?.trim() !== '' ? inputValue : '-'}
-        </div>
+        <Input {...inputProps} value={inputValue} readOnly={readOnly} onChange={handleChange} />
       )}
     </>
   );

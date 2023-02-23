@@ -1,46 +1,44 @@
-import React from 'react';
 import {
-  InputNumber as AInputNumber,
-  Select,
-  Slider as ASlider,
-  Rate as ARate,
-  Switch as ASwitch,
-  Checkbox,
-  Row,
-  Col,
   AutoComplete,
-  Radio,
+  Checkbox,
+  Col,
   DatePicker,
   Input,
+  InputNumber as AInputNumber,
+  Radio,
+  Rate as ARate,
+  Row,
+  Slider as ASlider,
+  Switch as ASwitch,
   TimePicker,
 } from 'antd';
+import { PasswordProps } from 'antd/es/input';
+import { InputNumberProps } from 'antd/es/input-number';
+import { RateProps } from 'antd/es/rate';
+import { SliderBaseProps } from 'antd/es/slider';
+import { SwitchProps } from 'antd/es/switch';
+import omit from 'lodash/omit';
+import moment, { isMoment } from 'moment';
+import React from 'react';
+import { AntFormColorPicker } from '../../../ant-form-color-picker';
 import {
-  SelectInputProps,
+  AutoCompleteInputProps,
+  CheckboxesInputProps,
   CheckboxInputProps,
   DatePickerInputProps,
-  CheckboxesInputProps,
-  AutoCompleteInputProps,
   RadioInputProps,
-  TimePickerInputProps
+  TimePickerInputProps,
 } from '../types';
-import omit from 'lodash/omit';
-import moment, { isMoment } from 'moment'
-import ListField from './ListField';
-import UploadInput from './Upload';
-import { memoOnlyForKeys } from '../../_utils/helpers';
-import InputString from './InputString';
-import TextArea from './Textarea';
 import Boolean from './Boolean';
 import ContentEditableInput from './ContentEditableInput';
-import { RateProps } from 'antd/es/rate';
-import { SwitchProps } from 'antd/es/switch';
-import { InputNumberProps } from 'antd/es/input-number';
-import { SliderBaseProps } from 'antd/es/slider';
-import { PasswordProps } from 'antd/es/input';
 import DateRange from './DateRange';
-import SearchInput from './Search';
 import Dropdown from './Dropdown';
-import { AntFormColorPicker } from '../../../ant-form-color-picker';
+import InputString from './InputString';
+import ListField from './ListField';
+import SearchInput from './Search';
+import SelectInput from './SelectInput';
+import TextArea from './Textarea';
+import UploadInput from './Upload';
 
 const { Password: APassword } = Input;
 
@@ -48,68 +46,34 @@ type SharedProps = {
   inputProps: any;
 };
 
-
-const filterOption = (input: string, option: any) => option.label.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").indexOf(input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) >= 0
-
-const SelectInput: React.FC<SelectInputProps> = React.memo(props => {
-  const { options, onChange, value: v, readOnly = false, inputProps = {}, ...rest } = props;
-
-  if (readOnly && inputProps.mode !== "multiple") {
-    return (
-      <Input
-        readOnly
-        value={v ? options.find(o => o.value === v)?.label : undefined}
-      />
-    )
-  }
-
-  return (
-    <Select
-      filterOption={filterOption}
-      showSearch={true}
-      {...(inputProps || {})}
-      {...rest}
-      onChange={onChange}
-      value={inputProps.mode && inputProps.mode === "multiple" && !v ? [] : v}
-      disabled={readOnly || inputProps.disabled}
-    >
-      {options.map(({ value, label, children, options }) => {
-        if (options && options.length > 0) {
-            return (
-              <Select.OptGroup key={label} label={label}>
-                {options.map(option => (
-                  <Select.Option value={option.value} label={option.label} key={option.value}>
-                    {option.children || option.label}
-                  </Select.Option>
-                ))}
-              </Select.OptGroup>
-            )
-        }
-        return (
-          <Select.Option value={value} label={label} key={value}>
-            {children || label}
-          </Select.Option>
-        )
-      })}
-    </Select>
-  );
-}, memoOnlyForKeys(['options', 'readOnly', 'value']));
-
-const CheckboxInput: React.FC<CheckboxInputProps> = props => {
+const CheckboxInput: React.FC<CheckboxInputProps> = (props) => {
   const { text, checked, readOnly = false, onChange, ...other } = props;
 
   return (
-    <Checkbox {...other} disabled={readOnly || props.inputProps?.disabled} checked={checked} onChange={onChange}>
+    <Checkbox
+      {...other}
+      disabled={readOnly || props.inputProps?.disabled}
+      checked={checked}
+      onChange={onChange}
+    >
       {text}
     </Checkbox>
   );
 };
 
-const RadioInput: React.FC<RadioInputProps> = props => {
-  const { options, style = "bullet", readOnly = false, layout = 'inline', onChange, value, ...other } = props;
+const RadioInput: React.FC<RadioInputProps> = (props) => {
+  const {
+    options,
+    style = 'bullet',
+    readOnly = false,
+    layout = 'inline',
+    onChange,
+    value,
+    ...other
+  } = props;
 
   const radioStyles =
-    layout === 'vertical' && style === "bullet"
+    layout === 'vertical' && style === 'bullet'
       ? {
           display: 'block',
           height: '30px',
@@ -117,16 +81,11 @@ const RadioInput: React.FC<RadioInputProps> = props => {
         }
       : {};
 
-  const RadioComponent = style === "button" ? Radio.Button : Radio;
+  const RadioComponent = style === 'button' ? Radio.Button : Radio;
   // TODO COL PROPS
   return (
-    <Radio.Group
-      {...other}
-      value={value}
-      style={{ width: '100%' }}
-      onChange={onChange}
-    >
-      {options.map(option => (
+    <Radio.Group {...other} value={value} style={{ width: '100%' }} onChange={onChange}>
+      {options.map((option) => (
         <RadioComponent
           style={radioStyles}
           key={option.value}
@@ -141,7 +100,7 @@ const RadioInput: React.FC<RadioInputProps> = props => {
   );
 };
 
-const CheckboxesInput: React.FC<CheckboxesInputProps> = props => {
+const CheckboxesInput: React.FC<CheckboxesInputProps> = (props) => {
   const { options, onChange, value, readOnly = false, inputProps, ...other } = props;
   return (
     <Checkbox.Group
@@ -152,11 +111,8 @@ const CheckboxesInput: React.FC<CheckboxesInputProps> = props => {
       onChange={onChange}
     >
       <Row>
-        {options.map(option => (
-          <Col
-            key={option.value}
-            {...(option.colProps ? option.colProps : { span: 24 })}
-          >
+        {options.map((option) => (
+          <Col key={option.value} {...(option.colProps ? option.colProps : { span: 24 })}>
             <Checkbox disabled={option.disabled || readOnly} value={option.value}>
               {option.label}
             </Checkbox>
@@ -167,12 +123,12 @@ const CheckboxesInput: React.FC<CheckboxesInputProps> = props => {
   );
 };
 
-const AutoCompleteInput: React.FC<AutoCompleteInputProps> = props => {
+const AutoCompleteInput: React.FC<AutoCompleteInputProps> = (props) => {
   const { options, onSearch, ...other } = props;
   return <AutoComplete {...other} onSearch={onSearch} options={options} />;
 };
 
-const DateInput: React.FC<DatePickerInputProps> = props => {
+const DateInput: React.FC<DatePickerInputProps> = (props) => {
   const { readOnly, value } = props;
 
   if (readOnly) {
@@ -184,7 +140,7 @@ const DateInput: React.FC<DatePickerInputProps> = props => {
         // @ts-ignore
         value={v ? v.format(props.inputProps?.format || 'L') : undefined}
       />
-    )
+    );
   }
 
   const otherProps = omit(props, ['renderLabel']);
@@ -201,35 +157,31 @@ const DateInput: React.FC<DatePickerInputProps> = props => {
   );
 };
 
-const Rate: React.FC<RateProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+const Rate: React.FC<RateProps & SharedProps> = ({ inputProps = {}, ...props }) => (
   <ARate {...props} {...(inputProps || {})} />
 );
 
-const Switch: React.FC<SwitchProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+const Switch: React.FC<SwitchProps & SharedProps> = ({ inputProps = {}, ...props }) => (
   <ASwitch {...props} {...(inputProps || {})} />
 );
 
-const InputNumber: React.FC<InputNumberProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+const InputNumber: React.FC<InputNumberProps & SharedProps> = ({ inputProps = {}, ...props }) => (
   <AInputNumber {...props} {...(inputProps || {})} />
 );
 
-const Slider: React.FC<SliderBaseProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+const Slider: React.FC<SliderBaseProps & SharedProps> = ({ inputProps = {}, ...props }) => (
   <ASlider {...props} {...(inputProps || {})} />
 );
 
-const Password: React.FC<PasswordProps & SharedProps> = ({ inputProps = {}, ...props}) => (
+const Password: React.FC<PasswordProps & SharedProps> = ({ inputProps = {}, ...props }) => (
   <APassword {...props} {...(inputProps || {})} />
 );
 
-
-const TimeInput: React.FC<TimePickerInputProps> = props => {
+const TimeInput: React.FC<TimePickerInputProps> = (props) => {
   let v = undefined;
-  if(props.value)
-    v = moment.isMoment(props.value) ? props.value : moment(props.value)
-  return (
-    <TimePicker style={{ width: '100%' }} {...props} value={v} />
-  )
-}
+  if (props.value) v = moment.isMoment(props.value) ? props.value : moment(props.value);
+  return <TimePicker style={{ width: '100%' }} {...props} value={v} />;
+};
 
 type FieldsTypeInterface = {
   [key: string]: {
@@ -245,7 +197,7 @@ export const defaultFieldsType: FieldsTypeInterface = {
     component: Switch,
   },
   boolean: {
-    component: Boolean
+    component: Boolean,
   },
   rate: {
     component: Rate,
@@ -282,7 +234,7 @@ export const defaultFieldsType: FieldsTypeInterface = {
     component: DateInput,
   },
   time: {
-    component: TimeInput
+    component: TimeInput,
   },
   list: {
     component: ListField,
@@ -291,23 +243,23 @@ export const defaultFieldsType: FieldsTypeInterface = {
     component: UploadInput,
   },
   password: {
-    component: Password
+    component: Password,
   },
   dropdown: {
     component: Dropdown,
   },
   daterange: {
-    component: DateRange
+    component: DateRange,
   },
   search: {
     component: SearchInput,
   },
   contenteditable: {
-    component: ContentEditableInput
+    component: ContentEditableInput,
   },
   color: {
-    component: AntFormColorPicker
-  }
+    component: AntFormColorPicker,
+  },
 };
 
 const fieldsType = {

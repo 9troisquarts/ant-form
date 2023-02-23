@@ -24,19 +24,18 @@ export default () => (
       firstname: 0,
       lastname: 'TP',
     }}
-    onChange={onChange}
+    onChange={(v) => console.log(v)}
     cancelText="Annuler"
     submitText="Modifier"
     loading={false}
     schema={[
       [
         {
-          label: 'Firstname',
-          name: 'firstname',
+          label: 'String',
+          name: 'string',
           input: {
             type: 'string',
           },
-          required: true,
           colProps: {
             xs: 12,
             md: 12,
@@ -44,10 +43,10 @@ export default () => (
           },
         },
         {
-          label: 'Lastname',
-          name: 'lastname',
+          label: 'Boolean',
+          name: 'boolean',
           input: {
-            type: 'string',
+            type: 'boolean',
           },
           colProps: {
             xs: 12,
@@ -63,7 +62,6 @@ export default () => (
           input: {
             type: 'string',
           },
-          required: true,
           colProps: {
             xs: 12,
             md: 12,
@@ -95,6 +93,31 @@ export default () => (
             xs: 12,
             md: 12,
             lg: 12,
+          },
+        },
+        {
+          name: 'select',
+          label: 'Select',
+          input: {
+            type: 'select',
+            options: [
+              {
+                label: 'Option 1',
+                value: 'one',
+              },
+              {
+                label: 'Option 2',
+                value: 'two',
+              },
+              {
+                label: 'Option 3',
+                value: 'three',
+              },
+            ],
+          },
+          colProps: {
+            xs: 24,
+            md: 12,
           },
         },
       ],
