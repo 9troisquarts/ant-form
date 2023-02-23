@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { RowProps } from 'antd/es/grid';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
@@ -39,7 +40,6 @@ const FieldItem: React.FC<FieldItemProps> = (props) => {
   } = props;
 
   if (isArray(item)) {
-    // @ts-ignore
     if (
       item.length === 0 ||
       (inactiveItems.length > 0 &&

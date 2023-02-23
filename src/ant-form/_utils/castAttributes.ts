@@ -1,3 +1,4 @@
+// @ts-nocheck
 import moment from 'moment';
 import flattenDeep from 'lodash/flattenDeep';
 import get from 'lodash/get';

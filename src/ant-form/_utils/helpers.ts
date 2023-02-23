@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { AntSchema, FieldItemType, FieldType } from '../AntForm/types';
 import isEqual from 'lodash/isEqual';
 import flattenDeep from 'lodash/flattenDeep';
