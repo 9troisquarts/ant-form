@@ -14,13 +14,7 @@ import AntForm from '@9troisquarts/ant-form';
 import 'antd/dist/antd.css';
 import React from 'react';
 
-const onSubmit = () => {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      res();
-    }, 2000);
-  });
-};
+const onChange = () => {};
 
 export default () => (
   <AntForm
@@ -30,10 +24,10 @@ export default () => (
       firstname: 0,
       lastname: 'TP',
     }}
-    onChange={(value, values) => console.log(values)}
-    onSubmit={onSubmit}
+    onChange={onChange}
     cancelText="Annuler"
     submitText="Modifier"
+    loading={false}
     schema={[
       [
         {

@@ -118,7 +118,6 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
   const [form] = Form.useForm();
 
   const [editingField, setEditingField] = useState(undefined);
-  const [editingFieldLoading, setEditingFieldLoading] = useState(false);
 
   useEffect(() => {
     form.setFieldsValue(castObjectFromSchema(object, schema) || {});
@@ -162,6 +161,7 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
   return (
     <ConfigProvider locale={language}>
       <OnPlaceEditProvider
+        loading={loading}
         onplace={onplace}
         formObject={object}
         onFormSubmit={onSubmit}
@@ -169,8 +169,6 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
         cancelText={cancelText}
         editingField={editingField}
         setEditingField={setEditingField}
-        editingFieldLoading={editingFieldLoading}
-        setEditingFieldLoading={setEditingFieldLoading}
       >
         <Form
           form={form}

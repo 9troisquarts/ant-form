@@ -1,13 +1,11 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Col, Form } from 'antd';
+import { Col, Form } from 'antd';
 import isArray from 'lodash/isArray';
 import isNil from 'lodash/isNil';
-import React, { useContext } from 'react';
+import React from 'react';
 import { memoOnlyForKeys } from '../../_utils/helpers';
 import fieldsType from '../fields';
-import { OnPlaceEditContext } from '../providers/onPlaceEdit';
 import { FieldItemType } from '../types';
-import './index.css';
 
 type FieldProps = {
   error?: string;
@@ -43,29 +41,13 @@ export const Field: React.FC<FieldProps> = (props) => {
     },
   } = props;
 
-  const {
-    editingField,
-    setEditingField,
-    editingFieldLoading,
-    setEditingFieldLoading,
-    onplace,
-    formObject,
-    onFormSubmit,
-    submitText = 'Ok',
-    cancelText = 'Cancel',
-  } = useContext(OnPlaceEditContext);
-
   const { fieldKey, readOnly = false, locale } = options || {};
 
   let name = n;
-  if (Array.isArray(name)) {
-    name = name.join('/==');
-  }
+  if (Array.isArray(name)) name = name.join('/==');
 
-  if (!fieldsType[type]?.component) {
+  if (!fieldsType[type]?.component)
     return <div>Component of type {type} is not handle by your configuration</div>;
-  }
-
   const {
     component: Component,
     valuePropName,
@@ -90,23 +72,8 @@ export const Field: React.FC<FieldProps> = (props) => {
       }
     : null;
 
-  let formItem = null;
-
-  const onFieldSubmit = () => {
-    setEditingFieldLoading(true);
-    onFormSubmit()?.then(() => {
-      setEditingFieldLoading(false);
-      setEditingField(undefined);
-    });
-  };
-
-  const onFieldCancel = () => {
-    setEditingFieldLoading(false);
-    setEditingField(undefined);
-  };
-
-  const getBaseFormItem = () => {
-    return type === 'list' ? (
+  let formItem =
+    type === 'list' ? (
       <Component
         {...componentSharedProps}
         {...formItemProps}
@@ -138,62 +105,11 @@ export const Field: React.FC<FieldProps> = (props) => {
         />
       </Form.Item>
     );
-  };
-
-  if (!onplace) {
-    formItem = getBaseFormItem();
-  } else {
-    if (editingField === name) {
-      formItem = (
-        <div>
-          {getBaseFormItem()}
-          {editingField === name && (
-            <div className="ant-form-on-place-edit-field-actions">
-              <Button
-                type="primary"
-                onClick={onFieldSubmit}
-                loading={editingFieldLoading}
-                disabled={editingFieldLoading}
-              >
-                {submitText}
-              </Button>
-              <Button onClick={onFieldCancel} disabled={editingFieldLoading}>
-                {cancelText}
-              </Button>
-            </div>
-          )}
-        </div>
-      );
-    } else {
-      let fieldValue = '-';
-      if (formObject?.hasOwnProperty(name) && formObject[name].toString().trim() !== '') {
-        fieldValue = formObject[name];
-      }
-      formItem = (
-        <div
-          className={
-            layout === 'horizontal'
-              ? 'ant-form-on-place-edit-field-horizontal'
-              : 'ant-form-on-place-edit-field-vertical'
-          }
-          onClick={() => setEditingField(name)}
-        >
-          <div>
-            {renderLabel && label ? (
-              renderLabel(label, { tooltip: tooltipProps })
-            ) : (
-              <div className="ant-form-on-place-edit-field-label">{`${label}`}</div>
-            )}
-          </div>
-          <div className="ant-form-on-place-edit-field-value">{fieldValue}</div>
-        </div>
-      );
-    }
-  }
 
   if (colProps) {
     return <Col {...colProps}>{formItem}</Col>;
   }
+
   return formItem;
 };
 

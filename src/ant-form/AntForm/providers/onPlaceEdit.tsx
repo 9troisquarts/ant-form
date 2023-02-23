@@ -7,13 +7,12 @@ import React, { createContext } from 'react';
 type OnPlaceEditContextType = {
   editingField: string | undefined;
   setEditingField: any;
+  loading: boolean;
   onplace: boolean;
   formObject: any;
   onFormSubmit: any;
   submitText: any;
   cancelText: any;
-  editingFieldLoading: boolean;
-  setEditingFieldLoading: any;
   onFieldChange: () => void;
   onFieldSubmit: () => void;
   errors: any;
@@ -23,13 +22,12 @@ type OnPlaceEditContextType = {
 export const OnPlaceEditContext = createContext<OnPlaceEditContextType>({
   editingField: undefined,
   setEditingField: () => {},
+  loading: false,
   onplace: false,
   formObject: {},
   onFormSubmit: () => {},
   submitText: 'Ok',
   cancelText: 'Cancel',
-  editingFieldLoading: false,
-  setEditingFieldLoading: () => {},
   onFieldChange: () => {},
   onFieldSubmit: () => {},
   errors: {},
@@ -43,14 +41,13 @@ export const OnPlaceEditContext = createContext<OnPlaceEditContextType>({
 export type OnPlaceEditProviderProps = {
   children?: any;
   editingField?: any;
+  loading: boolean;
   onplace: boolean;
   formObject?: any;
   onFormSubmit?: any;
   submitText: string;
   cancelText: string;
   setEditingField?: any;
-  editingFieldLoading?: any;
-  setEditingFieldLoading?: any;
   onFieldChange?: any;
   onFieldSubmit?: any;
   errors?: any;
@@ -61,14 +58,13 @@ export const OnPlaceEditProvider = (props: OnPlaceEditProviderProps) => {
   const {
     children,
     editingField,
+    loading,
     onplace,
     formObject,
     onFormSubmit,
     submitText,
     cancelText,
     setEditingField,
-    editingFieldLoading,
-    setEditingFieldLoading,
     onFieldChange,
     onFieldSubmit,
     errors,
@@ -84,13 +80,12 @@ export const OnPlaceEditProvider = (props: OnPlaceEditProviderProps) => {
       value={{
         editingField: editingField,
         setEditingField: setEditingField,
+        loading: loading,
         onplace: onplace,
         formObject: formObject,
         onFormSubmit: onFormSubmit,
         submitText: submitText,
         cancelText: cancelText,
-        editingFieldLoading: editingFieldLoading,
-        setEditingFieldLoading: setEditingFieldLoading,
         onFieldChange: onFieldChange,
         onFieldSubmit: onFieldSubmit,
         errors: errors,

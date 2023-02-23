@@ -11,3 +11,14 @@
 .ant-form-daterange {
   width: 100%;
 }
+
+.ant-form-onplace-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-form-onplace-input-actions {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
