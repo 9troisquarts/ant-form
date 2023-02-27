@@ -26,6 +26,7 @@ export const extractProxyFields = (schema: AntSchema) => flattenDeep(schema).fil
 export const conditionnedFields = (schema: AntSchema) => flattenDeep(schema).filter(field => field && !!field?.condition);
 
 export const extractDefaultConditionnedFields = (schema: AntSchema, object: any) => conditionnedFields(schema).reduce((acc, field) => {
+  if (!field) return acc;
   acc[field.name] = {
     condition: field.condition
   }
