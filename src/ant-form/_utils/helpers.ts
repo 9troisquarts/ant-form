@@ -23,7 +23,7 @@ export const memoOnlyForKeys = (keys: string[]): any => (
 
 export const extractProxyFields = (schema: AntSchema) => flattenDeep(schema).filter((field: FieldItemType) => field && field.proxy);
 
-export const conditionnedFields = (schema: AntSchema) => flattenDeep(schema).filter(field => !!field.condition);
+export const conditionnedFields = (schema: AntSchema) => flattenDeep(schema).filter(field => field && !!field?.condition);
 
 export const extractDefaultConditionnedFields = (schema: AntSchema, object: any) => conditionnedFields(schema).reduce((acc, field) => {
   acc[field.name] = {
