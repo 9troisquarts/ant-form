@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.15.1](https://github.com/9troisquarts/ant-form/compare/v2.15.0...v2.15.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* Fix condition missing ([83b8e1e](https://github.com/9troisquarts/ant-form/commit/83b8e1eb968f150b4678e3588153f1aa943aea10))
+
 ## [2.15.0](https://github.com/9troisquarts/ant-form/compare/v2.14.6...v2.15.0) (2023-02-23)
 
 
