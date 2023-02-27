@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.15.7](https://github.com/9troisquarts/ant-form/compare/v2.15.6...v2.15.7) (2023-02-27)
+
+
+### Bug Fixes
+
+* Conditionned field should return field only and not coponent ([f4fc678](https://github.com/9troisquarts/ant-form/commit/f4fc6787070f7ddad775d053ca1b39d1b6e71e71))
+
 ### [2.15.6](https://github.com/9troisquarts/ant-form/compare/v2.15.5...v2.15.6) (2023-02-27)
 
 ### [2.15.5](https://github.com/9troisquarts/ant-form/compare/v2.15.4...v2.15.5) (2023-02-27)
