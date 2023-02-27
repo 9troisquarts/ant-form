@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.15.4](https://github.com/9troisquarts/ant-form/compare/v2.15.3...v2.15.4) (2023-02-27)
+
+
+### Bug Fixes
+
+* Fix issue with null field ([fc92117](https://github.com/9troisquarts/ant-form/commit/fc92117fbfe26fe6aae4762e916fca9686689b65))
+
 ### [2.15.3](https://github.com/9troisquarts/ant-form/compare/v2.15.2...v2.15.3) (2023-02-27)
 
 ### [2.15.2](https://github.com/9troisquarts/ant-form/compare/v2.15.1...v2.15.2) (2023-02-27)
