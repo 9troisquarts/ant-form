@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.16.0](https://github.com/9troisquarts/ant-form/compare/v2.15.7...v2.16.0) (2023-03-13)
+
+
+### Features
+
+* onblur support on onplace, better textarea, style ([f190bc5](https://github.com/9troisquarts/ant-form/commit/f190bc559f88030bc0dc498065c36ef517990d5a))
+
+
+### Bug Fixes
+
+* Fix issue with inactive field when field is null ([6701e8b](https://github.com/9troisquarts/ant-form/commit/6701e8b4227f057cf74aefc3300ec05e16030359))
+
 ### [2.15.7](https://github.com/9troisquarts/ant-form/compare/v2.15.6...v2.15.7) (2023-02-27)
 
 
