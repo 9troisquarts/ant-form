@@ -12,13 +12,19 @@
   width: 100%;
 }
 
-.ant-form-onplace-input-container {
-  display: flex;
-  flex-direction: column;
+.ant-form-on-place-edit-field-value {
+  width: 100%
 }
 
-.ant-form-onplace-input-actions {
+.ant-form-on-place-edit-field-value:hover:not(:focus) {
+  background-color: #F8F8F8;
+  cursor: pointer;
+  transition: .3s linear background-color;
+}
+
+.ant-form-on-place-edit-field-actions {
   display: flex;
+  width: 100%;
   flex-direction: row-reverse;
-  align-items: center;
+  margin-top: -24px;
 }

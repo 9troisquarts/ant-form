@@ -34,9 +34,27 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
 
   const [inputValue, setInputValue] = useState(value);
 
+  const [inputBlur, setInputBlur] = useState(false);
+  const [actionClicked, setActionClicked] = useState(false);
+
   useEffect(() => {
     setInputValue(value);
   }, [value]);
+
+  useEffect(() => {
+    if (inputBlur) {
+      setTimeout(() => {
+        if (inputBlur) {
+          if (!actionClicked) {
+            setEditingField(undefined);
+          } else {
+            setActionClicked(false);
+          }
+          setInputBlur(false);
+        }
+      }, 50);
+    }
+  }, [inputBlur]);
 
   /*
    * Functions
@@ -56,11 +74,15 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
   };
 
   const onSubmit = () => {
+    setInputBlur(false);
+    setActionClicked(true);
     onChange(inputValue);
     setEditingField(undefined);
   };
 
   const onCancel = () => {
+    setInputBlur(false);
+    setActionClicked(true);
     setInputValue(value);
     setEditingField(undefined);
   };
@@ -83,14 +105,20 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
       {onplace ? (
         <>
           {name == editingField ? (
-            <div className="ant-form-onplace-input-container">
+            <div
+              className="ant-form-onplace-input-container"
+              onBlur={() => {
+                setInputBlur(true);
+              }}
+            >
               <Input
                 {...inputProps}
                 value={inputValue}
                 readOnly={readOnly}
                 onChange={handleChange}
+                autoFocus
               />
-              <div className="ant-form-onplace-input-actions">
+              <div className="ant-form-on-place-edit-field-actions">
                 <Button type="primary" onClick={onSubmit} disabled={loading} loading={loading}>
                   {submitText}
                 </Button>
@@ -100,7 +128,7 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
               </div>
             </div>
           ) : (
-            <div onClick={onEditing}>
+            <div className="ant-form-on-place-edit-field-value" onClick={onEditing}>
               {inputValue && inputValue?.toString()?.trim() !== '' ? inputValue : '-'}
             </div>
           )}

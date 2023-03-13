@@ -1,6 +1,7 @@
 import { Button, Input } from 'antd';
 import { TextAreaProps } from 'antd/es/input';
 import React, { useContext, useEffect, useState } from 'react';
+import nl2br from '../../_utils/nl2br';
 import { OnPlaceEditContext } from '../providers/onPlaceEdit';
 
 type TextAreaInputProps = {
@@ -37,9 +38,27 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
 
   const [inputValue, setInputValue] = useState(value);
 
+  const [inputBlur, setInputBlur] = useState(false);
+  const [actionClicked, setActionClicked] = useState(false);
+
   useEffect(() => {
     setInputValue(value);
   }, [value]);
+
+  useEffect(() => {
+    if (inputBlur) {
+      setTimeout(() => {
+        if (inputBlur) {
+          if (!actionClicked) {
+            setEditingField(undefined);
+          } else {
+            setActionClicked(false);
+          }
+          setInputBlur(false);
+        }
+      }, 50);
+    }
+  }, [inputBlur]);
 
   /*
    * Functions
@@ -59,11 +78,15 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
   };
 
   const onSubmit = () => {
+    setInputBlur(false);
+    setActionClicked(true);
     onChange(inputValue);
     setEditingField(undefined);
   };
 
   const onCancel = () => {
+    setInputBlur(false);
+    setActionClicked(true);
     setInputValue(value);
     setEditingField(undefined);
   };
@@ -90,10 +113,12 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
               <Input.TextArea
                 {...(inputProps || {})}
                 readOnly={readOnly}
+                // @ts-ignore
                 value={inputValue}
                 onChange={handleChange}
+                autoSize
               />
-              <div className="ant-form-onplace-input-actions">
+              <div className="ant-form-on-place-edit-field-actions">
                 <Button type="primary" onClick={onSubmit} disabled={loading} loading={loading}>
                   {submitText}
                 </Button>
@@ -104,7 +129,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
             </div>
           ) : (
             <div onClick={onEditing}>
-              {inputValue && inputValue?.toString()?.trim() !== '' ? inputValue : '-'}
+              {nl2br(inputValue && inputValue?.toString()?.trim() !== '' ? inputValue : '-')}
             </div>
           )}
         </>
@@ -112,8 +137,10 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
         <Input.TextArea
           {...(inputProps || {})}
           readOnly={readOnly}
+          // @ts-ignore
           value={inputValue}
           onChange={handleChange}
+          autoSize
         />
       )}
     </>
