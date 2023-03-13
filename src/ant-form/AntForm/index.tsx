@@ -121,6 +121,7 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
 
   useEffect(() => {
     form.setFieldsValue(castObjectFromSchema(object, schema) || {});
+    setInactiveItems(conditions ? calculateInactiveFieldsFromConditions(conditions, object) : []);
   }, [object, schema]);
 
   const initialValues = castObjectFromSchema(initialValuesFromSchema(schema, object), schema);

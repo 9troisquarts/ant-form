@@ -32,7 +32,7 @@ export const extractDefaultConditionnedFields = (schema: AntSchema, object: any)
   return acc;
 }, {});
 
-export const fieldIsInactive = (inactiveFields) => (item: FieldItemType) => !item.name || !inactiveFields.includes(item.name)
+export const fieldIsInactive = (inactiveFields) => (item: FieldItemType) => !item?.name || !inactiveFields.includes(item.name)
 
 export const assignProxyValue = (fields: AntSchema, values: any) => {
   if (fields.length === 0) return values;
