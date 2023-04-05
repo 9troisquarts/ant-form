@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.16.2](https://github.com/9troisquarts/ant-form/compare/v2.16.1...v2.16.2) (2023-04-05)
+
+### Bug Fixes
+
+- NaN in decimal input ([cbe2446](https://github.com/9troisquarts/ant-form/commit/cbe2446d6b37ec415121e13a56373c5a4863c0b0))
+
 ### [2.16.1](https://github.com/9troisquarts/ant-form/compare/v2.16.0...v2.16.1) (2023-04-05)
 
 ## 2.16.0 (2023-04-05)
