@@ -8,7 +8,16 @@ import React, { useEffect, useState } from 'react';
 const DecimalInput = (props: any) => {
   const { value, inputProps = {}, onChange } = props;
 
-  const clearValue = (value = '') => {
+  const [internalValue, setInternalValue]: any = useState('');
+
+  const clearValue = (value: any = '') => {
+    console.log('A', value);
+    if (isNaN(value)) {
+      setInternalValue('');
+      onChange('');
+      return '';
+    }
+    console.log('B', value);
     let valueOnlyAllowedCharacters = value.toString().replace(/[^0-9,.]/g, '');
     let valueOnlyDots = valueOnlyAllowedCharacters.replaceAll(',', '.');
 
@@ -32,9 +41,7 @@ const DecimalInput = (props: any) => {
     return '';
   };
 
-  const [internalValue, setInternalValue]: any = useState(clearValue(value));
-
-  useEffect(() => setInternalValue(value), [value]);
+  useEffect(() => setInternalValue(clearValue(value)), [value]);
 
   // @ts-ignore
   const handleChange = ({ target: { value } }) => {

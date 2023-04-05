@@ -92,7 +92,7 @@ import React from 'react';
 export default () => (
   <AntForm
     object={{
-      pi: 3.14,
+      pi: NaN,
     }}
     onSubmit={(values) => console.log(values)}
     layout="horizontal"
