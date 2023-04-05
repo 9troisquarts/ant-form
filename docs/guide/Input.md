@@ -10,14 +10,14 @@ nav:
 ## Textarea
 
 ```tsx
-import React from 'react';
-import AntForm, { useAntForm } from '@9troisquarts/ant-form';
+import AntForm from '@9troisquarts/ant-form';
 import 'antd/dist/antd.css';
+import React from 'react';
 
 export default () => (
   <AntForm
     object={{
-      text: 'Texte'
+      text: 'Texte',
     }}
     onSubmit={(values) => console.log(values)}
     layout="horizontal"
@@ -28,15 +28,15 @@ export default () => (
         input: {
           type: 'text',
           inputProps: {
-            autoSize: true
-          }
+            autoSize: true,
+          },
         },
         colProps: {
           xs: 24,
           md: 12,
-          lg: 12
-        }
-      }
+          lg: 12,
+        },
+      },
     ]}
   />
 );
@@ -49,14 +49,14 @@ export default () => (
 ## Search
 
 ```tsx
-import React from 'react';
-import AntForm, { useAntForm } from '@9troisquarts/ant-form';
+import AntForm from '@9troisquarts/ant-form';
 import 'antd/dist/antd.css';
+import React from 'react';
 
 export default () => (
   <AntForm
     object={{
-      search: 'Texte'
+      search: 'Texte',
     }}
     onSubmit={(values) => console.log(values)}
     layout="horizontal"
@@ -65,14 +65,14 @@ export default () => (
         name: 'search',
         label: 'DateRange',
         input: {
-          type: 'search'
+          type: 'search',
         },
         colProps: {
           xs: 24,
           md: 12,
-          lg: 12
-        }
-      }
+          lg: 12,
+        },
+      },
     ]}
   />
 );
@@ -82,3 +82,41 @@ export default () => (
 
 <API src="../../src/ant-form/AntForm/fields/Search.tsx" hideTitle></API>
 
+## Decimal
+
+```tsx
+import AntForm from '@9troisquarts/ant-form';
+import 'antd/dist/antd.css';
+import React from 'react';
+
+export default () => (
+  <AntForm
+    object={{
+      pi: 3.14,
+    }}
+    onSubmit={(values) => console.log(values)}
+    layout="horizontal"
+    schema={[
+      {
+        name: 'pi',
+        label: 'Pi value',
+        input: {
+          type: 'decimal',
+          inputProps: {
+            width: 200,
+          },
+        },
+        colProps: {
+          xs: 24,
+          md: 12,
+          lg: 12,
+        },
+      },
+    ]}
+  />
+);
+```
+
+### API
+
+<API src="../../src/ant-form/AntForm/fields/Decimal.tsx" hideTitle></API>

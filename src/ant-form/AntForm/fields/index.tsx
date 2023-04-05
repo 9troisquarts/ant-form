@@ -32,6 +32,7 @@ import {
 import Boolean from './Boolean';
 import ContentEditableInput from './ContentEditableInput';
 import DateRange from './DateRange';
+import DecimalInput from './Decimal';
 import Dropdown from './Dropdown';
 import InputString from './InputString';
 import ListField from './ListField';
@@ -241,6 +242,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   },
   upload: {
     component: UploadInput,
+  },
+  decimal: {
+    component: DecimalInput,
   },
   password: {
     component: Password,
