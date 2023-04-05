@@ -17,7 +17,7 @@ const DecimalInput = (props: any) => {
     let valueOnlyDots = valueOnlyAllowedCharacters.replaceAll(',', '.');
     var tmp = valueOnlyDots.split('.');
     let valueOnlyNumeric = tmp.shift() + (tmp.length ? '.' + tmp.join('') : '');
-    return valueOnlyNumeric;
+    return parseFloat(valueOnlyNumeric) || '';
   };
 
   // @ts-ignore
