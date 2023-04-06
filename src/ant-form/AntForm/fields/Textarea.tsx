@@ -2,7 +2,7 @@ import { Button, Input, Space } from 'antd';
 import { TextAreaProps } from 'antd/es/input';
 import React, { useContext, useEffect, useState } from 'react';
 import nl2br from '../../_utils/nl2br';
-import { OnPlaceEditContext } from '../providers/onPlaceEdit';
+import { InPlaceEditContext } from '../providers/inPlaceEdit';
 
 type TextAreaInputProps = {
   type: 'text';
@@ -24,13 +24,13 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
   const { inputProps, onChange, localize = false, readOnly = false, locale, value, name } = props;
 
   const {
-    onPlace,
+    inPlace,
     loading,
     editingField,
     setEditingField,
     submitText = 'Ok',
     cancelText = 'Cancel',
-  } = useContext(OnPlaceEditContext);
+  } = useContext(InPlaceEditContext);
   const [inputValue, setInputValue] = useState(value);
 
   useEffect(() => {
@@ -39,18 +39,18 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
 
   const handleChange = ({ target: { value } }: { target: { value: string } }) => {
     const nextValue = localize && locale ? { ...props.value, [locale]: value } : value;
-    if (onPlace)
+    if (inPlace)
       setInputValue(nextValue);
     else
       onChange(nextValue);
   };
 
-  let v = onPlace ? inputValue : value;
+  let v = inPlace ? inputValue : value;
   if (localize && locale && v) {
     v = v.hasOwnProperty(locale) && v[locale] ? v[locale] : undefined;
   }
 
-  if (onPlace) {
+  if (inPlace) {
     const editing = name === editingField;
 
     if (editing && !readOnly) {
@@ -70,7 +70,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
       }
 
       return (
-        <div className="ant-form-onplace-input-container">
+        <div className="ant-form-InPlace-input-container">
           <Input.TextArea
             {...(inputProps || {})}
             // @ts-ignore

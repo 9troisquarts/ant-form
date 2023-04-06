@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* onblur support on onplace, better textarea, style ([f190bc5](https://github.com/9troisquarts/ant-form/commit/f190bc559f88030bc0dc498065c36ef517990d5a))
+* onblur support on InPlace, better textarea, style ([f190bc5](https://github.com/9troisquarts/ant-form/commit/f190bc559f88030bc0dc498065c36ef517990d5a))
 
 
 ### Bug Fixes
@@ -50,14 +50,14 @@ All notable changes to this project will be documented in this file. See [standa
 
 * Hidden / Condition ([bc58353](https://github.com/9troisquarts/ant-form/commit/bc583539c2242a451b3678b5024c50f14a78c663))
 * inputstring & textarea ([cf3c8df](https://github.com/9troisquarts/ant-form/commit/cf3c8dff7fe9c64bd77b3ef9bb729c2cd3076d75))
-* merge onplace branch ([a824b96](https://github.com/9troisquarts/ant-form/commit/a824b960579bf76fa013b39a241c6384e55f1ec9))
+* merge InPlace branch ([a824b96](https://github.com/9troisquarts/ant-form/commit/a824b960579bf76fa013b39a241c6384e55f1ec9))
 * Move color picker to base component ([bae636d](https://github.com/9troisquarts/ant-form/commit/bae636d7de39da0e80cf9a10fea8cdd84d1f44cb))
-* onplace edit ([f7e373f](https://github.com/9troisquarts/ant-form/commit/f7e373fcf666639135ce50fc6232834dadf379ef))
+* InPlace edit ([f7e373f](https://github.com/9troisquarts/ant-form/commit/f7e373fcf666639135ce50fc6232834dadf379ef))
 
 
 ### Bug Fixes
 
-* onplace ([bd1c990](https://github.com/9troisquarts/ant-form/commit/bd1c99018594617afbdf82b38968806f2493fa00))
+* InPlace ([bd1c990](https://github.com/9troisquarts/ant-form/commit/bd1c99018594617afbdf82b38968806f2493fa00))
 
 ### [2.14.6](https://github.com/9troisquarts/ant-form/compare/v2.14.5...v2.14.6) (2023-02-01)
 

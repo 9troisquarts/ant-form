@@ -26,7 +26,7 @@ import {
   extractProxyFields,
   fieldIsInactive,
 } from '../_utils/helpers';
-import { OnPlaceEditProvider } from './providers/onPlaceEdit';
+import { InPlaceEditProvider } from './providers/inPlaceEdit';
 
 const antLocale = {
   fr,
@@ -85,7 +85,7 @@ const calculateInactiveFieldsFromConditions = (conditions, object) =>
 
 export const AntForm: React.FC<AntFormProps> = (props) => {
   const {
-    onPlace = false,
+    inPlace = false,
     schema,
     locale = config.locale || 'en',
     object,
@@ -161,9 +161,9 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
   const errors = transformNestedErrorsToArray(props.errors);
   return (
     <ConfigProvider locale={language}>
-      <OnPlaceEditProvider
+      <InPlaceEditProvider
         loading={loading}
-        onPlace={onPlace}
+        inPlace={inPlace}
         formObject={object}
         onFormSubmit={onSubmit}
         submitText={submitText}
@@ -211,7 +211,7 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
             </div>
           )}
         </Form>
-      </OnPlaceEditProvider>
+      </InPlaceEditProvider>
     </ConfigProvider>
   );
 };

@@ -4,11 +4,11 @@ import React, { createContext } from 'react';
  * Contexts
  */
 
-type OnPlaceEditContextType = {
+type InPlaceEditContextType = {
   editingField: string | undefined;
   setEditingField: any;
   loading: boolean;
-  onPlace: boolean;
+  inPlace: boolean;
   formObject: any;
   onFormSubmit: any;
   submitText: any;
@@ -19,11 +19,11 @@ type OnPlaceEditContextType = {
   setErrors: any;
 };
 
-export const OnPlaceEditContext = createContext<OnPlaceEditContextType>({
+export const InPlaceEditContext = createContext<InPlaceEditContextType>({
   editingField: undefined,
   setEditingField: () => {},
   loading: false,
-  onPlace: false,
+  inPlace: false,
   formObject: {},
   onFormSubmit: () => {},
   submitText: 'Ok',
@@ -38,11 +38,11 @@ export const OnPlaceEditContext = createContext<OnPlaceEditContextType>({
  * Providers
  */
 
-export type OnPlaceEditProviderProps = {
+export type InPlaceEditProviderProps = {
   children?: any;
   editingField?: any;
   loading: boolean;
-  onPlace: boolean;
+  inPlace: boolean;
   formObject?: any;
   onFormSubmit?: any;
   submitText: string;
@@ -54,12 +54,12 @@ export type OnPlaceEditProviderProps = {
   setErrors?: any;
 };
 
-export const OnPlaceEditProvider = (props: OnPlaceEditProviderProps) => {
+export const InPlaceEditProvider = (props: InPlaceEditProviderProps) => {
   const {
     children,
     editingField,
     loading,
-    onPlace,
+    inPlace,
     formObject,
     onFormSubmit,
     submitText,
@@ -76,12 +76,12 @@ export const OnPlaceEditProvider = (props: OnPlaceEditProviderProps) => {
    */
 
   return (
-    <OnPlaceEditContext.Provider
+    <InPlaceEditContext.Provider
       value={{
         editingField: editingField,
         setEditingField: setEditingField,
         loading: loading,
-        onPlace: onPlace,
+        inPlace: inPlace,
         formObject: formObject,
         onFormSubmit: onFormSubmit,
         submitText: submitText,
@@ -93,6 +93,6 @@ export const OnPlaceEditProvider = (props: OnPlaceEditProviderProps) => {
       }}
     >
       {children}
-    </OnPlaceEditContext.Provider>
+    </InPlaceEditContext.Provider>
   );
 };

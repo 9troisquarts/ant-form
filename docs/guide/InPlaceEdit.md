@@ -1,5 +1,5 @@
 ---
-title: OnPlaceEdit
+title: InPlaceEdit
 order: 12
 toc: menu
 nav:
@@ -7,7 +7,7 @@ nav:
   order: 29
 ---
 
-## OnPlaceEdit
+## InPlaceEdit
 
 ```tsx
 import AntForm from '@9troisquarts/ant-form';
@@ -19,7 +19,7 @@ const onChange = () => {};
 export default () => (
   <AntForm
     layout="vertical"
-    onPlace
+    inPlace
     object={{
       firstname: 0,
       lastname: 'TP',

@@ -1,6 +1,6 @@
-import { Button, Input, Space } from 'antd';
+import { Input } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
-import { OnPlaceEditContext } from '../providers/onPlaceEdit';
+import { InPlaceEditContext } from '../providers/inPlaceEdit';
 import { StringInput } from '../types';
 
 type InputStringProps = {
@@ -21,29 +21,29 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
 
   const [inputValue, setInputValue] = useState(value);
   const {
-    onPlace,
+    inPlace,
     editingField,
     setEditingField,
-  } = useContext(OnPlaceEditContext);
+  } = useContext(InPlaceEditContext);
 
   useEffect(() => {
-    if (onPlace) setInputValue(value);
+    if (inPlace) setInputValue(value);
   }, [value]);
 
   const handleChange = ({ target: { value } }: { target: { value: string } }) => {
     const nextValue = localize && locale ? { ...props.value, [locale]: value } : value;
-    if (onPlace)
+    if (inPlace)
       setInputValue(nextValue);
     else
       onChange(nextValue);
   };
 
-  let v = onPlace ? inputValue : value;
+  let v = inPlace ? inputValue : value;
   if (localize && locale && v) {
     v = v.hasOwnProperty(locale) && v[locale] ? v[locale] : undefined;
   }
 
-  if (onPlace) {
+  if (inPlace) {
     const editing = name === editingField;
     if (editing && !readOnly) {
       const onBlur = () => {
@@ -63,7 +63,7 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
 
       return (
         <div
-          className="ant-form-onplace-input-container"
+          className="ant-form-InPlace-input-container"
           onBlur={onBlur}
         >
           <Input
