@@ -56,7 +56,7 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
         setInputValue(value)
       }
 
-      const onKeyDown = (e) => {
+      const onKeyDown = (e: any) => {
         if (editing && e.keyCode === 13) onBlur();
         if (editing && e.keyCode === 27) onCancel();
       }

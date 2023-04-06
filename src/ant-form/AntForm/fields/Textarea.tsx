@@ -64,7 +64,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
         setEditingField(undefined);
       };
 
-      const onKeyDown = (e) => {
+      const onKeyDown = (e: any) => {
         if (editing && e.keyCode === 13 && e.shiftKey) onSubmit();
         if (editing && e.keyCode === 27) onCancel();
       }
