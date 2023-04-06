@@ -85,7 +85,7 @@ const calculateInactiveFieldsFromConditions = (conditions, object) =>
 
 export const AntForm: React.FC<AntFormProps> = (props) => {
   const {
-    onplace = false,
+    onPlace = false,
     schema,
     locale = config.locale || 'en',
     object,
@@ -163,7 +163,7 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
     <ConfigProvider locale={language}>
       <OnPlaceEditProvider
         loading={loading}
-        onplace={onplace}
+        onPlace={onPlace}
         formObject={object}
         onFormSubmit={onSubmit}
         submitText={submitText}

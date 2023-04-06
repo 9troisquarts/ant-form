@@ -8,7 +8,7 @@ type OnPlaceEditContextType = {
   editingField: string | undefined;
   setEditingField: any;
   loading: boolean;
-  onplace: boolean;
+  onPlace: boolean;
   formObject: any;
   onFormSubmit: any;
   submitText: any;
@@ -23,7 +23,7 @@ export const OnPlaceEditContext = createContext<OnPlaceEditContextType>({
   editingField: undefined,
   setEditingField: () => {},
   loading: false,
-  onplace: false,
+  onPlace: false,
   formObject: {},
   onFormSubmit: () => {},
   submitText: 'Ok',
@@ -42,7 +42,7 @@ export type OnPlaceEditProviderProps = {
   children?: any;
   editingField?: any;
   loading: boolean;
-  onplace: boolean;
+  onPlace: boolean;
   formObject?: any;
   onFormSubmit?: any;
   submitText: string;
@@ -59,7 +59,7 @@ export const OnPlaceEditProvider = (props: OnPlaceEditProviderProps) => {
     children,
     editingField,
     loading,
-    onplace,
+    onPlace,
     formObject,
     onFormSubmit,
     submitText,
@@ -81,7 +81,7 @@ export const OnPlaceEditProvider = (props: OnPlaceEditProviderProps) => {
         editingField: editingField,
         setEditingField: setEditingField,
         loading: loading,
-        onplace: onplace,
+        onPlace: onPlace,
         formObject: formObject,
         onFormSubmit: onFormSubmit,
         submitText: submitText,

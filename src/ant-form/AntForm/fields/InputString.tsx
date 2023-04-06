@@ -1,4 +1,4 @@
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { OnPlaceEditContext } from '../providers/onPlaceEdit';
 import { StringInput } from '../types';
@@ -19,125 +19,73 @@ type InternalProps = {
 const InputString: React.FC<InputStringProps> = (props: InputStringProps & InternalProps) => {
   const { inputProps, onChange, localize = false, readOnly = false, locale, value, name } = props;
 
-  /*
-   * Hooks
-   */
-
+  const [inputValue, setInputValue] = useState(value);
   const {
-    onplace,
-    loading,
+    onPlace,
     editingField,
     setEditingField,
-    submitText = 'Ok',
-    cancelText = 'Cancel',
   } = useContext(OnPlaceEditContext);
 
-  const [inputValue, setInputValue] = useState(value);
-
-  const [inputBlur, setInputBlur] = useState(false);
-  const [actionClicked, setActionClicked] = useState(false);
-
   useEffect(() => {
-    setInputValue(value);
+    if (onPlace) setInputValue(value);
   }, [value]);
-
-  useEffect(() => {
-    if (inputBlur) {
-      setTimeout(() => {
-        if (inputBlur) {
-          if (!actionClicked) {
-            setEditingField(undefined);
-          } else {
-            setActionClicked(false);
-          }
-          setInputBlur(false);
-        }
-      }, 50);
-    }
-  }, [inputBlur]);
-
-  /*
-   * Functions
-   */
 
   const handleChange = ({ target: { value } }: { target: { value: string } }) => {
     const nextValue = localize && locale ? { ...props.value, [locale]: value } : value;
-    if (onplace) {
+    if (onPlace)
       setInputValue(nextValue);
-    } else {
+    else
       onChange(nextValue);
-    }
   };
 
-  const onEditing = () => {
-    setEditingField(name);
-  };
-
-  const onSubmit = () => {
-    setInputBlur(false);
-    setActionClicked(true);
-    onChange(inputValue);
-    setEditingField(undefined);
-  };
-
-  const onCancel = () => {
-    setInputBlur(false);
-    setActionClicked(true);
-    setInputValue(value);
-    setEditingField(undefined);
-  };
-
-  /*
-   * Misc
-   */
-
-  let v = value;
+  let v = onPlace ? inputValue : value;
   if (localize && locale && v) {
     v = v.hasOwnProperty(locale) && v[locale] ? v[locale] : undefined;
   }
 
-  /*
-   * Render
-   */
+  if (onPlace) {
+    const editing = name === editingField;
+    if (editing && !readOnly) {
+      const onBlur = () => {
+        setEditingField(undefined);
+        onChange(inputValue);
+      }
+
+      const onCancel = () => {
+        setEditingField(undefined);
+        setInputValue(value)
+      }
+
+      const onKeyDown = (e) => {
+        if (editing && e.keyCode === 13) onBlur();
+        if (editing && e.keyCode === 27) onCancel();
+      }
+
+      return (
+        <div
+          className="ant-form-onplace-input-container"
+          onBlur={onBlur}
+        >
+          <Input
+            {...inputProps}
+            value={v}
+            onKeyDown={onKeyDown}
+            onChange={handleChange}
+            autoFocus
+          />
+        </div>
+      );
+    }
+    return (
+      <div className="ant-form-on-place-edit-field-value" onClick={() => setEditingField(name)}>
+        {v && v?.toString()?.trim() !== '' ? v : '-'}
+      </div>
+    )
+  }
 
   return (
-    <>
-      {onplace ? (
-        <>
-          {name == editingField ? (
-            <div
-              className="ant-form-onplace-input-container"
-              onBlur={() => {
-                setInputBlur(true);
-              }}
-            >
-              <Input
-                {...inputProps}
-                value={inputValue}
-                readOnly={readOnly}
-                onChange={handleChange}
-                autoFocus
-              />
-              <div className="ant-form-on-place-edit-field-actions">
-                <Button type="primary" onClick={onSubmit} disabled={loading} loading={loading}>
-                  {submitText}
-                </Button>
-                <Button onClick={onCancel} disabled={loading}>
-                  {cancelText}
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="ant-form-on-place-edit-field-value" onClick={onEditing}>
-              {inputValue && inputValue?.toString()?.trim() !== '' ? inputValue : '-'}
-            </div>
-          )}
-        </>
-      ) : (
-        <Input {...inputProps} value={inputValue} readOnly={readOnly} onChange={handleChange} />
-      )}
-    </>
-  );
+    <Input {...inputProps} value={v} readOnly={readOnly} onChange={handleChange} />
+  )
 };
 
 export default InputString;

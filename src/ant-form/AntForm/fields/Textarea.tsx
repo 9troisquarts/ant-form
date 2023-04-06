@@ -1,4 +1,4 @@
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 import { TextAreaProps } from 'antd/es/input';
 import React, { useContext, useEffect, useState } from 'react';
 import nl2br from '../../_utils/nl2br';
@@ -23,127 +23,94 @@ type InternalProps = {
 const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & InternalProps) => {
   const { inputProps, onChange, localize = false, readOnly = false, locale, value, name } = props;
 
-  /*
-   * Hooks
-   */
-
   const {
-    onplace,
+    onPlace,
     loading,
     editingField,
     setEditingField,
     submitText = 'Ok',
     cancelText = 'Cancel',
   } = useContext(OnPlaceEditContext);
-
   const [inputValue, setInputValue] = useState(value);
-
-  const [inputBlur, setInputBlur] = useState(false);
-  const [actionClicked, setActionClicked] = useState(false);
 
   useEffect(() => {
     setInputValue(value);
   }, [value]);
 
-  useEffect(() => {
-    if (inputBlur) {
-      setTimeout(() => {
-        if (inputBlur) {
-          if (!actionClicked) {
-            setEditingField(undefined);
-          } else {
-            setActionClicked(false);
-          }
-          setInputBlur(false);
-        }
-      }, 50);
-    }
-  }, [inputBlur]);
-
-  /*
-   * Functions
-   */
-
   const handleChange = ({ target: { value } }: { target: { value: string } }) => {
     const nextValue = localize && locale ? { ...props.value, [locale]: value } : value;
-    if (onplace) {
+    if (onPlace)
       setInputValue(nextValue);
-    } else {
+    else
       onChange(nextValue);
-    }
   };
 
-  const onEditing = () => {
-    setEditingField(name);
-  };
-
-  const onSubmit = () => {
-    setInputBlur(false);
-    setActionClicked(true);
-    onChange(inputValue);
-    setEditingField(undefined);
-  };
-
-  const onCancel = () => {
-    setInputBlur(false);
-    setActionClicked(true);
-    setInputValue(value);
-    setEditingField(undefined);
-  };
-
-  /*
-   * Misc
-   */
-
-  let v = value;
+  let v = onPlace ? inputValue : value;
   if (localize && locale && v) {
     v = v.hasOwnProperty(locale) && v[locale] ? v[locale] : undefined;
   }
 
-  /*
-   * Render
-   */
+  if (onPlace) {
+    const editing = name === editingField;
+
+    if (editing && !readOnly) {
+      const onSubmit = () => {
+        onChange(inputValue);
+        setEditingField(undefined);
+      };
+
+      const onCancel = () => {
+        setInputValue(value);
+        setEditingField(undefined);
+      };
+
+      const onKeyDown = (e) => {
+        if (editing && e.keyCode === 13 && e.shiftKey) onSubmit();
+        if (editing && e.keyCode === 27) onCancel();
+      }
+
+      return (
+        <div className="ant-form-onplace-input-container">
+          <Input.TextArea
+            {...(inputProps || {})}
+            // @ts-ignore
+            value={v}
+            autoFocus
+            onKeyDown={onKeyDown}
+            onChange={handleChange}
+            autoSize
+          />
+          <div className="ant-form-on-place-edit-field-actions">
+            <Space>
+              <Button onClick={onCancel} disabled={loading}>
+                {cancelText}
+              </Button>
+              <Button type="primary" onClick={onSubmit} disabled={loading} loading={loading}>
+                {submitText}
+              </Button>
+            </Space>
+          </div>
+        </div>
+      )
+    }
+
+    const onEditing = () => setEditingField(name)
+    return (
+      <div onClick={onEditing}>
+        {nl2br(v && v?.toString()?.trim() !== '' ? v : '-')}
+      </div>
+    )
+  }
 
   return (
-    <>
-      {onplace ? (
-        <>
-          {name == editingField ? (
-            <div className="ant-form-onplace-input-container">
-              <Input.TextArea
-                {...(inputProps || {})}
-                readOnly={readOnly}
-                // @ts-ignore
-                value={inputValue}
-                onChange={handleChange}
-                autoSize
-              />
-              <div className="ant-form-on-place-edit-field-actions">
-                <Button type="primary" onClick={onSubmit} disabled={loading} loading={loading}>
-                  {submitText}
-                </Button>
-                <Button onClick={onCancel} disabled={loading}>
-                  {cancelText}
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div onClick={onEditing}>
-              {nl2br(inputValue && inputValue?.toString()?.trim() !== '' ? inputValue : '-')}
-            </div>
-          )}
-        </>
-      ) : (
-        <Input.TextArea
-          {...(inputProps || {})}
-          readOnly={readOnly}
-          // @ts-ignore
-          value={inputValue}
-          onChange={handleChange}
-          autoSize
-        />
-      )}
-    </>
+    <Input.TextArea
+      {...(inputProps || {})}
+      readOnly={readOnly}
+      // @ts-ignore
+      value={v}
+      onChange={handleChange}
+      autoSize
+    />
   );
 };
 

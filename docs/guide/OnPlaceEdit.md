@@ -19,7 +19,7 @@ const onChange = () => {};
 export default () => (
   <AntForm
     layout="vertical"
-    onplace={true}
+    onPlace
     object={{
       firstname: 0,
       lastname: 'TP',

@@ -24,7 +24,7 @@
 
 .ant-form-on-place-edit-field-actions {
   display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
   width: 100%;
-  flex-direction: row-reverse;
-  margin-top: -24px;
 }
