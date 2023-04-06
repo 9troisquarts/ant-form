@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.17.0](https://github.com/9troisquarts/ant-form/compare/v2.16.0...v2.17.0) (2023-04-06)
+
+
+### Features
+
+* add decimal input type ([af51a7a](https://github.com/9troisquarts/ant-form/commit/af51a7a4ccc35185c8e9d74da61e334e3a76c71c))
+
+
+### Bug Fixes
+
+* Chaneg OnPlace to InPlace ([f318d84](https://github.com/9troisquarts/ant-form/commit/f318d84d0c6a642ac10ef436772708bae7a80ead))
+* decimal input ([beebc16](https://github.com/9troisquarts/ant-form/commit/beebc16d5d4cc3299d52f8172638a4fd71397a2c))
+* decimal input ([e1acea1](https://github.com/9troisquarts/ant-form/commit/e1acea191ee12eec2ab08af88b865312acd398b9))
+* decimal input ([c748287](https://github.com/9troisquarts/ant-form/commit/c748287e7535d25f07ee74f480fc9eaebc0de3d8))
+* Fix string and textarea cursor ([0d00685](https://github.com/9troisquarts/ant-form/commit/0d00685db35d52fabf77d3d92f98d852b21422be))
+* NaN in decimal input ([cbe2446](https://github.com/9troisquarts/ant-form/commit/cbe2446d6b37ec415121e13a56373c5a4863c0b0))
+
 ## [2.16.0](https://github.com/9troisquarts/ant-form/compare/v2.15.7...v2.16.0) (2023-03-13)
 
 
