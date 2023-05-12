@@ -11,7 +11,8 @@ const DecimalInput = (props: any) => {
   const [internalValue, setInternalValue]: any = useState(undefined);
 
   const clearValue = (value: any = '') => {
-    if (!value || value?.trim() === '') {
+    console.log('zzzz', value);
+    if (!value || (value && typeof value?.trim === 'function' && value?.trim() === '')) {
       setInternalValue(undefined);
       onChange(undefined);
       return undefined;
