@@ -8,17 +8,16 @@ import React, { useEffect, useState } from 'react';
 const DecimalInput = (props: any) => {
   const { value, inputProps = {}, onChange } = props;
 
-  const [internalValue, setInternalValue]: any = useState('');
+  const [internalValue, setInternalValue]: any = useState(undefined);
 
   const clearValue = (value: any = '') => {
-    if (isNaN(value)) {
-      setInternalValue('');
-      onChange('');
-      return '';
+    if (!value || (value && typeof value?.trim === 'function' && value?.trim() === '')) {
+      setInternalValue(undefined);
+      onChange(undefined);
+      return undefined;
     }
-    let valueOnlyAllowedCharacters = value.toString().replace(/[^0-9,.]/g, '');
+    let valueOnlyAllowedCharacters = value?.toString()?.replace(/[^0-9,.]/g, '');
     let valueOnlyDots = valueOnlyAllowedCharacters.replaceAll(',', '.');
-
     var tmp = valueOnlyDots.split('');
     let dotIndexesToRemove: any = [];
     let skipedFirstDot = false;
@@ -32,11 +31,11 @@ const DecimalInput = (props: any) => {
       }
     }
     tmp = tmp.filter((char: any, i: number) => !dotIndexesToRemove.includes(i));
-    let decimalValue = parseFloat(tmp.join(''));
+    let decimalValue = tmp.join('');
     if (!isNaN(decimalValue)) {
       return decimalValue;
     }
-    return '';
+    return undefined;
   };
 
   useEffect(() => setInternalValue(clearValue(value)), [value]);
@@ -44,7 +43,6 @@ const DecimalInput = (props: any) => {
   // @ts-ignore
   const handleChange = ({ target: { value } }) => {
     let clearedValue = clearValue(value);
-    console.log('cl', clearedValue);
     setInternalValue(clearedValue);
     onChange(clearedValue);
   };
