@@ -40,6 +40,8 @@ import SearchInput from './Search';
 import SelectInput from './SelectInput';
 import TextArea from './Textarea';
 import UploadInput from './Upload';
+import FileInput from './File';
+import DatetimeInput from './DatetimeInput';
 
 const { Password: APassword } = Input;
 
@@ -189,6 +191,7 @@ type FieldsTypeInterface = {
     valuePropName?: string;
     showFormItemError?: boolean;
     component: React.ElementType;
+    props?: any;
   };
 };
 
@@ -249,6 +252,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   password: {
     component: Password,
   },
+  datetime: {
+    component: DatetimeInput
+  },
   dropdown: {
     component: Dropdown,
   },
@@ -264,6 +270,15 @@ export const defaultFieldsType: FieldsTypeInterface = {
   color: {
     component: AntFormColorPicker,
   },
+  file: {
+    component: FileInput,
+  },
+  files: {
+    component: FileInput,
+    props: {
+      multiple: true
+    }
+  }
 };
 
 const fieldsType = {

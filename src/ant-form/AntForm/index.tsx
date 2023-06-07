@@ -27,6 +27,7 @@ import {
   fieldIsInactive,
 } from '../_utils/helpers';
 import { InPlaceEditProvider } from './providers/inPlaceEdit';
+import ConfigurationContext from './ConfigurationContext';
 
 const antLocale = {
   fr,
@@ -105,7 +106,7 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
     ...rest
   } = props;
 
-  const language = config.language ? antLocale[config.language] : undefined;
+  const language = config.language || config.locale ? antLocale[config.language || config.locale] : undefined;
   const conditions = useMemo(() => {
     const conditionalFields = extractDefaultConditionnedFields(schema, object);
     if (Object.keys(conditionalFields).length === 0) return undefined;
@@ -160,59 +161,61 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
 
   const errors = transformNestedErrorsToArray(props.errors);
   return (
-    <ConfigProvider locale={language}>
-      <InPlaceEditProvider
-        loading={loading}
-        inPlace={inPlace}
-        formObject={object}
-        onFormSubmit={onSubmit}
-        submitText={submitText}
-        cancelText={cancelText}
-        editingField={editingField}
-        setEditingField={setEditingField}
-      >
-        <Form
-          form={form}
-          onFinish={onFinish}
-          initialValues={initialValues}
-          {...(onChange ? { onValuesChange } : {})}
-          {...(config.formProps || {})}
-          {...rest}
+    <ConfigurationContext.Provider value={config}>
+      <ConfigProvider locale={language}>
+        <InPlaceEditProvider
+          loading={loading}
+          inPlace={inPlace}
+          formObject={object}
+          onFormSubmit={onSubmit}
+          submitText={submitText}
+          cancelText={cancelText}
+          editingField={editingField}
+          setEditingField={setEditingField}
         >
-          {schema.filter(fieldIsInactive(inactiveItems)).map((item, i) => (
-            <FieldItem
-              inactiveItems={inactiveItems}
-              renderLabel={renderLabel}
-              layout={rest.layout}
-              item={item}
-              errors={errors}
-              readOnly={readOnly}
-              locale={locale}
-              config={config}
-              key={i}
-              rowProps={rowProps}
-            />
-          ))}
-          {(extraActions || onSubmit) && (!readOnly || (readOnly && extraActions)) && (
-            <div {...(config.actionsWrapperProps || {})} {...(actionsWrapperProps || {})}>
-              <Space>
-                {extraActions ? extraActions : null}
-                {onSubmit && !readOnly && (
-                  <Button
-                    {...(submitButtonProps || {})}
-                    htmlType="submit"
-                    type="primary"
-                    loading={loading}
-                  >
-                    {submitText || config.submitText || 'Save'}
-                  </Button>
-                )}
-              </Space>
-            </div>
-          )}
-        </Form>
-      </InPlaceEditProvider>
-    </ConfigProvider>
+          <Form
+            form={form}
+            onFinish={onFinish}
+            initialValues={initialValues}
+            {...(onChange ? { onValuesChange } : {})}
+            {...(config.formProps || {})}
+            {...rest}
+          >
+            {schema.filter(fieldIsInactive(inactiveItems)).map((item, i) => (
+              <FieldItem
+                inactiveItems={inactiveItems}
+                renderLabel={renderLabel}
+                layout={rest.layout}
+                item={item}
+                errors={errors}
+                readOnly={readOnly}
+                locale={locale}
+                config={config}
+                key={i}
+                rowProps={rowProps}
+              />
+            ))}
+            {(extraActions || onSubmit) && (!readOnly || (readOnly && extraActions)) && (
+              <div {...(config.actionsWrapperProps || {})} {...(actionsWrapperProps || {})}>
+                <Space>
+                  {extraActions ? extraActions : null}
+                  {onSubmit && !readOnly && (
+                    <Button
+                      {...(submitButtonProps || {})}
+                      htmlType="submit"
+                      type="primary"
+                      loading={loading}
+                    >
+                      {submitText || config.submitText || 'Save'}
+                    </Button>
+                  )}
+                </Space>
+              </div>
+            )}
+          </Form>
+        </InPlaceEditProvider>
+      </ConfigProvider>
+    </ConfigurationContext.Provider>
   );
 };
 

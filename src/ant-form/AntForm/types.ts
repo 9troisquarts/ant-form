@@ -247,7 +247,7 @@ export type FieldItemType = {
   tooltip?: string;
   proxy?: {
     name: string;
-    path: string[] | string;
+    path?: string[] | string;
   };
 } & FormItemProps;
 
@@ -268,6 +268,10 @@ export type Configuration = {
   submitText?: string;
   /** Icon to use for tooltip */
   tooltipIcon?: React.ReactNode;
+  file?: {
+    addButtonText?: string;
+    emptyText?: string
+  }
 };
 
 // @ts-ignore

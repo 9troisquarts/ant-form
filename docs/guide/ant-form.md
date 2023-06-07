@@ -12,14 +12,29 @@ import AntForm from '@9troisquarts/ant-form';
 import 'antd/dist/antd.css';
 
 AntForm.configure({
-  language: 'fr'
+  language: 'fr',
+  file: {
+    addButtonText: 'Ajouter un document',
+    emptyText: 'Aucun fichier'
+  }
 });
 
 export default () => {
   return (
     <div>
       <AntForm
-        object={{ date: '2022-01-01', select: 'one', id: 2 }}
+        object={{ date: '2022-01-01', select: 'one', id: 2, files: [
+          {
+            id: 1,
+            name: 'toto.png',
+            canDestroy: true
+          },
+          {
+            id: 2,
+            name: 'titi.png',
+            canDestroy: false
+          }
+        ]}}
         errors={{ firstname: ['is required'] }}
         onSubmit={(values) => console.log(values)}
         onChange={(value, values) => console.log(value, values)}
@@ -285,10 +300,24 @@ export default () => {
           },
           {
             name: 'logo',
+            label: 'File',
             input: {
-              type: 'upload',
+              type: 'file',
               inputProps: {
-                placeholder: "Choisir un fichier",
+                multiple: false,
+                addButtonProps: {
+                  children: "Choisir un fichier",
+                }
+              },
+            },
+          },
+          {
+            name: 'files',
+            label: 'File',
+            input: {
+              type: 'file',
+              inputProps: {
+                multiple: true
               },
             },
           }
