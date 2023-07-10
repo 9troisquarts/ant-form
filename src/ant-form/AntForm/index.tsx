@@ -1,12 +1,12 @@
 // @ts-nocheck
 
+import React, { useEffect, useMemo, useState } from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, ConfigProvider, Form, Space } from 'antd';
 import { ButtonProps } from 'antd/es/button';
 import { RowProps } from 'antd/es/grid';
 import flattenDeep from 'lodash/flattenDeep';
 import omit from 'lodash/omit';
-import React, { useEffect, useMemo, useState } from 'react';
 import { extendInput } from './fields';
 import './index.css';
 import { AntSchema, Configuration, FieldType, isFormItem } from './types';

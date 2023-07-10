@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { createContext } from 'react';
+import React, { createContext } from 'react';
 import { Configuration } from './types';
 
 const ConfigurationContext = createContext<Configuration>({

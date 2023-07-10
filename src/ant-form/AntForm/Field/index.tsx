@@ -1,8 +1,8 @@
+import React from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Col, Form } from 'antd';
 import isArray from 'lodash/isArray';
 import isNil from 'lodash/isNil';
-import React from 'react';
 import { memoOnlyForKeys } from '../../_utils/helpers';
 import fieldsType from '../fields';
 import { FieldItemType } from '../types';
