@@ -400,6 +400,7 @@ export default () => (
     <AntForm
       object={{ field: { subField: 'test' } }}
       onSubmit={(values) => console.log(values)}
+      onChange={(value, values) => console.log(values) }
       schema={[
         {
           name: 'field.subField',
