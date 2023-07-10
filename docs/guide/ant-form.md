@@ -387,6 +387,41 @@ export default () => (
 )
 ```
 
+## Sub-field
+
+```tsx
+import React from 'react';
+import { Tooltip, Space, Alert } from 'antd';
+import AntForm from '@9troisquarts/ant-form';
+import 'antd/dist/antd.css';
+
+export default () => (
+ <>
+    <AntForm
+      object={{ field: { subField: 'test' } }}
+      onSubmit={(values) => console.log(values)}
+      schema={[
+        {
+          name: 'field.subField',
+          label: 'Subfield',
+          required: true, 
+          tooltip: 'Info bulle',
+          help: 'Aide à la saisie',
+          input: {
+            type: 'string',
+          },
+          colProps: {
+            xs: 24,
+            md: 12,
+            lg: 12
+          }
+        },
+      ]}
+    />
+ </>
+)
+```
+
 ## Champs conditionnés
 
 ```hiden``` : Le champ est caché, mais sa valeur est définit dans l'objet de retour

@@ -2,6 +2,8 @@
 import moment from 'moment';
 import flattenDeep from 'lodash/flattenDeep';
 import get from 'lodash/get';
+import set from 'lodash/set';
+import cloneDeep from 'lodash/cloneDeep'
 import { AntSchema, FieldType, isFormItem } from '../AntForm/types';
 
 export const castValue = (type: string, value) => {
@@ -33,7 +35,8 @@ export const castObjectFromSchema = (object: any, schema: AntSchema) => {
           return acc;
         }, {});
       } else {
-        castedObject[field.name] = castValue(field.input.type, castedObject[field.name]);
+        const fieldName = field.name.split(".");
+        castedObject[field.name] = castValue(field.input.type, get(castedObject, fieldName));
       }
     });
   return castedObject;
@@ -54,6 +57,10 @@ export const reverseCastFromSchema = (object: any, schema: AntSchema) => {
           castedObject[n] = get(object, [proxyName, n], undefined);
         });
         delete castedObject[proxyName];
+      } else if (field.name.includes('.')) {
+        set(castedObject, field.name, object[field.name])
+
+        delete castedObject[field.name];
       }
     })
   return castedObject;
