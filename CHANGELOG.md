@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.19.4](https://github.com/9troisquarts/ant-form/compare/v2.19.3...v2.19.4) (2023-07-10)
+
+
+### Bug Fixes
+
+* import react in react context ([7fe2601](https://github.com/9troisquarts/ant-form/commit/7fe2601586fec598c1568b1925305e2b0ff6ffde))
+
 ### [2.19.3](https://github.com/9troisquarts/ant-form/compare/v2.19.2...v2.19.3) (2023-07-10)
 
 ### [2.19.2](https://github.com/9troisquarts/ant-form/compare/v2.19.1...v2.19.2) (2023-07-10)
