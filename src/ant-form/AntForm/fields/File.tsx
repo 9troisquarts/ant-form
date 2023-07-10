@@ -27,7 +27,7 @@ const Ellipsis = () => (
   </svg>
 )
 
-export const renderFile = (file, { remove, showDate = false, index = 0 }, props = {}) => {
+export const renderFile = (file: any, { remove = undefined, showDate = false, index = 0 }: { remove?: any, showDate?: boolean, index?: number }, props = {}) => {
   const isAttached = file.hasOwnProperty('__typename');
   const items = [
     isAttached && {
@@ -120,7 +120,7 @@ const FileInput: React.FC<IProps> = props => {
     )
   }
 
-  const onFileChange = (e) => {
+  const onFileChange = (e: any) => {
     const files = e.target.files;
     const nextFileList = [...files, ...internalValue];
     if (multiple) {
@@ -134,6 +134,7 @@ const FileInput: React.FC<IProps> = props => {
 
   const onAddClick = () => {
     if(inputRef.current) {
+      // @ts-ignore
       inputRef.current.click();
     }
   }
@@ -148,6 +149,7 @@ const FileInput: React.FC<IProps> = props => {
   return (
     <>
       {!readOnly && (
+        // @ts-ignore
         <input onChange={onFileChange} type="file" multiple={multiple} style={{ display: 'none' }} ref={inputRef} />
       )}
       <Space direction="vertical" style={{ width: "100%" }}>
