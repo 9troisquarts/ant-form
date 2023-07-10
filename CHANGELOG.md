@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.19.5](https://github.com/9troisquarts/ant-form/compare/v2.19.4...v2.19.5) (2023-07-10)
+
+
+### Bug Fixes
+
+* set nested field on form ([8aa8896](https://github.com/9troisquarts/ant-form/commit/8aa8896b3da9c80f6c72b83548644301faf6f163))
+
 ### [2.19.4](https://github.com/9troisquarts/ant-form/compare/v2.19.3...v2.19.4) (2023-07-10)
 
 
