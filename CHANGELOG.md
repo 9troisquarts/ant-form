@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.19.0](https://github.com/9troisquarts/ant-form/compare/v2.17.1...v2.19.0) (2023-07-10)
+
+
+### Features
+
+* clean ([cb3945d](https://github.com/9troisquarts/ant-form/commit/cb3945de22d59c95940f3066942eab12bad286fd))
+* datetime ([377e2c5](https://github.com/9troisquarts/ant-form/commit/377e2c52d46e40d4579b7f37df89a7d43ecf2375))
+* Handle object field ([24a812f](https://github.com/9troisquarts/ant-form/commit/24a812f8d4740690f907c3ce0538f64932698d3f))
+* improve decimal ([8594632](https://github.com/9troisquarts/ant-form/commit/8594632941125e394d29d05d13f433b8351aace9))
+
+
+### Bug Fixes
+
+* decimal ([9288f51](https://github.com/9troisquarts/ant-form/commit/9288f511a4940da00558e7bfaf5e71bf41c41660))
+
 ### [2.17.1](https://github.com/9troisquarts/ant-form/compare/v2.17.0...v2.17.1) (2023-04-06)
 
 ## [2.17.0](https://github.com/9troisquarts/ant-form/compare/v2.16.0...v2.17.0) (2023-04-06)
