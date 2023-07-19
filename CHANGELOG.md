@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.21.1](https://github.com/9troisquarts/ant-form/compare/v2.21.0...v2.21.1) (2023-07-19)
+
+### Bug Fixes
+
+- textarea on inplace edit ([1986c8b](https://github.com/9troisquarts/ant-form/commit/1986c8b98f1c92d6fcd96602a38c8675362ac3c6))
+
 ## [2.21.0](https://github.com/9troisquarts/ant-form/compare/v2.18.1...v2.21.0) (2023-07-19)
 
 ### Features
