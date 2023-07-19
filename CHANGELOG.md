@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.21.0](https://github.com/9troisquarts/ant-form/compare/v2.18.1...v2.21.0) (2023-07-19)
+
+### Features
+
+- array/object fields, field name like users[1].lastname are now handle by get ([015d42a](https://github.com/9troisquarts/ant-form/commit/015d42a61cbcdedf20d015f426bde22d2be8f1b8))
+- clean ([cb3945d](https://github.com/9troisquarts/ant-form/commit/cb3945de22d59c95940f3066942eab12bad286fd))
+- datetime ([377e2c5](https://github.com/9troisquarts/ant-form/commit/377e2c52d46e40d4579b7f37df89a7d43ecf2375))
+- Handle object field ([24a812f](https://github.com/9troisquarts/ant-form/commit/24a812f8d4740690f907c3ce0538f64932698d3f))
+- remove inplace actions under textarea ([7eff2ce](https://github.com/9troisquarts/ant-form/commit/7eff2ce25d0c57800ad79e47ff4289a464c78262))
+
+### Bug Fixes
+
+- import react in react context ([7fe2601](https://github.com/9troisquarts/ant-form/commit/7fe2601586fec598c1568b1925305e2b0ff6ffde))
+- set nested field on form ([8aa8896](https://github.com/9troisquarts/ant-form/commit/8aa8896b3da9c80f6c72b83548644301faf6f163))
+
 ## [2.20.0](https://github.com/9troisquarts/ant-form/compare/v2.19.5...v2.20.0) (2023-07-11)
 
 ### Features
