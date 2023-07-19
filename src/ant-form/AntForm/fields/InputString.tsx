@@ -20,11 +20,7 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
   const { inputProps, onChange, localize = false, readOnly = false, locale, value, name } = props;
 
   const [inputValue, setInputValue] = useState(value);
-  const {
-    inPlace,
-    editingField,
-    setEditingField,
-  } = useContext(InPlaceEditContext);
+  const { inPlace, editingField, setEditingField } = useContext(InPlaceEditContext);
 
   useEffect(() => {
     if (inPlace) setInputValue(value);
@@ -32,10 +28,8 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
 
   const handleChange = ({ target: { value } }: { target: { value: string } }) => {
     const nextValue = localize && locale ? { ...props.value, [locale]: value } : value;
-    if (inPlace)
-      setInputValue(nextValue);
-    else
-      onChange(nextValue);
+    if (inPlace) setInputValue(nextValue);
+    else onChange(nextValue);
   };
 
   let v = inPlace ? inputValue : value;
@@ -45,27 +39,25 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
 
   if (inPlace) {
     const editing = name === editingField;
+
     if (editing && !readOnly) {
       const onBlur = () => {
         setEditingField(undefined);
         onChange(inputValue);
-      }
+      };
 
       const onCancel = () => {
         setEditingField(undefined);
-        setInputValue(value)
-      }
+        setInputValue(value);
+      };
 
       const onKeyDown = (e: any) => {
         if (editing && e.keyCode === 13) onBlur();
         if (editing && e.keyCode === 27) onCancel();
-      }
+      };
 
       return (
-        <div
-          className="ant-form-InPlace-input-container"
-          onBlur={onBlur}
-        >
+        <div className="ant-form-InPlace-input-container" onBlur={onBlur}>
           <Input
             {...inputProps}
             value={v}
@@ -80,12 +72,10 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
       <div className="ant-form-on-place-edit-field-value" onClick={() => setEditingField(name)}>
         {v && v?.toString()?.trim() !== '' ? v : '-'}
       </div>
-    )
+    );
   }
 
-  return (
-    <Input {...inputProps} value={v} readOnly={readOnly} onChange={handleChange} />
-  )
+  return <Input {...inputProps} value={v} readOnly={readOnly} onChange={handleChange} />;
 };
 
 export default InputString;

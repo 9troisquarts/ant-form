@@ -31,6 +31,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
     submitText = 'Ok',
     cancelText = 'Cancel',
   } = useContext(InPlaceEditContext);
+
   const [inputValue, setInputValue] = useState(value);
 
   useEffect(() => {
@@ -62,13 +63,21 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
         setEditingField(undefined);
       };
 
+      const onBlur = () => {
+        if (inputValue === value) {
+          onCancel();
+        } else {
+          onSubmit();
+        }
+      };
+
       const onKeyDown = (e: any) => {
         if (editing && e.keyCode === 13 && e.shiftKey) onSubmit();
         if (editing && e.keyCode === 27) onCancel();
       };
 
       return (
-        <div className="ant-form-InPlace-input-container">
+        <div className="ant-form-InPlace-input-container" onBlur={onBlur}>
           <Input.TextArea
             {...(inputProps || {})}
             // @ts-ignore
