@@ -1,4 +1,4 @@
-import { Button, Input, Space } from 'antd';
+import { Input } from 'antd';
 import { TextAreaProps } from 'antd/es/input';
 import React, { useContext, useEffect, useState } from 'react';
 import nl2br from '../../_utils/nl2br';
@@ -31,6 +31,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
     submitText = 'Ok',
     cancelText = 'Cancel',
   } = useContext(InPlaceEditContext);
+
   const [inputValue, setInputValue] = useState(value);
 
   useEffect(() => {
@@ -39,10 +40,8 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
 
   const handleChange = ({ target: { value } }: { target: { value: string } }) => {
     const nextValue = localize && locale ? { ...props.value, [locale]: value } : value;
-    if (inPlace)
-      setInputValue(nextValue);
-    else
-      onChange(nextValue);
+    if (inPlace) setInputValue(nextValue);
+    else onChange(nextValue);
   };
 
   let v = inPlace ? inputValue : value;
@@ -64,13 +63,21 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
         setEditingField(undefined);
       };
 
+      const onBlur = () => {
+        if (inputValue === value) {
+          onCancel();
+        } else {
+          onSubmit();
+        }
+      };
+
       const onKeyDown = (e: any) => {
         if (editing && e.keyCode === 13 && e.shiftKey) onSubmit();
         if (editing && e.keyCode === 27) onCancel();
-      }
+      };
 
       return (
-        <div className="ant-form-InPlace-input-container">
+        <div className="ant-form-InPlace-input-container" onBlur={onBlur}>
           <Input.TextArea
             {...(inputProps || {})}
             // @ts-ignore
@@ -80,7 +87,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
             onChange={handleChange}
             autoSize
           />
-          <div className="ant-form-on-place-edit-field-actions">
+          {/* <div className="ant-form-on-place-edit-field-actions">
             <Space>
               <Button onClick={onCancel} disabled={loading}>
                 {cancelText}
@@ -89,17 +96,13 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
                 {submitText}
               </Button>
             </Space>
-          </div>
+          </div> */}
         </div>
-      )
+      );
     }
 
-    const onEditing = () => setEditingField(name)
-    return (
-      <div onClick={onEditing}>
-        {nl2br(v && v?.toString()?.trim() !== '' ? v : '-')}
-      </div>
-    )
+    const onEditing = () => setEditingField(name);
+    return <div onClick={onEditing}>{nl2br(v && v?.toString()?.trim() !== '' ? v : '-')}</div>;
   }
 
   return (
