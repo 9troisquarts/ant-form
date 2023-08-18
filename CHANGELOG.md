@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.21.0](https://github.com/9troisquarts/ant-form/compare/v2.20.1...v2.21.0) (2023-08-18)
+
+### Features
+
+- remove inplace actions under textarea ([7eff2ce](https://github.com/9troisquarts/ant-form/commit/7eff2ce25d0c57800ad79e47ff4289a464c78262))
+
+### Bug Fixes
+
+- add null field to payload ([c106a7a](https://github.com/9troisquarts/ant-form/commit/c106a7a952c884184f810372252ac74a9b0eddfc))
+- textarea on inplace edit ([1986c8b](https://github.com/9troisquarts/ant-form/commit/1986c8b98f1c92d6fcd96602a38c8675362ac3c6))
+
 ### [2.20.1](https://github.com/9troisquarts/ant-form/compare/v2.20.0...v2.20.1) (2023-08-18)
 
 ## [2.20.0](https://github.com/9troisquarts/ant-form/compare/v2.19.5...v2.20.0) (2023-07-11)
