@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.21.3](https://github.com/9troisquarts/ant-form/compare/v2.21.2...v2.21.3) (2023-08-18)
+
 ### [2.21.2](https://github.com/9troisquarts/ant-form/compare/v2.21.1...v2.21.2) (2023-08-18)
 
 ### [2.21.1](https://github.com/9troisquarts/ant-form/compare/v2.21.0...v2.21.1) (2023-08-18)
