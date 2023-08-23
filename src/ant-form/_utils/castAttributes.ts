@@ -39,7 +39,7 @@ export const castObjectFromSchema = (object: any, schema: AntSchema) => {
   return castedObject;
 };
 
-export const reverseCastFromSchema = (object: any, schema: AntSchema) => {
+export const reverseCastFromSchema = (object: any, schema: AntSchema, skipUndefined = false) => {
   const castedObject = {};
   flattenDeep(schema)
     .filter((f) => f)
@@ -53,7 +53,7 @@ export const reverseCastFromSchema = (object: any, schema: AntSchema) => {
         });
         delete castedObject[proxyName];
       } else {
-        set(castedObject, field.name, object[field.name]);
+        if (!skipUndefined || object[field.name]) set(castedObject, field.name, object[field.name]);
       }
     });
   return castedObject;
