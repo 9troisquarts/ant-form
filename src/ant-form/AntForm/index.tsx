@@ -1,12 +1,12 @@
 // @ts-nocheck
 
-import React, { useEffect, useMemo, useState } from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, ConfigProvider, Form, Space } from 'antd';
 import { ButtonProps } from 'antd/es/button';
 import { RowProps } from 'antd/es/grid';
 import flattenDeep from 'lodash/flattenDeep';
 import omit from 'lodash/omit';
+import React, { useEffect, useMemo, useState } from 'react';
 import { extendInput } from './fields';
 import './index.css';
 import { AntSchema, Configuration, FieldType, isFormItem } from './types';
@@ -26,8 +26,8 @@ import {
   extractProxyFields,
   fieldIsInactive,
 } from '../_utils/helpers';
-import { InPlaceEditProvider } from './providers/inPlaceEdit';
 import ConfigurationContext from './ConfigurationContext';
+import { InPlaceEditProvider } from './providers/inPlaceEdit';
 
 const antLocale = {
   fr,
@@ -106,7 +106,8 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
     ...rest
   } = props;
 
-  const language = config.language || config.locale ? antLocale[config.language || config.locale] : undefined;
+  const language =
+    config.language || config.locale ? antLocale[config.language || config.locale] : undefined;
   const conditions = useMemo(() => {
     const conditionalFields = extractDefaultConditionnedFields(schema, object);
     if (Object.keys(conditionalFields).length === 0) return undefined;
@@ -148,7 +149,7 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
     if (conditions) setInactiveItems(nextInactiveItems);
     if (onChange && !readOnly) {
       onChange(
-        reverseCastFromSchema(assignProxyValue(proxyFields, values), schema),
+        reverseCastFromSchema(assignProxyValue(proxyFields, values), schema, true),
         reverseCastFromSchema(
           assignProxyValue(proxyFields, omit(allValues, nextInactiveItems)),
           schema,
