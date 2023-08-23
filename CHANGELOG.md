@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.21.5](https://github.com/9troisquarts/ant-form/compare/v2.21.4...v2.21.5) (2023-08-23)
+
+### Bug Fixes
+
+- Value retourne toutes les valeurs au lieu de seule la dirty ([0a893bc](https://github.com/9troisquarts/ant-form/commit/0a893bc3b32066cf7c3c7806f0eb13b12fab12d2))
+
 ### [2.21.4](https://github.com/9troisquarts/ant-form/compare/v2.21.3...v2.21.4) (2023-08-23)
 
 ### [2.21.3](https://github.com/9troisquarts/ant-form/compare/v2.21.2...v2.21.3) (2023-08-18)

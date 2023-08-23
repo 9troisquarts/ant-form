@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@9troisquarts/ant-form",
-  "version": "2.21.4",
+  "version": "2.21.5",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
