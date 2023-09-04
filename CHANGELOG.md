@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.22.0](https://github.com/9troisquarts/ant-form/compare/v2.21.6...v2.22.0) (2023-09-04)
+
+### Features
+
+- Add date format to configuration ([5285fae](https://github.com/9troisquarts/ant-form/commit/5285faecae3498f1d15422f71c4f00e23b218213))
+
 ### [2.21.6](https://github.com/9troisquarts/ant-form/compare/v2.21.5...v2.21.6) (2023-08-23)
 
 ### Bug Fixes
