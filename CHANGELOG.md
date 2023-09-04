@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.22.1](https://github.com/9troisquarts/ant-form/compare/v2.22.0...v2.22.1) (2023-09-04)
+
+### Bug Fixes
+
+- Correction des champs proxy ([b5be3bd](https://github.com/9troisquarts/ant-form/commit/b5be3bdf09d705a75cc2fc66195435fae466ec0e))
+
 ## [2.22.0](https://github.com/9troisquarts/ant-form/compare/v2.21.6...v2.22.0) (2023-09-04)
 
 ### Features
