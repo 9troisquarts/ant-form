@@ -8,10 +8,11 @@ const ConfigurationContext = createContext<Configuration>({
   layout: 'horizontal',
   language: 'fr',
   tooltipIcon: <InfoCircleOutlined />,
+  dateFormat: 'L',
   file: {
     addButtonText: 'Add document',
-    emptyText: 'No file'
-  }
+    emptyText: 'No file',
+  },
 });
 
 export default ConfigurationContext;

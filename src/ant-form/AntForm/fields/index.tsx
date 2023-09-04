@@ -19,8 +19,9 @@ import { SliderBaseProps } from 'antd/es/slider';
 import { SwitchProps } from 'antd/es/switch';
 import omit from 'lodash/omit';
 import moment, { isMoment } from 'moment';
-import React from 'react';
+import React, { useContext } from 'react';
 import { AntFormColorPicker } from '../../../ant-form-color-picker';
+import ConfigurationContext from '../ConfigurationContext';
 import {
   AutoCompleteInputProps,
   CheckboxesInputProps,
@@ -32,16 +33,16 @@ import {
 import Boolean from './Boolean';
 import ContentEditableInput from './ContentEditableInput';
 import DateRange from './DateRange';
+import DatetimeInput from './DatetimeInput';
 import DecimalInput from './Decimal';
 import Dropdown from './Dropdown';
+import FileInput from './File';
 import InputString from './InputString';
 import ListField from './ListField';
 import SearchInput from './Search';
 import SelectInput from './SelectInput';
 import TextArea from './Textarea';
 import UploadInput from './Upload';
-import FileInput from './File';
-import DatetimeInput from './DatetimeInput';
 
 const { Password: APassword } = Input;
 
@@ -133,6 +134,7 @@ const AutoCompleteInput: React.FC<AutoCompleteInputProps> = (props) => {
 
 const DateInput: React.FC<DatePickerInputProps> = (props) => {
   const { readOnly, value } = props;
+  const config = useContext(ConfigurationContext);
 
   if (readOnly) {
     let v = value;
@@ -141,7 +143,7 @@ const DateInput: React.FC<DatePickerInputProps> = (props) => {
       <Input
         readOnly
         // @ts-ignore
-        value={v ? v.format(props.inputProps?.format || 'L') : undefined}
+        value={v ? v.format(props.inputProps?.format || config?.dateFormat || 'L') : undefined}
       />
     );
   }
@@ -253,7 +255,7 @@ export const defaultFieldsType: FieldsTypeInterface = {
     component: Password,
   },
   datetime: {
-    component: DatetimeInput
+    component: DatetimeInput,
   },
   dropdown: {
     component: Dropdown,
@@ -276,9 +278,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   files: {
     component: FileInput,
     props: {
-      multiple: true
-    }
-  }
+      multiple: true,
+    },
+  },
 };
 
 const fieldsType = {
