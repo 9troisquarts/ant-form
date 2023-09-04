@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.22.2](https://github.com/9troisquarts/ant-form/compare/v2.22.1...v2.22.2) (2023-09-04)
+
+### Bug Fixes
+
+- Cast attributes ([0eae23e](https://github.com/9troisquarts/ant-form/commit/0eae23e8d6637fb11964b90227cea0b1b7efe2d6))
+
 ### [2.22.1](https://github.com/9troisquarts/ant-form/compare/v2.22.0...v2.22.1) (2023-09-04)
 
 ### Bug Fixes
