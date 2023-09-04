@@ -54,6 +54,10 @@ export const reverseCastFromSchema = (object: any, schema: AntSchema, skipUndefi
         delete castedObject[proxyName];
       } else {
         if (!skipUndefined || object[field.name]) set(castedObject, field.name, object[field.name]);
+        if (field.proxy) {
+          const v = field.proxy.path ? get(object, field.proxy.path, null) : object[field.name];
+          if (!skipUndefined || v) set(castedObject, field.proxy.name, v);
+        }
       }
     });
   return castedObject;

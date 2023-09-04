@@ -78,6 +78,14 @@ export default () => {
               },
             },
           ],
+          {
+            label: 'Proxy',
+            name: 'task',
+            proxy: { name: 'taskId' },
+            input: {
+              type: 'string',
+            },
+          },
           [
             {
               name: 'select',
