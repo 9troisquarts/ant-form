@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/9troisquarts/ant-form/compare/v3.0.4...v3.1.0) (2023-09-25)
+
+### Features
+
+- force light theme ([08bbe48](https://github.com/9troisquarts/ant-form/commit/08bbe4811c853ddbc5b88eca9006427d4a783336))
+
 ### [3.0.4](https://github.com/9troisquarts/ant-form/compare/v3.0.3...v3.0.4) (2023-09-25)
 
 ### [3.0.3](https://github.com/9troisquarts/ant-form/compare/v3.0.2...v3.0.3) (2023-09-25)
