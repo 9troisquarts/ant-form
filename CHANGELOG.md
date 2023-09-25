@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/9troisquarts/ant-form/compare/v3.0.1...v3.0.2) (2023-09-25)
+
+### Bug Fixes
+
+- Typescript build ([3111585](https://github.com/9troisquarts/ant-form/commit/3111585e5ce0d609198136d36371ba1f3a5528ca))
+
 ### [3.0.1](https://github.com/9troisquarts/ant-form/compare/v3.0.0...v3.0.1) (2023-09-25)
 
 ## [3.0.0](https://github.com/9troisquarts/ant-form/compare/v2.22.2...v3.0.0) (2023-09-25)
