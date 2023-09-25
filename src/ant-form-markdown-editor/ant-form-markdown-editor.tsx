@@ -135,7 +135,7 @@ export const AntFormMarkdownEditor: React.FC<AntFormMarkdownEditorProps> = (prop
   }, [value, editor]);
 
   return (
-    <BlockNoteView editor={editor}>
+    <BlockNoteView editor={editor} theme="light">
       <HyperlinkToolbarPositioner editor={editor} />
       <SlashMenuPositioner editor={editor} />
       <SideMenuPositioner
