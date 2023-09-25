@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/9troisquarts/ant-form/compare/v2.22.2...v3.0.0) (2023-09-25)
+
+### ⚠ BREAKING CHANGES
+
+- Change module behind markdown
+
+### Features
+
+- Change module behind markdown ([c54aa3b](https://github.com/9troisquarts/ant-form/commit/c54aa3b81c334bb58bf4f29931e746cf799d4315))
+
 ### [2.22.2](https://github.com/9troisquarts/ant-form/compare/v2.22.1...v2.22.2) (2023-09-04)
 
 ### Bug Fixes
