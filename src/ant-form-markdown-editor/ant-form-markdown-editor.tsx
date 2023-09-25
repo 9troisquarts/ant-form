@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   BlockNoteView,
   BlockTypeDropdown,
+  BlockTypeDropdownItem,
   CreateLinkButton,
   DefaultSideMenu,
   DragHandleMenu,
@@ -49,7 +50,10 @@ const CustomDragHandleMenu = (props: { editor: BlockNoteEditor; block: Block }) 
   );
 };
 
-const CustomFormattingToolbar = (props: { editor: BlockNoteEditor }) => {
+const CustomFormattingToolbar = (props: {
+  editor: BlockNoteEditor;
+  blockTypeDropdownItems: BlockTypeDropdownItem[];
+}) => {
   // Tracks whether the text & background are both blue.
   const [isSelected, setIsSelected] = useState<boolean>(
     props.editor.getActiveStyles().textColor === 'blue' &&
