@@ -43,6 +43,7 @@ import SearchInput from './Search';
 import SelectInput from './SelectInput';
 import TextArea from './Textarea';
 import UploadInput from './Upload';
+import { AntFormMarkdownEditor } from '../../../ant-form-markdown-editor';
 
 const { Password: APassword } = Input;
 
@@ -262,6 +263,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
   },
   daterange: {
     component: DateRange,
+  },
+  markdown: {
+    component: AntFormMarkdownEditor,
   },
   search: {
     component: SearchInput,

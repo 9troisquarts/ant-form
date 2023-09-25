@@ -1,19 +1,10 @@
 ---
 title: markdown
-order: 2
+order: 9
 toc: menu
 ---
 
 ## Configuration
-
-```javascript
-import AntForm, { AntFormColorPicker } from '@9troisquarts/ant-form';
-
-AntForm.addField('markdown', {
-  component: AntFormMarkdownEditor
-})
-```
-
 
 ## Usage
 
@@ -22,22 +13,22 @@ import React from 'react';
 import AntForm, { AntFormMarkdownEditor } from '@9troisquarts/ant-form';
 
 AntForm.addField('markdown', {
-  component: AntFormMarkdownEditor
+  component: AntFormMarkdownEditor,
 });
 
 export default () => (
   <AntForm
     layout="vertical"
-    object={{ color: '#FF0000' }}
+    object={{ markdown: '**dzadijaz**' }}
     onSubmit={(values) => console.log(values)}
     schema={[
       {
         name: 'markdown',
         label: 'Markdown',
         input: {
-          type: 'markdown'
-        }
-      }
+          type: 'markdown',
+        },
+      },
     ]}
   />
 );
