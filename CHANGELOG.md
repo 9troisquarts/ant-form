@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/9troisquarts/ant-form/compare/v3.1.0...v3.1.1) (2023-09-29)
+
+### Bug Fixes
+
+- Changement de l'importation du css de blocknote ([8e30f96](https://github.com/9troisquarts/ant-form/commit/8e30f96367968728e77a51ea49d874029cd01903))
+
 ## [3.1.0](https://github.com/9troisquarts/ant-form/compare/v3.0.4...v3.1.0) (2023-09-25)
 
 ### Features
