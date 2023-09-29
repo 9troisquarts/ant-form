@@ -7,7 +7,6 @@ import {
   CreateLinkButton,
   DefaultSideMenu,
   DragHandleMenu,
-  DragHandleMenuItem,
   FormattingToolbarPositioner,
   HyperlinkToolbarPositioner,
   RemoveBlockButton,
@@ -15,14 +14,12 @@ import {
   SlashMenuPositioner,
   ToggledStyleButton,
   Toolbar,
-  ToolbarButton,
-  defaultBlockTypeDropdownItems,
   useBlockNote,
   useEditorContentChange,
   useEditorSelectionChange,
 } from '@blocknote/react';
 import { Block, BlockNoteEditor } from '@blocknote/core';
-import '@blocknote/core/dist/style.css';
+import './style.css';
 
 export type AntFormMarkdownConfig = {
   placeholder: string;
