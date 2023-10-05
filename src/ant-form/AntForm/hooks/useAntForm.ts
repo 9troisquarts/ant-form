@@ -8,14 +8,14 @@ type Action = {
   type: string;
 };
 
-type StateType = {
-  object: any;
+type State<T> = {
+  object: T;
   dirty: boolean;
-  initialValue: any;
+  initialValue: T;
   changes: string[];
 };
 
-const reducer = (state: any, action: Action) => {
+const reducer = <RecordType>(state: State<RecordType>, action: Action): State<RecordType> => {
   switch (action.type) {
     case 'set':
       return {
@@ -30,20 +30,24 @@ const reducer = (state: any, action: Action) => {
         ...action.payload,
       };
       return {
+        ...state,
         object: nextObject,
         dirty: !isEqual(nextObject, state.initialValue),
-        changes: uniq([...state.changes, ...(action.changes || [])])
+        changes: uniq([...state.changes, ...(action.changes || [])]),
       };
+    default:
+      return state;
   }
 };
 
-export const useAntForm = (initialValue: any) => {
-  const [state, dispatch] = useReducer(reducer, {
+export const useAntForm = <T>(initialValue: T) => {
+  const defaultValue = {
     object: initialValue,
     initialValue: initialValue,
     dirty: false,
-    changes: []
-  });
+    changes: [],
+  };
+  const [state, dispatch] = useReducer<React.Reducer<State<T>, Action>>(reducer<T>, defaultValue);
 
   const set = (object: any) => dispatch({ type: 'set', payload: object });
   const onChange = (value: any, allValue: any) => {
@@ -52,9 +56,9 @@ export const useAntForm = (initialValue: any) => {
   const onCancel = () => dispatch({ type: 'set', payload: initialValue });
   const onReset = () => dispatch({ type: 'set', payload: {} });
   return {
-    object: (state as StateType).object,
-    dirty: (state as StateType).dirty,
-    changes: (state as StateType).changes,
+    object: state.object,
+    dirty: state.dirty,
+    changes: state.changes,
     dispatch,
     onCancel,
     onReset,
