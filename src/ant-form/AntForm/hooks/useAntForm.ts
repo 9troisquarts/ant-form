@@ -2,8 +2,8 @@ import { useReducer } from 'react';
 import uniq from 'lodash/uniq';
 import isEqual from 'lodash/isEqual';
 
-type Action = {
-  payload: any;
+type Action<T> = {
+  payload: T;
   changes?: string[];
   type: string;
 };
@@ -47,14 +47,18 @@ export const useAntForm = <T>(initialValue: T) => {
     dirty: false,
     changes: [],
   };
-  const [state, dispatch] = useReducer<React.Reducer<State<T>, Action>>(reducer<T>, defaultValue);
+  const [state, dispatch] = useReducer<React.Reducer<State<T>, Action<T>>>(
+    reducer<T>,
+    defaultValue,
+  );
 
-  const set = (object: any) => dispatch({ type: 'set', payload: object });
-  const onChange = (value: any, allValue: any) => {
-    dispatch({ type: 'change', payload: allValue, changes: Object.keys(value) });
+  const set = (object: T) => dispatch({ type: 'set', payload: object });
+  const onChange = (value: T, allValue: T) => {
+    dispatch({ type: 'change', payload: allValue, changes: Object.keys(value as any) });
   };
   const onCancel = () => dispatch({ type: 'set', payload: initialValue });
-  const onReset = () => dispatch({ type: 'set', payload: {} });
+  const onReset = () => dispatch({ type: 'set', payload: {} as T });
+
   return {
     object: state.object,
     dirty: state.dirty,
