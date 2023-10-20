@@ -7,9 +7,9 @@ import { memoOnlyForKeys } from '../../_utils/helpers';
 import fieldsType from '../fields';
 import { FieldItemType } from '../types';
 
-type FieldProps = {
+type FieldProps<T> = {
   error?: string;
-  field: FieldItemType;
+  field: FieldItemType<T>;
   layout?: 'horizontal' | 'vertical';
   config?: any;
   options?: {
@@ -24,7 +24,7 @@ type FieldProps = {
   ) => string | React.ReactNode | React.ReactNode[];
 };
 
-export const Field: React.FC<FieldProps> = (props) => {
+export const Field: React.FC<FieldProps<any>> = (props) => {
   const {
     error,
     options,

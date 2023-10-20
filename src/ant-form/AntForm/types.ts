@@ -77,9 +77,9 @@ export type ListInputProps = {
   itemHeader?: string | any;
 };
 
-export type ListInput = {
+export type ListInput<T> = {
   type: 'list';
-  schema: AntSchema;
+  schema: AntSchema<T>;
   inputProps: ListInputProps;
 };
 
@@ -215,7 +215,7 @@ export type SearchInputProps = {
   inputProps: SearchProps;
 } & InputShareConfig;
 
-export type InputType =
+export type InputType<T> =
   | DatePickerInputProps
   | AutoCompleteInputProps
   | StringInput
@@ -228,7 +228,7 @@ export type InputType =
   | CheckboxInputProps
   | CheckboxesInputProps
   | DateRangeInputProps
-  | ListInput
+  | ListInput<T>
   | RadioInputProps
   | UploadInput
   | DropdownInput
@@ -241,7 +241,7 @@ export type FieldItemType<T> = {
   key?: string;
   condition?: (object: T) => boolean;
   hidden?: boolean;
-  input: InputType;
+  input: InputType<T>;
   colProps?: ColProps;
   help?: string;
   tooltip?: string;

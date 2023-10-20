@@ -3,15 +3,15 @@ import { Form, Button, Row, Col } from 'antd';
 import { AntSchema, ListInputProps } from '../types';
 import FieldItem from '../_utils/FieldItem';
 
-type ListFieldProps = {
+type ListFieldProps<RecordType> = {
   name: string;
-  schema: AntSchema;
+  schema: AntSchema<RecordType>;
   errors: any;
   object: any;
   inputProps: ListInputProps;
 };
 
-const ListField: React.FC<ListFieldProps> = props => {
+const ListField: React.FC<ListFieldProps<any>> = (props) => {
   const {
     name,
     schema,
@@ -22,11 +22,9 @@ const ListField: React.FC<ListFieldProps> = props => {
     <Form.List name={name}>
       {(fields, { add, remove }) => (
         <>
-          {fields.map(field => (
+          {fields.map((field) => (
             <Row key={field.name}>
-              {itemHeader && (
-                <Col span={24}>{itemHeader({ add, remove, field })}</Col>
-              )}
+              {itemHeader && <Col span={24}>{itemHeader({ add, remove, field })}</Col>}
               {schema.map((item, i) => (
                 <FieldItem
                   item={item}
