@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.6](https://github.com/9troisquarts/ant-form/compare/v3.1.5...v3.1.6) (2023-10-20)
+
+### Bug Fixes
+
+- Correction du bug sur les proxy de type array ([9e1442a](https://github.com/9troisquarts/ant-form/commit/9e1442a4e5cde50fa23d8a308d3cadd34a20c59f))
+
 ### [3.1.5](https://github.com/9troisquarts/ant-form/compare/v3.1.4...v3.1.5) (2023-10-05)
 
 ### [3.1.4](https://github.com/9troisquarts/ant-form/compare/v3.1.3...v3.1.4) (2023-10-05)
