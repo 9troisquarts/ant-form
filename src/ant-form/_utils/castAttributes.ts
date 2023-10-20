@@ -39,8 +39,12 @@ export const castObjectFromSchema = (object: any, schema: AntSchema) => {
   return castedObject;
 };
 
-export const reverseCastFromSchema = (object: any, schema: AntSchema, skipUndefined = false) => {
-  const castedObject = {};
+export const reverseCastFromSchema = <T>(
+  object: T,
+  schema: AntSchema<T>,
+  skipUndefined = false,
+): T => {
+  const castedObject: T = {};
   flattenDeep(schema)
     .filter((f) => f)
     .filter(isFormItem)
@@ -55,9 +59,16 @@ export const reverseCastFromSchema = (object: any, schema: AntSchema, skipUndefi
       } else {
         if (!skipUndefined || object[field.name]) set(castedObject, field.name, object[field.name]);
         if (field.proxy) {
-          const v = field.proxy.path
-            ? get(object[field.name] || {}, field.proxy.path, null)
-            : object[field.name];
+          let v = object[field.name];
+          if (field.proxy.path) {
+            if (Array.isArray(v)) {
+              v = (object[field.name] || []).map((value) =>
+                get(value || {}, field.proxy.path, null),
+              );
+            } else {
+              v = get(object[field.name] || {}, field.proxy.path, null);
+            }
+          }
           if (!skipUndefined || v) set(castedObject, field.proxy.name, v);
         }
       }

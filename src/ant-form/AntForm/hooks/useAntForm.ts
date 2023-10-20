@@ -15,7 +15,10 @@ type State<T> = {
   changes: string[];
 };
 
-const reducer = <RecordType>(state: State<RecordType>, action: Action): State<RecordType> => {
+const reducer = <RecordType>(
+  state: State<RecordType>,
+  action: Action<RecordType>,
+): State<RecordType> => {
   switch (action.type) {
     case 'set':
       return {

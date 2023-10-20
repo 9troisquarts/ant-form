@@ -50,6 +50,7 @@ export type AntFormProps = {
   renderLabel?: (label: string | React.ReactNode) => string | React.ReactNode | React.ReactNode[];
   className?: string;
   errors?: any;
+  debug?: boolean;
   extraActions?: React.ReactNode;
   loading?: boolean;
   locale?: string;
@@ -95,6 +96,7 @@ export const AntForm: React.FC<AntFormProps> = (props) => {
     actionsWrapperProps,
     submitButtonProps,
     extraActions = null,
+    debug,
     rowProps = {
       gutter: 16,
     },

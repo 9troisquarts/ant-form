@@ -78,14 +78,47 @@ export default () => {
               },
             },
           ],
-          {
-            label: 'Proxy',
-            name: 'task',
-            proxy: { name: 'taskId' },
-            input: {
-              type: 'string',
+          [
+            {
+              label: 'Proxy',
+              name: 'task',
+              proxy: { name: 'taskId' },
+              input: {
+                type: 'string',
+              },
+              colProps: {
+                xs: 24,
+                md: 12,
+                lg: 12,
+              },
             },
-          },
+            {
+              label: 'Proxy',
+              name: 'tasks',
+              proxy: { name: 'taskIds' },
+              input: {
+                type: 'select',
+                options: [
+                  {
+                    label: 'test',
+                    value: '1',
+                  },
+                  {
+                    label: 'test 2',
+                    value: '2',
+                  },
+                ],
+                inputProps: {
+                  mode: 'multiple',
+                },
+              },
+              colProps: {
+                xs: 24,
+                md: 12,
+                lg: 12,
+              },
+            },
+          ],
           [
             {
               name: 'select',

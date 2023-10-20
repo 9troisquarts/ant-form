@@ -99,8 +99,8 @@ export type DropdownInput = {
     separator?: string;
     className?: string;
     placeholder?: string;
-  }
-}
+  };
+};
 
 type Option = {
   value: any;
@@ -120,7 +120,7 @@ export type TimePickerInputProps = {
   type: 'time';
   value?: moment.Moment;
   inputProps?: Omit<TimePickerProps, 'onChange'>;
-}
+};
 
 export type AutoCompleteInputProps = {
   type: 'autoComplete';
@@ -187,19 +187,19 @@ export type DateRangeInputProps = {
     https://ant.design/components/date-picker/#RangePicker
   */
   inputProps: RangePickerProps;
-}
+};
 
 type ContentEditableOptions = {
   tagName?: string;
   className?: string;
   style?: React.CSSProperties;
-}
+};
 
 export type ContentEditableInputProps = {
   type: 'contenteditable';
   /**
    *  Name of attribute
-  */
+   */
   name: string;
   value: string;
   onChange: (value: string) => void;
@@ -236,25 +236,25 @@ export type InputType =
   | ContentEditableInputProps
   | AntFormRailsNestedProps;
 
-export type FieldItemType = {
-  name: string;
+export type FieldItemType<T> = {
+  name: keyof T;
   key?: string;
-  condition?: ((object: any) => boolean);
+  condition?: (object: T) => boolean;
   hidden?: boolean;
   input: InputType;
   colProps?: ColProps;
   help?: string;
   tooltip?: string;
   proxy?: {
-    name: string;
+    name: keyof T;
     path?: string[] | string;
   };
 } & FormItemProps;
 
-export type FieldType = {
+export type FieldType<T> = {
   defaultValue?: any;
   errorKey?: string[] | string;
-} & FieldItemType;
+} & FieldItemType<T>;
 
 export type Configuration = {
   actionsWrapperProps?: {
@@ -264,26 +264,26 @@ export type Configuration = {
   cancelText?: string;
   formProps?: FormProps;
   language?: 'fr' | 'en' | 'es';
-  layout: 'horizontal' | 'inline' | 'vertical'
+  layout: 'horizontal' | 'inline' | 'vertical';
   submitText?: string;
   /** Icon to use for tooltip */
   tooltipIcon?: React.ReactNode;
   file?: {
     addButtonText?: string;
-    emptyText?: string
-  }
+    emptyText?: string;
+  };
 };
 
 // @ts-ignore
-export type FieldSchema = AntSchema | FieldType | React.Component;
+export type FieldSchema<T> = AntSchema<T> | FieldType<T> | React.Component;
 
-export function isReactNode(item: FieldSchema): item is React.Component {
+export function isReactNode(item: FieldSchema<any>): item is React.Component {
   if (!item) return true;
   return (item as React.Component).props !== undefined;
 }
 
-export function isFormItem(item: FieldSchema): item is FieldType {
-  return (item as FieldType).name !== undefined;
+export function isFormItem(item: FieldSchema<any>): item is FieldType<any> {
+  return (item as FieldType<any>).name !== undefined;
 }
 
-export type AntSchema = Array<FieldSchema>;
+export type AntSchema<T> = Array<FieldSchema<T>>;
