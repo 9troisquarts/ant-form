@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.8](https://github.com/9troisquarts/ant-form/compare/v3.1.7...v3.1.8) (2023-10-26)
+
+### Bug Fixes
+
+- Revert to old markdown ([59243f3](https://github.com/9troisquarts/ant-form/commit/59243f3e6c78484e3253d6a36991230c3f38cf93))
+
 ### [3.1.7](https://github.com/9troisquarts/ant-form/compare/v3.1.6...v3.1.7) (2023-10-20)
 
 ### [3.1.6](https://github.com/9troisquarts/ant-form/compare/v3.1.5...v3.1.6) (2023-10-20)
