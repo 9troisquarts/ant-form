@@ -33,3 +33,29 @@ export default () => (
   />
 );
 ```
+
+```tsx
+import React from 'react';
+import AntForm, { AntFormRichMarkdownEditor } from '@9troisquarts/ant-form';
+
+AntForm.addField('markdown', {
+  component: AntFormRichMarkdownEditor,
+});
+
+export default () => (
+  <AntForm
+    layout="vertical"
+    object={{ markdown: '**dzadijaz**' }}
+    onSubmit={(values) => console.log(values)}
+    schema={[
+      {
+        name: 'markdown',
+        label: 'Markdown',
+        input: {
+          type: 'markdown',
+        },
+      },
+    ]}
+  />
+);
+```
