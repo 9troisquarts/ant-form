@@ -113,4 +113,4 @@ export const Field: React.FC<FieldProps<any>> = (props) => {
   return formItem;
 };
 
-export default React.memo(Field, memoOnlyForKeys(['field', 'error', 'options.locale']));
+export default React.memo(Field, memoOnlyForKeys(['field', 'error', 'options.locale', 'options.readOnly']));
