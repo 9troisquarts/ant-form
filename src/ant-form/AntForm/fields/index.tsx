@@ -44,6 +44,7 @@ import SelectInput from './SelectInput';
 import TextArea from './Textarea';
 import UploadInput from './Upload';
 import { AntFormMarkdownEditor } from '../../../ant-form-markdown-editor';
+import Transfer from './Transfer';
 
 const { Password: APassword } = Input;
 
@@ -284,6 +285,9 @@ export const defaultFieldsType: FieldsTypeInterface = {
     props: {
       multiple: true,
     },
+  },
+  transfer: {
+    component: Transfer,
   },
 };
 
