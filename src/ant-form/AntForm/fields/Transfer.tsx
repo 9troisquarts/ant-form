@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Transfer, TransferProps } from 'antd';
 
-type OptionType = { label: string; value?: string; key: string; description?: string };
+type OptionType = { label: string; value?: string; key?: string; description?: string };
 
 type TransferInputProps = {
   options: OptionType[];
   onChange: (keys: Array<string>) => void;
   value: Array<any>;
-  inputProps: {
-    filterOption: OptionType;
-  } & Omit<TransferProps<OptionType[]>, 'targetKeys'>;
+  inputProps: Omit<TransferProps<OptionType>, 'targetKeys'> & {
+    filterOption?: (filterText: string, item: OptionType) => boolean;
+  };
 };
 
 const TransferInput: React.FC<TransferInputProps> = (props) => {
@@ -20,7 +20,7 @@ const TransferInput: React.FC<TransferInputProps> = (props) => {
     setInternalValue(props.value || []);
   }, [value]);
 
-  const handleChange = (keys) => {
+  const handleChange = (keys: string[]) => {
     setInternalValue(keys);
     onChange(keys);
   };
@@ -28,6 +28,7 @@ const TransferInput: React.FC<TransferInputProps> = (props) => {
   let dataSource = options.map((option) => ({ ...option, key: option.value }));
 
   return (
+    // @ts-ignore
     <Transfer
       {...inputProps}
       dataSource={dataSource}

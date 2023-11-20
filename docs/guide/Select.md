@@ -89,7 +89,7 @@ export default () => (
 );
 ```
 
-### Multiple
+### Transfer
 
 ```tsx
 import React from 'react';
