@@ -293,4 +293,4 @@ export function isFormItem(item: FieldSchema<any>): item is FieldType<any> {
   return (item as FieldType<any>).name !== undefined;
 }
 
-export type AntSchema<T> = Array<FieldSchema<T>>;
+export type AntSchema<T = unknown> = Array<FieldSchema<T>>;
