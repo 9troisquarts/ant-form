@@ -6,7 +6,12 @@ import isArray from 'lodash/isArray';
 import get from 'lodash/get';
 
 export const hasDefaultValue = (field: FieldType) => field.defaultValue;
-export const isShown = (field: FieldType) => !field.hidden;
+export const isShown = (field: FieldType) => {
+  if (field.hasOwnProperty('hidden')) return true;
+
+  if (typeof field.hidden === 'function') return !field.hidden(field);
+  return !field.hidden;
+};
 
 /* Return true if props does not change */
 export const memoOnlyForKeys =

@@ -515,7 +515,7 @@ export default () => (
 
 ## Champs conditionnés
 
-`hiden` : Le champ est caché, mais sa valeur est définit dans l'objet de retour
+`hidden` : Le champ est caché, mais sa valeur est définit dans l'objet de retour
 
 Exemple:
 
