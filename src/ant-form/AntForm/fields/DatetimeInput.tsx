@@ -1,11 +1,21 @@
 import { DatePicker, Input } from 'antd';
 import { omit } from 'lodash';
 import moment, { isMoment } from 'moment';
-import React from 'react';
-import { DatePickerInputProps, DateTimeInputProps } from '../types';
+import React, { useEffect } from 'react';
+import { DateTimeInputProps } from '../types';
+
+const convertValue = (value?: moment.Moment | string) => {
+  if (value && !isMoment(value) && moment(value).isValid()) return moment(value);
+  else if (value && isMoment(value)) return value;
+  return value;
+};
 
 const DatetimeInput: React.FC<DateTimeInputProps> = (props) => {
-  const { readOnly, value, inputProps: { format = 'LLL' } = {} } = props;
+  const { readOnly = false, value, inputProps: { format = 'LLL' } = {} } = props;
+  const [internalValue, setInternalValue] = React.useState(convertValue(value));
+  useEffect(() => {
+    setInternalValue(convertValue(value));
+  }, [value]);
 
   if (readOnly) {
     let v = value;
@@ -20,14 +30,13 @@ const DatetimeInput: React.FC<DateTimeInputProps> = (props) => {
   }
 
   const otherProps = omit(props, ['renderLabel']);
-
   return (
     // @ts-ignore
     <DatePicker
       style={{ width: '100%' }}
       format={format}
-      // @ts-ignore
-      value={value}
+      // ts-ignore
+      value={internalValue}
       {...(otherProps || {})}
       showTime
     />
