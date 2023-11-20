@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.12](https://github.com/9troisquarts/ant-form/compare/v3.1.11...v3.1.12) (2023-11-20)
+
+### Bug Fixes
+
+- Correction champs datetime ([2a4280a](https://github.com/9troisquarts/ant-form/commit/2a4280ac9766c0bb98d6f5d98bb677c97b7a6c09))
+
 ### [3.1.11](https://github.com/9troisquarts/ant-form/compare/v3.2.0...v3.1.11) (2023-11-20)
 
 ### [3.1.10](https://github.com/9troisquarts/ant-form/compare/v3.2.0...v3.1.10) (2023-11-20)
