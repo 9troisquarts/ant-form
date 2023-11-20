@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.13](https://github.com/9troisquarts/ant-form/compare/v3.1.12...v3.1.13) (2023-11-20)
+
+### Bug Fixes
+
+- international format doesnt work with datetime ([01547d7](https://github.com/9troisquarts/ant-form/commit/01547d7b78825d39afbee66531564fda268a8f3f))
+
 ### [3.1.12](https://github.com/9troisquarts/ant-form/compare/v3.1.11...v3.1.12) (2023-11-20)
 
 ### Bug Fixes
