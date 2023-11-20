@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.14](https://github.com/9troisquarts/ant-form/compare/v3.1.13...v3.1.14) (2023-11-20)
+
+### Bug Fixes
+
+- Possibilité de mettre une fonction en hidden ([7ef9c44](https://github.com/9troisquarts/ant-form/commit/7ef9c447e915757d46071456e90cecc5c719b297))
+
 ### [3.1.13](https://github.com/9troisquarts/ant-form/compare/v3.1.12...v3.1.13) (2023-11-20)
 
 ### Bug Fixes
