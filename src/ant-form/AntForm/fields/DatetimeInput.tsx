@@ -11,7 +11,7 @@ const convertValue = (value?: moment.Moment | string) => {
 };
 
 const DatetimeInput = (props) => {
-  const { readOnly = false, value, inputProps: { format = 'LLL' } = {} } = props;
+  const { readOnly = false, value, inputProps: { format = 'DD/MM/YYYY HH:mm:ss' } = {} } = props;
   const [internalValue, setInternalValue] = React.useState(convertValue(value));
   useEffect(() => {
     setInternalValue(convertValue(value));
