@@ -19,7 +19,7 @@ import 'antd/dist/antd.css';
 export default () => (
   <AntForm
     object={{
-      single: 'granger'
+      single: 'granger',
     }}
     onChange={(value, values) => console.log(values)}
     layout="vertical"
@@ -28,17 +28,21 @@ export default () => (
         name: 'single',
         input: {
           type: 'select',
-          options: [{
-            label: 'Hermione',
-            value: 'granger'
-          }, {
-            label: 'Harry',
-            value: 'potter'
-          }, {
-            label: 'Frédéric',
-            value: 'fred'
-          }],
-        }
+          options: [
+            {
+              label: 'Hermione',
+              value: 'granger',
+            },
+            {
+              label: 'Harry',
+              value: 'potter',
+            },
+            {
+              label: 'Frédéric',
+              value: 'fred',
+            },
+          ],
+        },
       },
     ]}
   />
@@ -55,7 +59,7 @@ import 'antd/dist/antd.css';
 export default () => (
   <AntForm
     object={{
-      multiple: null
+      multiple: null,
     }}
     onChange={(value, values) => console.log(values)}
     layout="vertical"
@@ -64,21 +68,60 @@ export default () => (
         name: 'multiple',
         input: {
           type: 'select',
-          options: [{
-            label: 'Hermione',
-            value: 'granger'
-          }, {
-            label: 'Harry',
-            value: 'potter'
-          }],
+          options: [
+            {
+              label: 'Hermione',
+              value: 'granger',
+            },
+            {
+              label: 'Harry',
+              value: 'potter',
+            },
+          ],
           inputProps: {
-            mode: "multiple",
-            placeholder: 'Select a wizard...'
-          }          
-        }
+            mode: 'multiple',
+            placeholder: 'Select a wizard...',
+          },
+        },
       },
     ]}
   />
 );
 ```
 
+### Transfer
+
+```tsx
+import React from 'react';
+import AntForm, { useAntForm } from '@9troisquarts/ant-form';
+import 'antd/dist/antd.css';
+
+export default () => (
+  <AntForm
+    object={{
+      transfer: null,
+    }}
+    onChange={(value, values) => console.log(values)}
+    layout="vertical"
+    schema={[
+      {
+        name: 'transfer',
+        input: {
+          type: 'transfer',
+          options: [
+            {
+              label: 'Hermione',
+              value: 'granger',
+            },
+            {
+              label: 'Harry',
+              value: 'potter',
+            },
+          ],
+          titles: ['Colonne A', 'Colonne B'],
+        },
+      },
+    ]}
+  />
+);
+```

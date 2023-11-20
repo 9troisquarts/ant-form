@@ -116,6 +116,13 @@ export type DatePickerInputProps = {
   inputProps?: Omit<DatePickerProps, 'onChange'>;
 };
 
+export type DateTimeInputProps = {
+  type: 'datetime';
+  readOnly?: boolean;
+  value?: string | moment.Moment;
+  inputProps: Omit<DatePickerProps, 'onChange' | 'showTime'>;
+};
+
 export type TimePickerInputProps = {
   type: 'time';
   value?: moment.Moment;
