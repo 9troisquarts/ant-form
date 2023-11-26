@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { DatePicker, Input } from 'antd';
-import { omit } from 'lodash';
+import omit from 'lodash/omit';
 import moment, { isMoment } from 'moment';
 import React, { useEffect } from 'react';
 
