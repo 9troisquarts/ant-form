@@ -1,16 +1,20 @@
 // @ts-nocheck
-import { DatePicker, Input } from 'antd';
+import { Input } from 'antd';
+import generatePicker from 'antd/es/date-picker/generatePicker';
 import omit from 'lodash/omit';
-import moment, { isMoment } from 'moment';
 import React, { useEffect } from 'react';
+import dayjsGenerateConfig from 'rc-picker/lib/generate/dayjs';
+import dayjs, { Dayjs as DayjsType } from 'dayjs';
 
-const convertValue = (value?: moment.Moment | string) => {
-  if (value && !isMoment(value) && moment(value).isValid()) return moment(value);
-  else if (value && isMoment(value)) return value;
+const DatePicker = generatePicker<DayjsType>(dayjsGenerateConfig);
+
+const convertValue = (value?: DayjsType | string) => {
+  if (value && !dayjs.isDayjs(value) && dayjs(value).isValid()) return dayjs(value);
+  else if (value && dayjs.isDayjs(value)) return value;
   return value;
 };
 
-const DatetimeInput = (props) => {
+const DatetimeInput = (props: any) => {
   const { readOnly = false, value, inputProps: { format = 'DD/MM/YYYY HH:mm:ss' } = {} } = props;
   const [internalValue, setInternalValue] = React.useState(convertValue(value));
   useEffect(() => {
@@ -19,7 +23,7 @@ const DatetimeInput = (props) => {
 
   if (readOnly) {
     let v = value;
-    if (v && !isMoment(v) && moment(v).isValid()) v = moment(v);
+    if (v && !dayjs.isDayjs(v) && dayjs(v).isValid()) v = dayjs(v);
     return (
       <Input
         readOnly

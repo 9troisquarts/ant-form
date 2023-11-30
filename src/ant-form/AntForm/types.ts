@@ -15,10 +15,10 @@ import { RadioGroupProps } from 'antd/es/radio';
 import { SwitchProps } from 'antd/es/switch';
 import { ButtonProps } from 'antd/es/button';
 import { TimePickerProps } from 'antd/es/time-picker';
-import moment from 'moment';
 import { RangePickerProps } from 'antd/lib/date-picker';
 import { SearchProps } from 'antd/lib/input';
 import { AntFormRailsNestedProps } from '../../ant-form-rails-nested';
+import { Dayjs } from 'dayjs';
 
 export type InputShareConfig = {
   required?: boolean;
@@ -112,20 +112,23 @@ type Option = {
 export type DatePickerInputProps = {
   type: 'date';
   readOnly?: boolean;
-  value?: string | moment.Moment;
-  inputProps?: Omit<DatePickerProps, 'onChange'>;
+  value?: string | Dayjs;
+  onChange: (value: any) => void;
+  inputProps?: Omit<DatePickerProps, 'onChange' | 'format'> & {
+    format?: string;
+  };
 };
 
 export type DateTimeInputProps = {
   type: 'datetime';
   readOnly?: boolean;
-  value?: string | moment.Moment;
+  value?: string | Dayjs;
   inputProps: Omit<DatePickerProps, 'onChange' | 'showTime'>;
 };
 
 export type TimePickerInputProps = {
   type: 'time';
-  value?: moment.Moment;
+  value?: Dayjs;
   inputProps?: Omit<TimePickerProps, 'onChange'>;
 };
 
@@ -268,6 +271,7 @@ export type Configuration = {
     style?: React.CSSProperties;
     className?: string;
   };
+  dateFormat?: string;
   cancelText?: string;
   formProps?: FormProps;
   language?: 'fr' | 'en' | 'es';

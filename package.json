@@ -32,14 +32,13 @@
     ]
   },
   "dependencies": {
-    "rich-markdown-editor": "^11.21.3",
     "@ant-design/icons": "<5",
     "@blocknote/core": "^0.9.3",
     "@blocknote/react": "^0.9.3",
     "ahooks": "^3.7.8",
     "antd": "<5",
+    "dayjs": "^1.11.10",
     "lodash": "^4.17.21",
-    "moment": "^2.29.4",
     "react": "^18.2",
     "react-color": "^2.19.3",
     "react-contenteditable": "^3.3.7",
@@ -48,6 +47,7 @@
     "react-google-places-autocomplete": "^3.4.0",
     "react-select": "5.4.0",
     "react-trix": "^0.10.0",
+    "rich-markdown-editor": "^11.21.3",
     "sanitize-html": "^2.7.2",
     "styled-components": "^5.3.6",
     "trix": "^2.0.6"

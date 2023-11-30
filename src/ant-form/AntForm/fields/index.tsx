@@ -2,7 +2,6 @@ import {
   AutoComplete,
   Checkbox,
   Col,
-  DatePicker,
   Input,
   InputNumber as AInputNumber,
   Radio,
@@ -17,16 +16,12 @@ import { InputNumberProps } from 'antd/es/input-number';
 import { RateProps } from 'antd/es/rate';
 import { SliderBaseProps } from 'antd/es/slider';
 import { SwitchProps } from 'antd/es/switch';
-import omit from 'lodash/omit';
-import moment, { isMoment } from 'moment';
-import React, { useContext } from 'react';
+import React from 'react';
 import { AntFormColorPicker } from '../../../ant-form-color-picker';
-import ConfigurationContext from '../ConfigurationContext';
 import {
   AutoCompleteInputProps,
   CheckboxesInputProps,
   CheckboxInputProps,
-  DatePickerInputProps,
   RadioInputProps,
   TimePickerInputProps,
 } from '../types';
@@ -45,6 +40,8 @@ import TextArea from './Textarea';
 import UploadInput from './Upload';
 import { AntFormMarkdownEditor } from '../../../ant-form-markdown-editor';
 import Transfer from './Transfer';
+import DateInput from './DateInput';
+import TimeInput from './TimeInput';
 
 const { Password: APassword } = Input;
 
@@ -134,36 +131,6 @@ const AutoCompleteInput: React.FC<AutoCompleteInputProps> = (props) => {
   return <AutoComplete {...other} onSearch={onSearch} options={options} />;
 };
 
-const DateInput: React.FC<DatePickerInputProps> = (props) => {
-  const { readOnly, value } = props;
-  const config = useContext(ConfigurationContext);
-
-  if (readOnly) {
-    let v = value;
-    if (v && !isMoment(v) && moment(v).isValid()) v = moment(v);
-    return (
-      <Input
-        readOnly
-        // @ts-ignore
-        value={v ? v.format(props.inputProps?.format || config?.dateFormat || 'L') : undefined}
-      />
-    );
-  }
-
-  const otherProps = omit(props, ['renderLabel']);
-
-  return (
-    // @ts-ignore
-    <DatePicker
-      style={{ width: '100%' }}
-      format="L"
-      // @ts-ignore
-      value={value}
-      {...(otherProps || {})}
-    />
-  );
-};
-
 const Rate: React.FC<RateProps & SharedProps> = ({ inputProps = {}, ...props }) => (
   <ARate {...props} {...(inputProps || {})} />
 );
@@ -183,12 +150,6 @@ const Slider: React.FC<SliderBaseProps & SharedProps> = ({ inputProps = {}, ...p
 const Password: React.FC<PasswordProps & SharedProps> = ({ inputProps = {}, ...props }) => (
   <APassword {...props} {...(inputProps || {})} />
 );
-
-const TimeInput: React.FC<TimePickerInputProps> = (props) => {
-  let v = undefined;
-  if (props.value) v = moment.isMoment(props.value) ? props.value : moment(props.value);
-  return <TimePicker style={{ width: '100%' }} {...props} value={v} />;
-};
 
 type FieldsTypeInterface = {
   [key: string]: {

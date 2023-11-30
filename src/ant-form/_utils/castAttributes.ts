@@ -2,14 +2,18 @@
 import flattenDeep from 'lodash/flattenDeep';
 import get from 'lodash/get';
 import set from 'lodash/set';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { AntSchema, FieldType, isFormItem } from '../AntForm/types';
 
 export const castValue = (type: string, value) => {
+  console.log(type, value);
   switch (type) {
     case 'daterange':
     case 'date':
-      if (value) return value instanceof moment ? value : moment(value);
+      if (value) {
+        console.log('value: ', value, dayjs.isDayjs(value) ? value : dayjs(value));
+        return dayjs.isDayjs(value) ? value : dayjs(value);
+      }
       break;
     case 'upload':
       return value || [];

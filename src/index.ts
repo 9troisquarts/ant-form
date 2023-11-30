@@ -1,3 +1,9 @@
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+dayjs.extend(localizedFormat);
+
+dayjs().format('L LT');
+
 import AntForm from './ant-form';
 export { useAntForm as useAntForm } from './ant-form/index';
 export { default as AntFormReactSelect } from './ant-form-react-select';
