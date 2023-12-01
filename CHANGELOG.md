@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2](https://github.com/9troisquarts/ant-form/compare/v4.0.1...v4.0.2) (2023-12-01)
+
+### Bug Fixes
+
+- dayjs ([856b006](https://github.com/9troisquarts/ant-form/commit/856b00615ab4616ee17a7eeb4a0c94a3ea393bbc))
+
 ### [4.0.1](https://github.com/9troisquarts/ant-form/compare/v4.0.0...v4.0.1) (2023-11-30)
 
 ## [4.0.0](https://github.com/9troisquarts/ant-form/compare/v3.1.14...v4.0.0) (2023-11-30)
