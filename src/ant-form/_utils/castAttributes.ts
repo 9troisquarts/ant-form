@@ -6,12 +6,10 @@ import dayjs from 'dayjs';
 import { AntSchema, FieldType, isFormItem } from '../AntForm/types';
 
 export const castValue = (type: string, value) => {
-  console.log(type, value);
   switch (type) {
     case 'daterange':
     case 'date':
       if (value) {
-        console.log('value: ', value, dayjs.isDayjs(value) ? value : dayjs(value));
         return dayjs.isDayjs(value) ? value : dayjs(value);
       }
       break;

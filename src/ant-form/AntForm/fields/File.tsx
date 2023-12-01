@@ -169,6 +169,7 @@ const FileInput: React.FC<IProps> = (props) => {
           type="file"
           multiple={multiple}
           style={{ display: 'none' }}
+          // @ts-ignore
           ref={inputRef}
         />
       )}
