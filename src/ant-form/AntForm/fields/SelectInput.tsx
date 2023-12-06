@@ -17,7 +17,7 @@ const filterOption = (input: string, option: any) =>
     ) >= 0;
 
 const SelectInput: React.FC<SelectInputProps> = React.memo((props) => {
-  const { options, onChange, value: v, readOnly = false, inputProps = {}, name, ...rest } = props;
+  const { options, onChange, value: v, readOnly = false, inputProps = {}, ...rest } = props;
 
   if (readOnly && inputProps.mode !== 'multiple') {
     return <Input readOnly value={v ? options.find((o) => o.value === v)?.label : undefined} />;
@@ -25,7 +25,6 @@ const SelectInput: React.FC<SelectInputProps> = React.memo((props) => {
 
   return (
     <Select
-      id={`ant-form-${name}`}
       filterOption={filterOption}
       showSearch={true}
       {...(inputProps || {})}
