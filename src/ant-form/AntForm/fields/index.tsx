@@ -23,7 +23,6 @@ import {
   CheckboxesInputProps,
   CheckboxInputProps,
   RadioInputProps,
-  TimePickerInputProps,
 } from '../types';
 import Boolean from './Boolean';
 import ContentEditableInput from './ContentEditableInput';

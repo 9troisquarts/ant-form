@@ -75,7 +75,9 @@ const InputString: React.FC<InputStringProps> = (props: InputStringProps & Inter
     );
   }
 
-  return <Input {...inputProps} value={v} readOnly={readOnly} onChange={handleChange} />;
+  return (
+    <Input name={name} {...inputProps} value={v} readOnly={readOnly} onChange={handleChange} />
+  );
 };
 
 export default InputString;

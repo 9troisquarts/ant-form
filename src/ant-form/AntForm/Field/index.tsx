@@ -82,28 +82,30 @@ export const Field: React.FC<FieldProps<any>> = (props) => {
         inputProps={inputProps}
       />
     ) : (
-      <Form.Item
-        name={!isNil(fieldKey) ? [fieldKey, name] : name}
-        {...(!isNil(fieldKey) ? { fieldKey: [fieldKey, name] } : {})}
-        {...formItemProps}
-        tooltip={renderLabel ? undefined : tooltipProps}
-        className={`${formItemProps.className} ant-form-item-${type}`}
-        {...(valuePropName ? { valuePropName } : {})}
-        {...((showFormItemError === undefined || showFormItemError) &&
-          error && {
-            validateStatus: 'error',
-            help: isArray(error) ? error[0] : error,
-          })}
-        {...(renderLabel ? { colon: false } : {})}
-        label={renderLabel && label ? renderLabel(label, { tooltip: tooltipProps }) : label}
-      >
-        <Component
-          renderLabel={renderLabel}
-          {...componentSharedProps}
-          {...inputProps}
-          inputProps={inputProps}
-        />
-      </Form.Item>
+      <span data-testid={`${name}`}>
+        <Form.Item
+          name={!isNil(fieldKey) ? [fieldKey, name] : name}
+          {...(!isNil(fieldKey) ? { fieldKey: [fieldKey, name] } : {})}
+          {...formItemProps}
+          tooltip={renderLabel ? undefined : tooltipProps}
+          className={`${formItemProps.className || ''} ant-form-item-${type}`}
+          {...(valuePropName ? { valuePropName } : {})}
+          {...((showFormItemError === undefined || showFormItemError) &&
+            error && {
+              validateStatus: 'error',
+              help: isArray(error) ? error[0] : error,
+            })}
+          {...(renderLabel ? { colon: false } : {})}
+          label={renderLabel && label ? renderLabel(label, { tooltip: tooltipProps }) : label}
+        >
+          <Component
+            renderLabel={renderLabel}
+            {...componentSharedProps}
+            {...inputProps}
+            inputProps={inputProps}
+          />
+        </Form.Item>
+      </span>
     );
 
   if (colProps) {
@@ -113,4 +115,7 @@ export const Field: React.FC<FieldProps<any>> = (props) => {
   return formItem;
 };
 
-export default React.memo(Field, memoOnlyForKeys(['field', 'error', 'options.locale', 'options.readOnly']));
+export default React.memo(
+  Field,
+  memoOnlyForKeys(['field', 'error', 'options.locale', 'options.readOnly']),
+);

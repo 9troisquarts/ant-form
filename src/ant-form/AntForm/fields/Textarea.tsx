@@ -79,6 +79,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
       return (
         <div className="ant-form-InPlace-input-container" onBlur={onBlur}>
           <Input.TextArea
+            name={name}
             {...(inputProps || {})}
             // @ts-ignore
             value={v}
@@ -107,6 +108,7 @@ const TextArea: React.FC<TextAreaInputProps> = (props: TextAreaInputProps & Inte
 
   return (
     <Input.TextArea
+      name={name}
       {...(inputProps || {})}
       readOnly={readOnly}
       // @ts-ignore
