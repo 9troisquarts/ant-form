@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.5](https://github.com/9troisquarts/ant-form/compare/v4.0.3...v4.0.5) (2023-12-06)
+
+### Bug Fixes
+
+- Add testid around field ([fd09430](https://github.com/9troisquarts/ant-form/commit/fd09430b4128e83a5349d2d4f42625a2c7a5fe78))
+
 ### [4.0.4](https://github.com/9troisquarts/ant-form/compare/v4.0.3...v4.0.4) (2023-12-06)
 
 ### Bug Fixes
