@@ -19,6 +19,8 @@ const filterOption = (input: string, option: any) =>
 const SelectInput: React.FC<SelectInputProps> = React.memo((props) => {
   const { options, onChange, value: v, readOnly = false, inputProps = {}, ...rest } = props;
 
+  const { allowClear = true } = inputProps;
+
   if (readOnly && inputProps.mode !== 'multiple') {
     return <Input readOnly value={v ? options.find((o) => o.value === v)?.label : undefined} />;
   }
@@ -29,6 +31,7 @@ const SelectInput: React.FC<SelectInputProps> = React.memo((props) => {
       showSearch={true}
       {...(inputProps || {})}
       {...rest}
+      allowClear={allowClear}
       onChange={onChange}
       value={inputProps.mode && inputProps.mode === 'multiple' && !v ? [] : v}
       disabled={readOnly || inputProps.disabled}
